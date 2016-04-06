@@ -1,11 +1,13 @@
 <?php 
-/* 
- * Fichero que controla las migrations de bbdd
+/**
+ * NotesBook Database Migrations File
  *
+ * @author     Nombre <email@email.com>
+ * @package    \application\database
+ * @license    https://www.gnu.org/licenses/agpl-3.0.html GNU Affero General Public License Version 3 (AGPL3)
  */
 
 //1. Connectamos con el servidor. Las variables de configuración están en el fichero /config.php
-
 $conn = new mysqli($bbdd_server, $bbdd_user, $bbdd_password);
 
 /* set autocommit to off */
@@ -70,7 +72,7 @@ if (!$conn->commit()) {
  *	2. Inserta usuarios base y de prueba
  */
 
-
+/*
 //1. Comprobamos si existe la tabla de versiones y la creamos, sólo si nuestra versión actual es la anterior a esta Migración (la versión 0)
 if($version_actual == "0") {
 	$sql_create_table_user_if_not_exists = 
@@ -113,7 +115,7 @@ if (!$conn->commit()) {
     print("Transaction commit failed\n");
     exit();
 }
-
+*/
 
 /* close connection */
 $conn->close();
