@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * NotesBook Database Migrations File
  *
@@ -7,8 +7,10 @@
  * @license    https://www.gnu.org/licenses/agpl-3.0.html GNU Affero General Public License Version 3 (AGPL3)
  */
 
+$database_config = $_NB_GLOBALS["settings"]->database;
+
 //1. Connectamos con el servidor. Las variables de configuración están en el fichero /config.php
-$conn = new mysqli($bbdd_server, $bbdd_user, $bbdd_password);
+$conn = MysqlDatabaseEngine::get_connection();
 
 /* set autocommit to off */
 $conn->autocommit(FALSE);
@@ -26,19 +28,19 @@ if (mysqli_connect_errno()) {
  *  2. Comprueba la última versión
  */
 //1. Después de conectarnos, comprobamos si existe la bbdd
-$sql_creacion_bbdd = "CREATE DATABASE IF NOT EXISTS $bbdd_name";
+$sql_creacion_bbdd = "CREATE DATABASE IF NOT EXISTS ".$_NB_GLOBALS["settings"]->database->schema;
 //print $sql_creacion_bbdd."<br>";
 $conn->query($sql_creacion_bbdd);
 
 //2. Seleccionamos la BBDD
-$conn->select_db($bbdd_name);
+$conn->select_db($database_config->schema);
 
 //3. Comprobamos si existe la tabla de versiones y la creamos
 $sql_create_table_versions_if_not_exists = 
 	"CREATE TABLE IF NOT EXISTS versions (
         version_number INT NOT NULL,
         PRIMARY KEY(version_number),
-        DATE    date NOT NULL,
+        date    date NOT NULL,
         description VARCHAR(500) NOT NULL
     )";
 //print $sql_create_table_versions_if_not_exists."<br>";
@@ -72,7 +74,7 @@ if (!$conn->commit()) {
  *	2. Inserta usuarios base y de prueba
  */
 
-/*
+
 //1. Comprobamos si existe la tabla de versiones y la creamos, sólo si nuestra versión actual es la anterior a esta Migración (la versión 0)
 if($version_actual == "0") {
 	$sql_create_table_user_if_not_exists = 
@@ -104,9 +106,11 @@ if($version_actual == "0") {
 	insertar_usuario_si_no_existe("juan");
 
 	//3. Actualizamos la versión de la bbdd
-	$sql_update_versions_1 = "INSERT INTO versions(version_number, date, description) VALUES(1, NOW(), 'Creación de tabla usuarios, inserción de datos de prueba')";
+	$sql_update_versions_1 = "INSERT INTO versions(version_number, date, description) VALUES(1, '2016/04/09', 'Creación de tabla usuarios, inserción de datos de prueba')";
 	//print $sql_update_versions_0."<br>";
 	$conn->query($sql_update_versions_1);
+
+	$version_actual = 1;
 }
 
 
@@ -115,7 +119,7 @@ if (!$conn->commit()) {
     print("Transaction commit failed\n");
     exit();
 }
-*/
+
 
 /* close connection */
 $conn->close();
