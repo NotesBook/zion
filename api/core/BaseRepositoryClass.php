@@ -19,7 +19,7 @@
 			$where = empty($where) ? "" : "WHERE $where";
 			$join = empty($join) ? "" : "LEFT JOIN $join";
 
-			return MysqlDatabaseEngine::get_connection()->query("SELECT $fields FROM $table;");
+			return MysqlDatabaseEngine::get_connection()->query("SELECT $fields FROM $table $where;");
 
 		}
 
