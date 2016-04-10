@@ -1,7 +1,7 @@
 <webconfig>
 
 	<database>
-		<server>localhost:8080</server>
+		<server>localhost</server>
 		<user>root</user>
 		<pass></pass>
 		<schema>notesbook</schema>

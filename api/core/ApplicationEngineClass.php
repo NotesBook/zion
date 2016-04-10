@@ -15,6 +15,7 @@
 
 			/** Create Controller */
 			$controller_name = RoutingEngineService::get_controller_name();
+			echo $controller_name;
 			$controller_obj = new $controller_name;
 
 			/** Set action */
