@@ -11,9 +11,7 @@
 
 		public static function get_all() {
 
-			$database_result = parent::select("notesbook.Users", array("name", "id"));
-
-			$info_fields = $database_result->fetch_fields();
+			$database_result = parent::select("users", array("name", "id"));
 
 			$array_obj_result = array();
 			while($user_tupla = $database_result->fetch_array()) {

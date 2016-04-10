@@ -1,24 +1,28 @@
-<?php
-/**
- * NotesBook Initial File for angular js app
- *
- * @author     Nombre <email@email.com>
- * @package    \
- * @license    https://www.gnu.org/licenses/agpl-3.0.html GNU Affero General Public License Version 3 (AGPL3)
- */
-
-
- ?><!DOCTYPE html>
- <html>
+<!DOCTYPE html>
+ <html ng-app="nbApp">
  <head>
  	<meta charset="utf-8">
  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
  	<title>Notesapp</title>
- 	<link rel="stylesheet" href="">
- </head>
- <body>
 
- 	La vista base :)
+    <link href="css/style.css" rel="stylesheet" />
+
+    <script src="app/libs/angular.min.js"></script>
+    <script src="app/libs/angular-route.min.js"></script>
+
+    <script src="app/app.js"></script>
+
+    <!-- Controllers App -->
+    <script src="app/controllers/userController.js"></script>
+
+    <!-- Services App -->
+    <script src="app/services/userService.js"></script>
+
+
+ </head>
+ <body >
+ 	
+ 	<div ng-view></div>
 
  </body>
  </html>

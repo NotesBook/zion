@@ -9,7 +9,7 @@
 
 	/** Global Vars */
 	$_NB_GLOBALS = array();
-	$_NB_GLOBALS["base_path"] = "C:\\xampp\\htdocs\\www\\gimp_workspace\\zion\\";
+	$_NB_GLOBALS["base_path"] = "C:\\xampp\\htdocs\\www\\git_workspace\\zion\\";
 	$_NB_GLOBALS["api_path"] = $_NB_GLOBALS["base_path"]."api\\";
 	$_NB_GLOBALS["settings"] = array();
 
@@ -45,7 +45,7 @@
 	include('repositories/UserRepositoryClass.php');
 
 	/** migrations - comment to avoid executing file */
-	//include('database/execute_migrations.php');
+	include('database/execute_migrations.php');
 
 	/** Init Application
 	 *

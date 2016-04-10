@@ -13,7 +13,7 @@
 		static protected $instance;
 		static protected $database_conn;
 
-		protected static function select($table, $campos = array(), $where = "", $join = "") {
+		protected static function select($table, $fields = array(), $where = "", $join = "") {
 
 			$fields = empty($fields) ? "*" : implode(", ", $fields);
 			$where = empty($where) ? "" : "WHERE $where";
