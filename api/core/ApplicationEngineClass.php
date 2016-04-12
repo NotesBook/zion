@@ -23,7 +23,8 @@
 
 			/** Execute action */
 			header('Content-Type: application/json');
-			echo json_encode($controller_obj->$action_name());
+			$response = $controller_obj->$action_name();
+			echo json_encode($response);
 
 		}
 	}

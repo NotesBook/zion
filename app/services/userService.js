@@ -1,14 +1,15 @@
-nbApp.factory('UserService', [ '$http',
-  	function($http){
+nbApp.factory('UserService', ['AjaxService',
+  	function(AjaxService){
 
   		var self = {};
 
 	  	self.getAll = function() {
 
-		  		return [
-					{name: "Juan"},
-					{name: "Galo"}
-				]
+	  		var uri = "api/user",
+				method = "get";
+				
+				console.log("llamada al servicio ajax");
+		  		return AjaxService.send(method,uri);
 		
 	  	};
 
