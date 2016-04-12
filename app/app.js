@@ -7,7 +7,7 @@ nbApp.config(['$routeProvider',
 	    $routeProvider.
 	    	when('/users', {
 		        templateUrl: 'app/views/user-list.html',
-		        controller: 'userController'
+		        controller: 'UserController'
 			}).
 			otherwise({
 				redirectTo: '/users'

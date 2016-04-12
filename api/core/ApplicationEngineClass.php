@@ -15,7 +15,7 @@
 
 			/** Create Controller */
 			$controller_name = RoutingEngineService::get_controller_name();
-			echo $controller_name;
+			
 			$controller_obj = new $controller_name;
 
 			/** Set action */
@@ -24,8 +24,8 @@
 			/** Execute action */
 			header('Content-Type: application/json');
 			$response = $controller_obj->$action_name();
-			echo json_encode($response);
 
+			echo json_encode($response);
 		}
 	}
 
