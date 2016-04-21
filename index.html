@@ -5,8 +5,13 @@
  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
  	<title>Notesapp</title>
 
+    <!-- Main StyleSheet -->
     <link href="css/style.css" rel="stylesheet" />
 
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+    <!-- Libs -->
     <script src="app/libs/angular.min.js"></script>
     <script src="app/libs/angular-route.min.js"></script>
 
@@ -19,15 +24,30 @@
     <!-- Services App -->
     <script src="app/services/ajaxService.js"></script>
     <script src="app/services/userService.js"></script>
-    
-
-
-   
+      
 
  </head>
  <body>
- 	
- 	<div ng-view=""></div>
+    <div class="container">
+        <header>
+            <nav class="nav-bar">
+                <ul>
+                    <li><a href="#/user">Login</a></li>
+                    <li><a href="#/user/register">Registro</a></li>
+                </ul>          
+            </nav>
+        </header>
 
+        <div class="banner">
+
+        </div>
+
+        <div class="container">
+
+            <section ng-view="">
+                
+            </section>
+        </div>
+    </div>
  </body>
  </html>
