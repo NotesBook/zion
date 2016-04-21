@@ -10,10 +10,10 @@
 $database_config = $_NB_GLOBALS["settings"]->database;
 
 //1. Connectamos con el servidor. Las variables de configuración están en el fichero /config.php
-$conn = MysqlDatabaseEngine::get_connection();
+MysqlDatabaseEngine::get_connection();
 
 /* set autocommit to off */
-$conn->autocommit(FALSE);
+MysqlDatabaseEngine::get_connection()->autocommit(FALSE);
 
 if (mysqli_connect_errno()) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;
@@ -30,10 +30,10 @@ if (mysqli_connect_errno()) {
 //1. Después de conectarnos, comprobamos si existe la bbdd
 $sql_creacion_bbdd = "CREATE DATABASE IF NOT EXISTS ".$_NB_GLOBALS["settings"]->database->schema;
 //print $sql_creacion_bbdd."<br>";
-$conn->query($sql_creacion_bbdd);
+MysqlDatabaseEngine::get_connection()->query($sql_creacion_bbdd);
 
 //2. Seleccionamos la BBDD
-$conn->select_db($database_config->schema);
+MysqlDatabaseEngine::get_connection()->select_db($database_config->schema);
 
 //3. Comprobamos si existe la tabla de versiones y la creamos
 $sql_create_table_versions_if_not_exists = 
@@ -44,12 +44,12 @@ $sql_create_table_versions_if_not_exists =
         description VARCHAR(500) NOT NULL
     )";
 //print $sql_create_table_versions_if_not_exists."<br>";
-$conn->query($sql_create_table_versions_if_not_exists);
+MysqlDatabaseEngine::get_connection()->query($sql_create_table_versions_if_not_exists);
 
 //4. Comprobamos que la versión 0 (la inicial), no esté ya
 $sql_check_actual_version = "SELECT MAX(version_number) version_actual FROM versions";
 //print $sql_check_actual_version."<br>";
-$result_check_actual_version = $conn->query($sql_check_actual_version);
+$result_check_actual_version = MysqlDatabaseEngine::get_connection()->query($sql_check_actual_version);
 $row_check_actual_version = $result_check_actual_version->fetch_array();
 
 $version_actual = 0;
@@ -57,13 +57,13 @@ $version_actual = 0;
 if(is_null($row_check_actual_version["version_actual"])) { //Si no existe ningún registro, insertamos la versión 0
 	$sql_update_versions_0 = "INSERT INTO versions(version_number, date, description) VALUES(0, NOW(), 'versión incial de la bbdd')";
 	//print $sql_update_versions_0."<br>";
-	$conn->query($sql_update_versions_0);
+	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_0);
 } else {
 	$version_actual = $row_check_actual_version["version_actual"];
 }
 
 //5. Hacemos el commit, porque lo tenemos desactivado
-if (!$conn->commit()) {
+if (!MysqlDatabaseEngine::get_connection()->commit()) {
     print("Transaction commit failed\n");
     exit();
 }
@@ -79,50 +79,49 @@ if (!$conn->commit()) {
 if($version_actual == "0") {
 	$sql_create_table_user_if_not_exists = 
 		"CREATE TABLE IF NOT EXISTS users (
-	        id INT NOT NULL AUTO_INCREMENT,
-	        PRIMARY KEY(id),
-	        name VARCHAR(50) NOT NULL
+	        id 				INT NOT NULL AUTO_INCREMENT,
+	        				PRIMARY KEY(id),
+	        name 			VARCHAR(50) NOT NULL,
+	        surname 		VARCHAR(100),
+	        birthdate 		DATETIME DEFAULT NULL,
+	        country 		VARCHAR(50),
+	        region      	VARCHAR(50),
+	        email 			VARCHAR(150) NOT NULL,	        
+	        entry_date 		DATETIME DEFAULT NULL,
+	        leaving_date 	DATETIME DEFAULT NULL,
+	        security_code	VARCHAR(50)
 	    )";
 	//print $sql_create_table_user_if_not_exists."<br>";
-	$conn->query($sql_create_table_user_if_not_exists);
+	MysqlDatabaseEngine::get_connection()->query($sql_create_table_user_if_not_exists);
 
 	//2. Insertamos, si no lo están ya los usuarios de prueba (Habrá que hacerlo para cada usuario que se quiera insertar)
-	function insertar_usuario_si_no_existe($name) {
-		global $conn;
-
-		$sql_check_user1_exists = "SELECT * FROM users WHERE name = '$name'";
+	function insertar_usuario_si_no_existe($name, $surname, $birthdate, $country, $region, $email) {
+		$sql_check_user1_exists = "SELECT * FROM users WHERE email = '$email'";
 		//print $sql_check_user1_exists."<br>";
-		$result_user1_exists = $conn->query($sql_check_user1_exists);
+		$result_user1_exists = MysqlDatabaseEngine::get_connection()->query($sql_check_user1_exists);
 		$row_check_user1_exists = $result_user1_exists->fetch_array();
 
 		if(is_null($row_check_user1_exists["name"])) { //Si no existe ningún registro, insertamos la versión 0
-			$sql_insert_user = "INSERT INTO users(name) VALUES('$name')";
+			$sql_insert_user = "INSERT INTO users(name, surname, birthdate, country, region, email) VALUES('$name', '$surname', STR_TO_DATE('$birthdate','%d/%m/%Y'), '$country', '$region', '$email')";
 			//print $sql_insert_user."<br>";
-			$conn->query($sql_insert_user);
+			MysqlDatabaseEngine::get_connection()->query($sql_insert_user);
 		} 
 	}
 
-	insertar_usuario_si_no_existe("galo");
-	insertar_usuario_si_no_existe("juan");
+	insertar_usuario_si_no_existe("galo", "arargoneses", "01/05/2013", "Spain", "Madrid", "galo.aragoneses@gmail.com");
+	insertar_usuario_si_no_existe("juan f", "medina", "01/05/2013", "Spain", "Madrid", "juanfmedinar@gmail.com");
 
 	//3. Actualizamos la versión de la bbdd
 	$sql_update_versions_1 = "INSERT INTO versions(version_number, date, description) VALUES(1, '2016/04/09', 'Creación de tabla usuarios, inserción de datos de prueba')";
 	//print $sql_update_versions_0."<br>";
-	$conn->query($sql_update_versions_1);
+	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_1);
 
 	$version_actual = 1;
 }
 
 
-//4. Hacemos el commit, porque lo tenemos desactivado
-if (!$conn->commit()) {
-    print("Transaction commit failed\n");
-    exit();
-}
-
-
 /* close connection */
-$conn->close();
+//MysqlDatabaseEngine::get_connection()->close();
 
 echo "versión actual de bbdd:".$version_actual."<br>";
 

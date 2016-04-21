@@ -9,7 +9,7 @@
 
 	class BaseDomainClass {
 
-		public $id;
+		protected $id;
 
 		public function get_id() {
 

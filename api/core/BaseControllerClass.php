@@ -27,7 +27,7 @@
 
 			$repository_name_class = $this->domain_name."Repository";
 
-			return $repository_name_class::get_all();
+			echo json_encode($repository_name_class::get_all());
 
 		}
 

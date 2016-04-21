@@ -9,17 +9,24 @@
 
 	abstract class BaseRepository {
 
-		static protected $domain_name;
-		static protected $instance;
-		static protected $database_conn;
-
 		protected static function select($table, $fields = array(), $where = "", $join = "") {
+
+			global $_NB_GLOBALS; 
 
 			$fields = empty($fields) ? "*" : implode(", ", $fields);
 			$where = empty($where) ? "" : "WHERE $where";
 			$join = empty($join) ? "" : "LEFT JOIN $join";
 
-			return MysqlDatabaseEngine::get_connection()->query("SELECT $fields FROM $table $where;");
+			//print_r("SELECT $fields FROM $table $where;");
+			$result = MysqlDatabaseEngine::get_connection()->query("SELECT $fields FROM $table $where;");
+
+			return $result;
+		}
+
+		protected static function insert($table, $fields, $values) {
+
+			echo "INSERT INTO $table($fields) VALUES($values)";
+			//MysqlDatabaseEngine::get_connection()->query();
 
 		}
 
