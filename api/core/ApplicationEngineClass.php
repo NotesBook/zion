@@ -25,7 +25,7 @@
 								: RoutingEngineService::get_action_name();
 
 				/** Execute action */
-				header('Content-Type: application/json');
+				HttpEngineService::set_response_json_headers();
 				$response = $controller_obj->$action_name();
 
 			} catch (Exception $err) {

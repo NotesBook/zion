@@ -21,15 +21,15 @@
 		 * Save new user data
 		 */
 		public function register() {
-			//1. Get User's fields from $_POST
-			$name = $_POST["name"]; 
-			$surname = $_POST["surname"]; 
-			$birthdate = $_POST["birthdate"];  
-			$country = $_POST["country"]; 
-			$region = $_POST["region"]; 
-			$email = $_POST["email"]; 
+			//1. Get User's fields from $request_body
+			$request_body = HttpEngineService::get_array_from_json_body();
 
-			echo $name;
+			$name = $request_body["name"]; 
+			$surname = $request_body["surname"]; 
+			$birthdate = $request_body["birthdate"];  
+			$country = $request_body["country"]; 
+			$region = $request_body["region"]; 
+			$email = $request_body["email"]; 
 
 			//2. Check if data is correct
 			//TODO: Check again if necessary
@@ -37,10 +37,8 @@
 			//3. Save User
 			$security_code = UserRepository::register($name, $surname, $birthdate, $country, $region, $email);
 
-			echo $security_code;
-
 			//4. Send Email
-
+			//TODO:
 
 			//5. Return Ok
 			return true;

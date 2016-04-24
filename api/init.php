@@ -26,6 +26,7 @@
 	/** Load Dependecies */
 	/** Services */
 	include("core/services/RoutingEngineServiceClass.php");
+	include("core/services/HttpEngineServiceClass.php");
 
 	/** Application */
 	include("core/ApplicationEngineClass.php");
@@ -47,12 +48,13 @@
 	include('repositories/UserRepositoryClass.php');
 
 	/** migrations - comment to avoid executing file */
-	include('database/execute_migrations.php');
+	//include('database/execute_migrations.php');
 
 	/** Init Application
 	 *
 	 * Execute the Specifics Action and Controller 
 	*/
+	
 	ApplicationEngine::start();
 	
  ?>

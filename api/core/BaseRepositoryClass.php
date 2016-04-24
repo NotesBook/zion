@@ -25,8 +25,13 @@
 
 		protected static function insert($table, $fields, $values) {
 
-			echo "INSERT INTO $table($fields) VALUES($values)";
-			//MysqlDatabaseEngine::get_connection()->query();
+			//echo "INSERT INTO $table($fields) VALUES($values)";
+			$conn = MysqlDatabaseEngine::get_connection();
+			$conn->query("INSERT INTO $table($fields) VALUES($values)");
+			if (!MysqlDatabaseEngine::get_connection()->commit()) {
+			    print("Transaction commit failed\n");
+			    exit();
+			}
 
 		}
 
