@@ -38,7 +38,7 @@
 			$security_code = UserRepository::register($name, $surname, $birthdate, $country, $region, $email);
 
 			//4. Send Email
-			//TODO:
+			MailEngineService::send("Usuario registrado. ConfirmarCuenta", "Pincha aquí para confirmar la cuenta: $security_code", $email);
 
 			//5. Return Ok
 			return true;

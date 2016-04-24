@@ -7,4 +7,9 @@
 		<schema>notesbook</schema>
 	</database>
 
+	<email>
+		<user>notesbook.puppeteer@gmail.com</user>
+		<pass>Not3sb00k$_</pass>
+	</email>
+
 </webconfig>

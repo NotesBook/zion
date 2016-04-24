@@ -28,11 +28,10 @@
 			//echo "INSERT INTO $table($fields) VALUES($values)";
 			$conn = MysqlDatabaseEngine::get_connection();
 			$conn->query("INSERT INTO $table($fields) VALUES($values)");
-			if (!MysqlDatabaseEngine::get_connection()->commit()) {
-			    print("Transaction commit failed\n");
+			if (!$conn->commit()) {
+			    throw new Exception('Base Repository: Error Insert $table');
 			    exit();
 			}
-
 		}
 
 

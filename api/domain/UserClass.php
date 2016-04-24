@@ -74,7 +74,11 @@
 
 		public function check_surname($surname) {
 
-			$surname_is_valid = true;
+			$start_with_letter = preg_match('/^[a-zA-Z]{1}/', $this->name);
+			$length_greatter_than_4 = strlen($this->name) > 4;
+
+			$name_is_valid = $start_with_letter 
+				&& $length_greatter_than_4;
 
 			return new FieldValidation("surname", $surname_is_valid, !$surname_is_valid ? "El apellido está mal, muy mal" : null);
 
@@ -98,7 +102,8 @@
 
 		public function check_email($email) {
 
-			$email_is_valid = true;
+			$email = trim($email);
+			$email_is_valid = preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/', $email);
 
 			return new FieldValidation("email", $email_is_valid, !$email_is_valid ? "El email está mal, muy mal" : null);
 

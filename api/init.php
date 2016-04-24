@@ -25,8 +25,9 @@
 
 	/** Load Dependecies */
 	/** Services */
-	include("core/services/RoutingEngineServiceClass.php");
 	include("core/services/HttpEngineServiceClass.php");
+	include("core/services/MailEngineServiceClass.php");
+	include("core/services/RoutingEngineServiceClass.php");
 
 	/** Application */
 	include("core/ApplicationEngineClass.php");
