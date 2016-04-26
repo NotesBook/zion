@@ -7,6 +7,7 @@
 
     <!-- Main StyleSheet -->
     <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
@@ -14,21 +15,26 @@
     <!-- Libs -->
     <script src="app/libs/angular.min.js"></script>
     <script src="app/libs/angular-route.min.js"></script>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
     <!-- App -->
  	<script src="app/app.js"></script>
 
     <!-- Controllers App -->
     <script src="app/controllers/userController.js"></script>
+    <script src="app/controllers/loginController.js"></script>
+    <script src="app/controllers/registerController.js"></script>
 
     <!-- Services App -->
     <script src="app/services/ajaxService.js"></script>
     <script src="app/services/userService.js"></script>
-      
 
  </head>
+
  <body>
-    <div class="container">
+
+<!--     <div class="container">
         <header>
             <nav class="nav-bar">
                 <ul>
@@ -41,12 +47,9 @@
         <div class="banner">
 
         </div>
-
-        <div class="container">
-
-            <section ng-view="">
-                
-            </section>
+ -->
+        <div class="w3-container" ng-view="">
+            
         </div>
     </div>
  </body>

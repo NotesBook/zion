@@ -1,0 +1,40 @@
+<div id="login-modal-container" class="w3-modal">
+
+  <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
+
+      
+
+          <div class="w3-center"><br>
+              <img src="/www/git_app/zion/images/logoNotesbook.jpg" alt="Avatar" style="width:20%" class="w3-square w3-margin-top">
+          </div>
+
+        <div class="w3-container">
+            <form action="#" class="w3-form">
+
+                  <div class="w3-section"> 
+                      <label><b>Nombre de usuario</b></label>
+                      <input class="w3-input w3-border w3-margin-bottom" type="text"  value="{{username}}" placeholder="Introduce tu nombre" name="username" ng-model="username" ng-blur=checkName(username)></input>
+                      <label><b>Apellidos</b></label>
+                      <input class="w3-input w3-border w3-margin-bottom" type="text"  value="{{surname}}" placeholder="Introduce tus apellidos" name="surname" ng-model="surname" ng-blur=checkSurname(surname)>
+                      <label><b>Password</b></label>
+                      <input class="w3-input w3-border" type="text" placeholder="Introduce tu password" name="password" ng-model="password" ng-blur=checkInput(password)>
+                      <label><b>Email</b></label>
+                      <input class="w3-input w3-border" type="email" placeholder="Introduce tu email" name="email" ng-model="email" ng-blur=checkEmail(email)>                  
+                      <label><b>Fecha de nacimiento</b></label>
+                      <input class="w3-input w3-border" type="date" name="fecha">
+                      <label><b>Pais</b></label>
+                      <select class="w3-select" name="pais">
+                        <!-- Manera de iterar en los datos de un objeto JSON-->
+                        <option ng-repeat="(key, val) in listCountries.data" value="{{key}}" >{{key}}:{{val}}</option>
+                      </select>
+                      <a href="#/"><button class="w3-btn w3-btn-block w3-section w3-grey">Registrate</button></a>       
+                  </div>
+
+              <div class="w3-container w3-border-top w3-padding-hor-16 w3-light-grey">
+                  <input type="reset" class="w3-btn w3-red"></reset>
+              </div>
+
+            </form>
+        </div>
+    </div>
+</div>

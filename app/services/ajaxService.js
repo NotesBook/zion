@@ -1,7 +1,17 @@
-nbApp.factory('AjaxService', ['$q',
-	function($q) {
+nbApp.factory('AjaxService', ['$q','$http',
+	function($q,$http) {
 
 		var self = {};
+
+		self.angularGetCountries = function() {			
+
+			    var countries = $http.get("api/country.json").success(function(response) {
+			    
+        		
+    			});
+
+    			return countries;
+		}
 
 		self.send = function(method,uri) {
 			console.log("SEND")

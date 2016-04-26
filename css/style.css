@@ -7,18 +7,9 @@
  * @license    https://www.gnu.org/licenses/agpl-3.0.html GNU Affero General Public License Version 3 (AGPL3)
  */
 
-@font-face {
-    font-family: myFirstFont;
-    src: url(sansation_light.woff);
-}
-
-.container {
-
-	margin: 0 auto;
-    width: 80%;
-    height: 100vh;
-    border: 3px solid #73AD21;
-
+#login-modal-container {
+	display: block;
+	background: radial-gradient(#2196F3, white);
 }
 
 header {
