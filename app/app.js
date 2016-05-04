@@ -4,11 +4,8 @@ var nbApp = angular.module('nbApp',[
 
 nbApp.config(['$routeProvider',
   	function($routeProvider) {
-	    $routeProvider.
-	    	when('/user', {
-		        templateUrl: 'app/views/user/user-list.html',
-		        controller: 'UserController'
-			}).when('/', {
+	    $routeProvider
+	    	.when('/', {
 				templateUrl: 'app/views/user/user-login-form.html',
 				controller: 'LoginController'
 			}).when('/user/register', {
@@ -17,6 +14,6 @@ nbApp.config(['$routeProvider',
 			}).
 			otherwise({
 				redirectTo: '/'
-			});
-  	}]);
+	});
+}]);
 
