@@ -1,15 +1,15 @@
 <webconfig>
 
 	<database>
-		<server>localhost</server>
-		<user>root</user>
+		<server></server>
+		<user></user>
 		<pass></pass>
-		<schema>notesbook</schema>
+		<schema></schema>
 	</database>
 
 	<email>
-		<user>notesbook.puppeteer@gmail.com</user>
-		<pass>Not3sb00k$_</pass>
+		<user></user>
+		<pass></pass>
 	</email>
 
 </webconfig>
