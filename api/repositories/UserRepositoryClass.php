@@ -55,11 +55,20 @@
 		}
 
 
-		public static function login($user, $password) {
+		public static function login($email, $password) {
 
-			$result = parent::select("users", array("COUNT(*) as user_count", "name = '$user' AND password = '$password'"));
+			$result = parent::select("users", array("COUNT(*) as user_count", "id"), "email = '$email' AND password = '$password'");
 
 			return $result;
+
+		}
+
+
+		public static function start_session($id, $session_code) {
+
+			parent::update("users", 
+				"last_session_date = STR_TO_DATE('".date('d/m/Y', time())."','%d/%m/%Y'), session_code = '$session_code'",
+				"id = '".$id."'");
 
 		}
 
@@ -68,7 +77,7 @@
 		 */
 		public static function active($email, $token) {
 
-			$result = parent::select("users", array("id", "email = '$email' AND security_code = '$token'"));
+			$result = parent::select("users", array("id"), "email = '$email' AND security_code = '$token'");
 	        if($result->num_rows > 0) {
 				$user_tupla = $result->fetch_array();
 				parent::update("users", 

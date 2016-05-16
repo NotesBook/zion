@@ -26,13 +26,11 @@
 
 				/** Execute action */
 				HttpEngineService::set_response_json_headers();
-				$response = $controller_obj->$action_name();
+				echo $controller_obj->$action_name();
 
 			} catch (Exception $err) {
-
-				print_r("APPLICATION ERROR: ".$err->getMessage());
 				
-				throw $err;
+				echo FormattedRequest::format(false, "Application ERROR", $err->getMessage());
 
 			}
 		}

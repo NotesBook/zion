@@ -90,7 +90,9 @@ if($version_actual == "0") {
 	        entry_date 		DATETIME DEFAULT NULL,
 	        leaving_date 	DATETIME DEFAULT NULL,
 	        password      	VARCHAR(50),
-	        security_code	VARCHAR(50)
+	        security_code	VARCHAR(50),
+	        session_code	VARCHAR(50),        
+	        last_session_date	DATETIME DEFAULT NULL
 	    )";
 	//print $sql_create_table_user_if_not_exists."<br>";
 	MysqlDatabaseEngine::get_connection()->query($sql_create_table_user_if_not_exists);

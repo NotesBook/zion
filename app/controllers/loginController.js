@@ -6,9 +6,12 @@ nbApp.controller('LoginController', ['$scope', '$routeParams', 'UserService',
 			email = $routeParams.email;
 		
 		//1. If registration, validate user
+		$scope.showValidateConfirmation = false;
 		if(token)
 			UserService.validate(token, email).then(function(data) {
-				debugger;
+				if(data["valid"] === true) {
+					$scope.showValidateConfirmation = true;
+				}
 			});
 
 

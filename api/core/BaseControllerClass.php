@@ -27,7 +27,7 @@
 
 			$repository_name_class = $this->domain_name."Repository";
 
-			echo json_encode($repository_name_class::get_all());
+			return FormattedRequest::format(true, $repository_name_class::get_all());
 
 		}
 

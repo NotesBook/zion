@@ -50,12 +50,12 @@
 			//4.1 Compose Email
 			$email_html = file_get_contents("mails/validate_user_mail.html");
 		    $email_html = str_replace("%%PASSWORD%%", $password, $email_html);
-		    $email_html = str_replace("%%URL_VALIDATE_USER%%", $_NB_GLOBALS["settings"]->baseurl."user/active/$email/".$security_code, $email_html);
+		    $email_html = str_replace("%%URL_VALIDATE_USER%%", $_NB_GLOBALS["settings"]->baseurl."/#/user/validation/$email/".$security_code, $email_html);
 
 			MailEngineService::send("Usuario registrado. ConfirmarCuenta", $email_html, $email);
 
 			//5. Return Ok
-			echo true;
+			return FormattedRequest::format(true);
 		}
 
 		/* Method POST
@@ -72,10 +72,14 @@
 			$user_tupla = $user_result->fetch_array();
 			$login_valid = $user_tupla["user_count"]; //Valid if exits
 
-			if ($login_valid)
-				echo bin2hex(openssl_random_pseudo_bytes(16)); //TOKEN for comunitation
-			else 
-				echo false;
+			if ($login_valid) {
+
+				$token = bin2hex(openssl_random_pseudo_bytes(16));
+				UserRepository::start_session($user_tupla["id"], $token);
+				return FormattedRequest::format(true, $token);
+
+			} else 
+				return FormattedRequest::format(false, "", "Invalid Login");
 
 		}
 
@@ -88,7 +92,8 @@
 			$email = $params[0];
 			$security_code = $params[1];
 
-			UserRepository::active($email, $security_code);
+			$activation_ok = UserRepository::active($email, $security_code);
+			return FormattedRequest::format($activation_ok, "", $activation_ok ? "" : "Código o usuario incorrectos para la activación");
 
 		}
 
@@ -97,7 +102,7 @@
 		 */
 		public function validationJson() {
 
-			echo json_encode(User::get_validationJson());
+			return FormattedRequest::format(true, User::get_validationJson());
 
 		}
 

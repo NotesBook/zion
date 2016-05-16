@@ -61,7 +61,7 @@
 	include('core/BaseRepositoryClass.php');
 	include('core/IBaseRepositoryClass.php');
 
-	include('core/RequestErrorClass.php');
+	include('core/FormattedRequestClass.php');
 
 	/** Controllers */	
 	include('controllers/UserControllerClass.php');

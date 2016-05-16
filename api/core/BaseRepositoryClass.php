@@ -15,7 +15,7 @@
 			$where = empty($where) ? "" : "WHERE $where";
 			$join = empty($join) ? "" : "LEFT JOIN $join";
 
-			//print_r("SELECT $fields FROM $table $where;");
+			//echo ("SELECT $fields FROM $table $where;");
 			$result = MysqlDatabaseEngine::get_connection()->query("SELECT $fields FROM $table $where;");
 
 			return $result;
