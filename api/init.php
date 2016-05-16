@@ -9,15 +9,13 @@
 
 	/** Global Vars */
 	$_NB_GLOBALS = array();
-	$_NB_GLOBALS["base_path"] = "C:\\xampp\\htdocs\\www\\git_app\\zion\\";
-	$_NB_GLOBALS["api_path"] = $_NB_GLOBALS["base_path"]."api\\";
 	$_NB_GLOBALS["settings"] = array();
 
 	/** Load Settings from webconfig.xml file */
 	function nb_loadSettings() {
 		global $_NB_GLOBALS;
 
-		$aux_xml = file_get_contents($_NB_GLOBALS["api_path"]."webconfig.xml");
+		$aux_xml = file_get_contents("./webconfig.xml");
 		$_NB_GLOBALS["settings"] = simplexml_load_string($aux_xml);
 	}
 
@@ -37,7 +35,7 @@
 	include('core/BaseRepositoryClass.php');
 	include('core/IBaseRepositoryClass.php');
 
-	include('core/FieldValidationClass.php');
+	include('core/RequestErrorClass.php');
 
 	/** Controllers */	
 	include('controllers/UserControllerClass.php');

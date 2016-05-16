@@ -60,62 +60,49 @@
 		}
 
 	    /** Validations */
-		public function check_name($name) {
+	    public static function check_data($name, $surname, $birthdate, $country, $region, $email) {
 
-			$start_with_letter = preg_match('/^[a-zA-Z]{1}/', $this->name);
-			$length_greatter_than_4 = strlen($this->name) > 4;
+	    	//1. Read Json File
+			$json_array = self::get_validationJson();
 
-			$name_is_valid = $start_with_letter 
-				&& $length_greatter_than_4;
+	    	//2. Check data
+			$check_name = preg_match($json_array["name"], $name);
+			$check_surname = preg_match($json_array["name"], $surname);
+			$check_birthdate = preg_match($json_array["date"], $birthdate);
+			$check_country = preg_match($json_array["name"], $country);
+			$check_region = preg_match($json_array["name"], $region);
+			$check_email = preg_match($json_array["mail"], $email);
 
-			return new FieldValidation("name", $name_is_valid, !$name_is_valid ? "El nombre está mal, muy mal" : null);
+			//3. Parsing error menssages
+			$msg = "";
+			if (!$check_name)
+				$msg .= ", El nombre está mal, muy mal";
+			if (!$check_surname)
+				$msg .= ", El apellido está mal, muy mal";
+			if (!$check_birthdate)
+				$msg .= ", La fecha de nacimiento está mal, muy mal";
+			if (!$check_country)
+				$msg .= ", El país está mal, muy mal";
+			if (!$check_region)
+				$msg .= ", La región está mal, muy mal";
+			if (!$check_email)
+				$msg .= ", El email está mal, muy mal";
 
-		}
+	    	//4. Check if any error exists.
+	    	//throw custom exception if error
+	    	if ($msg) { 
+			    throw new Exception("User Data Error: $msg");
+	    	}
 
-		public function check_surname($surname) {
+	    	return true;
+	    }
 
-			$start_with_letter = preg_match('/^[a-zA-Z]{1}/', $this->name);
-			$length_greatter_than_4 = strlen($this->name) > 4;
+	    public static function get_validationJson() {
 
-			$name_is_valid = $start_with_letter 
-				&& $length_greatter_than_4;
+			$json_content_txt = file_get_contents("config/validations.json");
+			return json_decode($json_content_txt, TRUE);
 
-			return new FieldValidation("surname", $surname_is_valid, !$surname_is_valid ? "El apellido está mal, muy mal" : null);
-
-		}
-
-		public function check_country($country) {
-
-			$country_is_valid = true;
-
-			return new FieldValidation("country", $country_is_valid, !$country_is_valid ? "El país está mal, muy mal" : null);
-
-		}
-
-		public function check_region($region) {
-
-			$region_is_valid = true;
-
-			return new FieldValidation("country", $region_is_valid, !$region_is_valid ? "La provincia está mal, muy mal" : null);
-
-		}
-
-		public function check_email($email) {
-
-			$email = trim($email);
-			$email_is_valid = preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/', $email);
-
-			return new FieldValidation("email", $email_is_valid, !$email_is_valid ? "El email está mal, muy mal" : null);
-
-		}
-
-		public function check_birthdate($birthdate) {
-
-			$birthdate_is_valid = true;
-
-			return new FieldValidation("birthdate", $birthdate_is_valid, !$birthdate_is_valid ? "La fecha de nacimimento está mal, muy mal" : null);
-
-		}
+	    }
 
 		/** JSON Serializer 
 		 */

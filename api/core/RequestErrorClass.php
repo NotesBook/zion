@@ -7,17 +7,17 @@
  * @license    https://www.gnu.org/licenses/agpl-3.0.html GNU Affero General Public License Version 3 (AGPL3)
  */
 
-	class FieldValidation {
+	class RequestError {
 
-		public $field;
 		public $valid;
+		public $identifiers;
 		public $msg;
 
-		public function __construct($field, $valid, $msg = "") { 
+		public function __construct($valid, $msg, $identifiers = "") { 
 
-			$this->field = $field;
 			$this->valid = $valid;
 			$this->msg = $msg;
+			$this->identifiers = $identifiers;
 
 		}
 

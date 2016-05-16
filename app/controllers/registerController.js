@@ -5,7 +5,7 @@ nbApp.controller('RegisterController', ['$scope','AjaxService',
 		$scope.surname;
         $scope.values = Array();
       
-        AjaxService.angularRequest('api/country.json').then(function(response) {
+        AjaxService.angularRequest('api/config/country.json').then(function(response) {
         
             $scope.listCountries = response.data;
 

@@ -32,7 +32,7 @@
 			$email = $request_body["email"]; 
 
 			//2. Check if data is correct
-			//TODO: Check again if necessary
+			User::check_data($name, $surname, $birthdate, $country, $region, $email); 			
 
 			//3. Save User
 			$security_code = UserRepository::register($name, $surname, $birthdate, $country, $region, $email);
@@ -41,63 +41,15 @@
 			MailEngineService::send("Usuario registrado. ConfirmarCuenta", "Pincha aquí para confirmar la cuenta: $security_code", $email);
 
 			//5. Return Ok
-			return true;
+			echo true;
 		}
 
-
-		/* Validations */
-
-		/*  
-		 * return FieldValidation
+		/* Method GET
+		 * Get Validation Json
 		 */
-		public function check_name($name) {
+		public function validationJson() {
 
-			return User::check_name($name); 
-
-		}
-
-		/*  
-		 * return FieldValidation
-		 */
-		public function check_surname($surname) {
-
-			return User::check_surname($surname); 
-
-		}
-
-		/*  
-		 * return FieldValidation
-		 */
-		public function check_country($country) {
-
-			return User::check_country($country); 
-
-		}
-
-		/*  
-		 * return FieldValidation
-		 */
-		public function check_region($region) {
-
-			return User::check_region($region); 
-
-		}
-
-		/*  
-		 * return FieldValidation
-		 */
-		public function check_email($email) {
-
-			return User::check_email($email); 
-
-		}
-
-		/*  
-		 * return FieldValidation
-		 */
-		public function check_birthdate($birthdate) {
-
-			return User::check_birthdate($birthdate); 
+			echo json_encode(User::get_validationJson());
 
 		}
 
