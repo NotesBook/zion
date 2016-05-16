@@ -2,7 +2,7 @@
 /**
  * NotesBook Bootstrap File
  *
- * @author     Nombre <email@email.com>
+ * @author     Nombre <email@email.com&lt;<br/>
  * @package    \application\config
  * @license    https://www.gnu.org/licenses/agpl-3.0.html GNU Affero General Public License Version 3 (AGPL3)
  */
@@ -15,7 +15,31 @@
 	function nb_loadSettings() {
 		global $_NB_GLOBALS;
 
-		$aux_xml = file_get_contents("./webconfig.xml");
+		$file_path = "./webconfig.xml";
+		if(!file_exists($file_path)) {
+
+			echo "El fichero de configuración debe ser un XML bien formado<br/>Path: base/api/webconfig.xml. Ejemplo Básico:<br/>";
+			echo "&lt;?xml version=\"1.0\" encoding=\"iso-8859-1\" standalone=\"yes\"?&gt;<br/> 
+					&lt;webconfig&gt;<br/>
+
+						&lt;database&gt;<br/>
+							&lt;server&gt;&lt;/server&gt;<br/>
+							&lt;user&gt;&lt;/user&gt;<br/>
+							&lt;pass&gt;&lt;/pass&gt;<br/>
+							&lt;schema&gt;&lt;/schema&gt;<br/>
+						&lt;/database&gt;<br/>
+
+						&lt;email&gt;<br/>
+							&lt;user&gt;&lt;/user&gt;<br/>
+							&lt;pass&gt;&lt;/pass&gt;<br/>
+						&lt;/email&gt;<br/>
+
+					&lt;/webconfig&gt;<br/>";
+			throw new Exception("No Existe fichero de configuración del api");
+
+		}
+
+		$aux_xml = file_get_contents($file_path);
 		$_NB_GLOBALS["settings"] = simplexml_load_string($aux_xml);
 	}
 
@@ -56,5 +80,5 @@
 	
 	ApplicationEngine::start();
 	
- ?>
+ ?><br/>
 
