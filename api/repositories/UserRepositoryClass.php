@@ -11,8 +11,6 @@
 
 		public static function get_all() {
 
-			global $_NB_GLOBALS;
-
 			$database_result = parent::select("users", array("id", "name", "surname", "birthdate", "country", "region", "email"));
 
 			$array_obj_result = array();
@@ -29,24 +27,20 @@
 		/* 
 		 * return: security_code 
 		 */
-		public static function register($name, $surname, $birthdate, $country, $region, $email) {
-
-			global $_NB_GLOBALS;
+		public static function register($name, $surname, $birthdate, $country, $region, $email, $password) {
 
 			//Generate random code
 			$security_code = md5(uniqid(rand(), true));
 
 			parent::insert("users", 
-				"name, surname, birthdate, country, region, email, security_code",
-				"'$name', '$surname', STR_TO_DATE('$birthdate','%d/%m/%Y'), '$country', '$region', '$email', '$security_code'");
+				"name, surname, birthdate, country, region, email, security_code, password",
+				"'$name', '$surname', STR_TO_DATE('$birthdate','%d/%m/%Y'), '$country', '$region', '$email', '$security_code', '$password'");
 
 			return $security_code;
 
 		}
 
 		public static function get_by_id($id) {
-
-			global $_NB_GLOBALS;
 
 			$database_result = parent::select("users", array("id", "name"), "id = $id");
 
@@ -57,6 +51,34 @@
 			}
 
 			return $array_obj_result;
+
+		}
+
+
+		public static function login($user, $password) {
+
+			$result = parent::select("users", array("COUNT(*) as user_count", "name = '$user' AND password = '$password'"));
+
+			return $result;
+
+		}
+
+		/* 
+		 * 
+		 */
+		public static function active($email, $token) {
+
+			$result = parent::select("users", array("id", "email = '$email' AND security_code = '$token'"));
+	        if($result->num_rows > 0) {
+				$user_tupla = $result->fetch_array();
+				parent::update("users", 
+					"entry_date = STR_TO_DATE('".date('d/m/Y', time())."','%d/%m/%Y'), security_code = ''",
+					"id = '".$user_tupla['id']."'");
+
+				return true;
+	        }
+
+			return false;
 
 		}
 

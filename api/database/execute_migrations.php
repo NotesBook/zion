@@ -89,6 +89,7 @@ if($version_actual == "0") {
 	        email 			VARCHAR(150) NOT NULL,	        
 	        entry_date 		DATETIME DEFAULT NULL,
 	        leaving_date 	DATETIME DEFAULT NULL,
+	        password      	VARCHAR(50),
 	        security_code	VARCHAR(50)
 	    )";
 	//print $sql_create_table_user_if_not_exists."<br>";

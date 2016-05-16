@@ -22,6 +22,8 @@
 			echo "&lt;?xml version=\"1.0\" encoding=\"iso-8859-1\" standalone=\"yes\"?&gt;<br/> 
 					&lt;webconfig&gt;<br/>
 
+						&lt;baseurl&gt;&lt;/baseurl&gt;<br/>
+
 						&lt;database&gt;<br/>
 							&lt;server&gt;&lt;/server&gt;<br/>
 							&lt;user&gt;&lt;/user&gt;<br/>
@@ -80,5 +82,5 @@
 	
 	ApplicationEngine::start();
 	
- ?><br/>
+ ?>
 

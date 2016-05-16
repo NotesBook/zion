@@ -23,6 +23,7 @@ nbApp.factory('AjaxService', ['$q','$http',
 				if (http_request.readyState == 4) {
 					if (http_request.status == 200) {
 						console.log(http_request.responseText);
+						debugger;
 						var JsonObj = JSON.parse(http_request.responseText);
 						defered.resolve(JsonObj);
 					} else {

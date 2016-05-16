@@ -21,6 +21,9 @@
 		 * Save new user data
 		 */
 		public function register() {
+
+			global $_NB_GLOBALS; 
+
 			//1. Get User's fields from $request_body
 			$request_body = HttpEngineService::get_array_from_json_body();
 
@@ -32,16 +35,61 @@
 			$email = $request_body["email"]; 
 
 			//2. Check if data is correct
-			User::check_data($name, $surname, $birthdate, $country, $region, $email); 			
+			User::check_data($name, $surname, $birthdate, $country, $region, $email);
 
 			//3. Save User
-			$security_code = UserRepository::register($name, $surname, $birthdate, $country, $region, $email);
+			//3.1. Generate Random Password
+		    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+		    $password = substr( str_shuffle( $chars ), 0, 8 );
+		    $md5_password = md5($password);	
+
+			//3.2. Save User
+			$security_code = UserRepository::register($name, $surname, $birthdate, $country, $region, $email, $md5_password);
 
 			//4. Send Email
-			MailEngineService::send("Usuario registrado. ConfirmarCuenta", "Pincha aquí para confirmar la cuenta: $security_code", $email);
+			//4.1 Compose Email
+			$email_html = file_get_contents("mails/validate_user_mail.html");
+		    $email_html = str_replace("%%PASSWORD%%", $password, $email_html);
+		    $email_html = str_replace("%%URL_VALIDATE_USER%%", $_NB_GLOBALS["settings"]->baseurl."user/active/$email/".$security_code, $email_html);
+
+			MailEngineService::send("Usuario registrado. ConfirmarCuenta", $email_html, $email);
 
 			//5. Return Ok
 			echo true;
+		}
+
+		/* Method POST
+		 * Login and return TOKEN
+		 */
+		public function login() {
+			//1. Get User's fields from $request_body
+			$request_body = HttpEngineService::get_array_from_json_body();
+
+			$name = $request_body["name"]; 
+			$password = $request_body["password"]; 
+
+			$user_result = UserRepository::login($name, md5($password));
+			$user_tupla = $user_result->fetch_array();
+			$login_valid = $user_tupla["user_count"]; //Valid if exits
+
+			if ($login_valid)
+				echo bin2hex(openssl_random_pseudo_bytes(16)); //TOKEN for comunitation
+			else 
+				echo false;
+
+		}
+
+		/* Method GET
+		 * Validate User
+		 */
+		public function active() {
+
+			$params = RoutingEngineService::get_params();
+			$email = $params[0];
+			$security_code = $params[1];
+
+			UserRepository::active($email, $security_code);
+
 		}
 
 		/* Method GET
