@@ -3,13 +3,6 @@ nbApp.factory('AjaxService', ['$q','$http',
 
 		var self = {};
 
-		self.angularRequest = function(uri) {			
-
-		    var request = $http.get(uri);
-
-			return request;
-		}
-
 		self.send = function(method,uri) {
 
 			var http_request = getObject();

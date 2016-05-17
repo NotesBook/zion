@@ -1,9 +1,11 @@
 <!DOCTYPE html>
- <html ng-app="nbApp">
- <head>
- 	<meta charset="utf-8">
- 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
- 	<title>Notesapp</title>
+<html ng-app="nbApp">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Notesapp</title>
 
     <!-- Main StyleSheet -->
     <link href="css/style.css" rel="stylesheet" />
@@ -19,7 +21,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
     <!-- App -->
- 	<script src="app/app.js"></script>
+    <script src="app/app.js"></script>
 
     <!-- Controllers App -->
     <script src="app/controllers/userController.js"></script>
@@ -27,30 +29,17 @@
     <script src="app/controllers/registerController.js"></script>
 
     <!-- Services App -->
-    <script src="app/services/ajaxService.js"></script>
+    <script src="app/services/ajaxService.js">z</script>
     <script src="app/services/userService.js"></script>
+    <script src="app/services/validationService.js"></script>
+    <script src="app/services/countriesService.js"></script>
 
- </head>
+</head>
 
- <body>
+<body>
 
-<!--     <div class="container">
-        <header>
-            <nav class="nav-bar">
-                <ul>
-                    <li><a href="#/user">Login</a></li>
-                    <li><a href="#/user/register">Registro</a></li>
-                </ul>          
-            </nav>
-        </header>
+    <div class="w3-container" ng-view=""></div>
 
-        <div class="banner">
+</body>
 
-        </div>
- -->
-        <div class="w3-container" ng-view="">
-            
-        </div>
-    </div>
- </body>
- </html>
+</html>

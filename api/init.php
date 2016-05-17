@@ -16,6 +16,7 @@
 		global $_NB_GLOBALS;
 
 		$file_path = "./webconfig.xml";
+
 		if(!file_exists($file_path)) {
 
 			echo "El fichero de configuración debe ser un XML bien formado<br/>Path: base/api/webconfig.xml. Ejemplo Básico:<br/>";
@@ -66,14 +67,16 @@
 	/** Controllers */	
 	include('controllers/UserControllerClass.php');
 
+
 	/** Domain */
 	include('domain/UserClass.php');
 	
 	/** Repositories */	
 	include('repositories/UserRepositoryClass.php');
 
+
 	/** migrations - comment to avoid executing file */
-	//include('database/execute_migrations.php');
+	// include('database/execute_migrations.php');
 
 	/** Init Application
 	 *
