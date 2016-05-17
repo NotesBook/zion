@@ -1,5 +1,5 @@
-nbApp.factory('AjaxService', ['$q','$http',
-	function($q,$http) {
+nbApp.factory('AjaxService', ['$q',
+	function($q) {
 
 		var self = {};
 

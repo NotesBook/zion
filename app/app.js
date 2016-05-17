@@ -1,4 +1,4 @@
-var nbApp = angular.module('nbApp',[
+var nbApp = angular.module('nbApp',['ngMessages',
 	'ngRoute',
 	]);
 

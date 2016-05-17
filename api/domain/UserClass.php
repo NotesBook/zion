@@ -71,7 +71,7 @@
 			$check_birthdate = preg_match($json_array["date"], $birthdate);
 			$check_country = preg_match($json_array["name"], $country);
 			$check_region = preg_match($json_array["name"], $region);
-			$check_email = preg_match($json_array["mail"], $email);
+			$check_email = preg_match($json_array["email"], $email);
 
 			//3. Parsing error menssages
 			$msg = "";

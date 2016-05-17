@@ -7,30 +7,118 @@
         </div>
 
         <div class="w3-container">
-            <form action="#" class="w3-form" name="userRegisterForm">
-                <div class="w3-section" name="section2"> 
-                    <label><b>Nombre de usuario</b></label>
-                    <input class="w3-input w3-border w3-margin-bottom" type="text" value="" placeholder="Introduce tu nombre" name="username" ng-model="username"></input>
-                    <label><b>Apellidos</b></label>
-                    <input class="w3-input w3-border w3-margin-bottom" type="text"  value="" placeholder="Introduce tus apellidos" name="surname" ng-model="surname">
-                    <label><b>Password</b></label>
-                    <input class="w3-input w3-border" type="text" placeholder="Introduce tu password" name="password" ng-model="password">
-                    <label><b>Email</b></label>
-                    <input class="w3-input w3-border" type="email" placeholder="Introduce tu email" name="email" ng-model="email">                  
-                    <label><b>Fecha de nacimiento</b></label>
-                    <input class="w3-input w3-border" type="date" name="fecha">
-                    <label><b>Pais</b></label>
-                    <select class="w3-select" name="country">
+            <!-- SECTION 1 -->
+            <div class="w3-section">
+                <!-- FORM --> 
+                <form class="w3-form" name="userRegisterForm" novalidate method="GET" action="/www/git_app/zion/api/user/register">
+                <!-- <p>Formulario es $valid? = {{userRegisterForm.$valid}}</p> -->
+                    <!-- name -->
+                    <label for="name"><b>Nombre de usuario</b></label>
+                    <input 
+                        name="name" 
+                        ng-class="{ 'w3-input w3-border-red': userRegisterForm.name.$touched && userRegisterForm.name.$invalid, 
+                                    'w3-input w3-border-green': userRegisterForm.name.$touched && userRegisterForm.name.$valid}"         
+                        class="w3-input w3-border w3-margin-bottom" 
+                        type="text" 
+                        value="" 
+                        placeholder="Introduce tu nombre"    
+                        ng-model="name" 
+                        ng-pattern="nameRegExp"
+                        minlength=3
+                        required>
+                    </input>
+
+                    <div ng-messages="userRegisterForm.name.$error" ng-show="userRegisterForm.name.$touched" style="color:red">
+                        <p ng-message="minlength">Nombre muy corto.</p>
+                        <p ng-message="pattern">Nombre erroneo.</p>
+                        <p ng-message="required">Nombre requerido</p>
+                    </div>
+
+                    <!-- SURNAME -->
+                    <label for="surname"><b>Apellidos</b></label>
+                    <input 
+                        name="surname"
+                        ng-class="{ 'w3-input w3-border-red': userRegisterForm.surname.$touched && userRegisterForm.surname.$invalid, 
+                                    'w3-input w3-border-green': userRegisterForm.surname.$touched && userRegisterForm.surname.$valid}"                        
+                        class="w3-input w3-border w3-margin-bottom" 
+                        type="text"  
+                        value="" 
+                        placeholder="Introduce tus apellidos"  
+                        ng-model="surname"
+                        ng-pattern="surnameRegExp" 
+                        minlength=3
+                        required>
+                    </input>
+
+                    <div ng-messages="userRegisterForm.surname.$error" ng-show="userRegisterForm.surname.$touched" style="color:red">
+                        <p ng-message="minlength">Apellido muy corto.</p>
+                        <p ng-message="pattern">Apellido erroneo.</p>
+                        <p ng-message="required">Apellido requerido</p>
+                    </div>                    
+
+                    <!-- PASSWORD -->
+  <!--                   <label for="password"><b>Password</b></label>
+                    <input 
+                        name="password"
+                        class="w3-input w3-border" 
+                        ng-class="{ 'w3-input w3-border-red': userRegisterForm.password.$touched && userRegisterForm.password.$invalid, 
+                                    'w3-input w3-border-green': userRegisterForm.password.$touched && userRegisterForm.password.$valid}"                        
+                        type="password" 
+                        placeholder = "Introduce tu password" 
+                        ng-pattern = "passwordRegExp"
+                        ng-model="password"
+                        required>
+                    </input>
+                    <div ng-messages="userRegisterForm.password.$error" ng-show="userRegisterForm.password.$touched" style="color:red">
+                        <p ng-message="pattern">Contraseña erronea.</p>
+                        <p ng-message="required">Contraseña requerida</p>
+                    </div>   -->                  
+
+                    <!-- Eemail -->
+                    <label for="email"><b>Email</b></label>
+                    <input 
+                        name="email"
+                        class="w3-input w3-border"
+                        ng-class="{ 'w3-input w3-border-red': userRegisterForm.email.$touched && userRegisterForm.email.$invalid, 
+                                    'w3-input w3-border-green': userRegisterForm.email.$touched && userRegisterForm.email.$valid}"                         
+                        type="eemail" 
+                        placeholder="Introduce tu email"  
+                        ng-model="email"
+                        ng-pattern="emailRegExp"
+                        required>
+                    </input>
+                    <div ng-messages="userRegisterForm.email.$error" ng-show="userRegisterForm.email.$touched" style="color:red">
+                        <p ng-message="pattern">Email erroneo.</p>
+                        <p ng-message="required">Email requerido</p>
+                    </div>
+
+                    <!-- DATE -->
+                    <label for="birthdate"><b>Fecha de nacimiento</b></label>
+                    <input class="w3-input w3-border"
+                        name="birthdate" 
+                        type="date"
+                        ng-pattern="dateRegExp"
+                        required
+                        >
+
+                    <!-- COUNTRIES -->                        
+                    <label for="countries"><b>Pais</b></label>
+                    <select class="w3-select" name="countries">
                         <!-- Manera de iterar en los datos de un objeto JSON-->
                         <option ng-repeat="(key, val) in listCountries" value="{{key}}" >{{val}}</option>
-                    </select>
-                    <a href="#/"><button class="w3-btn w3-btn-block w3-section w3-grey" ng-disabled="incomplete">Registrate</button></a>       
-                </div>
+                    </select>                 
 
-                <div class="w3-section w3-container w3-border-top w3-padding-hor-16 w3-light-grey">
-                    <input type="reset" class="w3-btn w3-red"></reset>
-                </div>  
-            </form>               
+                    <!-- SUBMIT -->
+                    <button class="w3-btn w3-btn-block w3-section w3-grey w3-ripple" ng-disabled="userRegisterForm.$invalid">Registrate</button>
+
+                    <!-- SECTION 2 -->
+                    <div class="w3-section w3-container w3-border-top w3-padding-hor-16 w3-light-grey">
+                        <!-- RESET -->
+                        <input type="reset" class="w3-btn w3-red w3-ripple"></reset>
+                    </div> 
+
+                </form>                         
+            </div>                
         </div> 
     </div>
 </div>
