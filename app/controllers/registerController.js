@@ -1,15 +1,13 @@
-nbApp.controller('RegisterController', ['$scope','ValidationService','CountriesService',
-	function($scope,ValidationService,CountriesService) { 
+nbApp.controller('RegisterController', ['$scope','ValidationService','CountriesService','AjaxService',
+	function($scope,ValidationService,CountriesService,AjaxService) { 
 
-        $scope.name = "";
-        $scope.surname = "";
-        $scope.email = "";
-        $scope.birthdate = "";
-        $scope.country = "";
-        $scope.password = "";
-
-        $scope.error = false;
-        $scope.incomplete = true;        
+        $scope.form_data = Array();
+        $scope.form_data['name'] = "";
+        $scope.form_data['surname'] = "";
+        $scope.form_data['email'] = "";
+        $scope.form_data['birthdate'] = "";
+        $scope.form_data['country'] = "";
+        $scope.form_data['name'] = "";    
 
         // Get listCountries JSON object
         CountriesService.getListCountries().then(function(response) {
@@ -19,14 +17,18 @@ nbApp.controller('RegisterController', ['$scope','ValidationService','CountriesS
         });
 
         // Get validation JSON  Object
-        ValidationService.getValidationJSON().then(function(response) {
-            
-            $scope.nameRegExp = response.data.name.substring(1,response.data.name.length-1);
-            $scope.surnameRegExp = response.data.surname.substring(1,response.data.surname.length-1);
-            $scope.passwordRegExp = response.data.password.substring(1,response.data.password.length-1);
-            $scope.emailRegExp = response.data.email.substring(1,response.data.email.length-1);
-            $scope.dateRegExp = response.data.date.substring(1,response.data.date.length-1);
+         ValidationService.getValidationJSON().then(function(response) {
 
-        }); 
+           $scope.JSON_validation = response; 
+
+        });
+         
+         $scope.send_form_data = function() {
+            
+            console.log($scope.form_data);
+
+            AjaxService.send('POST','api/user/register',$scope.form_data);
+         }
+
 
 	}]);

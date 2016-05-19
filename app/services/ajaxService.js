@@ -3,11 +3,12 @@ nbApp.factory('AjaxService', ['$q',
 
 		var self = {};
 
-		self.send = function(method,uri) {
+		self.send = function(method,uri,data) {
 
 			var http_request = getObject();
 			var uri = uri,
 			defered = $q.defer(),
+			data = data || "";
 			promise = defered.promise,
 			method = method || "get";
 
@@ -26,7 +27,7 @@ nbApp.factory('AjaxService', ['$q',
 			};
 
 			http_request.open(method, uri);
-			http_request.send();
+			http_request.send(data);
 
 			return promise;
 		}	

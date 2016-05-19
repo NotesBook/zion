@@ -23,7 +23,7 @@
 		public function register() {
 
 			global $_NB_GLOBALS; 
-
+			
 			//1. Get User's fields from $request_body
 			$request_body = HttpEngineService::get_array_from_json_body();
 
