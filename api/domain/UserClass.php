@@ -64,13 +64,15 @@
 
 	    	//1. Read Json File
 			$json_array = self::get_validationJson();
+			$json_countries = self::get_countriesJson();
 
 	    	//2. Check data
 			$check_name = preg_match($json_array["name"], $name);
-			$check_surname = preg_match($json_array["name"], $surname);
-			$check_birthdate = preg_match($json_array["date"], $birthdate);
-			$check_country = preg_match($json_array["name"], $country);
-			$check_region = preg_match($json_array["name"], $region);
+			$check_surname = preg_match($json_array["surname"], $surname);
+			$check_birthdate = preg_match($json_array["birthdate"], $birthdate);
+			// $check_country = preg_match($json_array["country"], $country);
+			$check_country = self::check_country($json_countries,$country);
+			$check_region = preg_match($json_array["region"], $region);
 			$check_email = preg_match($json_array["email"], $email);
 
 			//3. Parsing error menssages
@@ -97,9 +99,30 @@
 	    	return true;
 	    }
 
+	    public static function check_country($json_countries,$country) {
+
+	    	foreach ($json_countries as $key => $value) {
+	    		
+	    		if($value == $country) {
+
+	    			return true;
+
+	    		} else return false;
+	    	}
+
+	    	
+	    }
+
 	    public static function get_validationJson() {
 
 			$json_content_txt = file_get_contents("config/validations.json");
+			return json_decode($json_content_txt, TRUE);
+
+	    }
+
+	    public static function get_countriesJson() {
+
+			$json_content_txt = file_get_contents("config/countries.json");
 			return json_decode($json_content_txt, TRUE);
 
 	    }

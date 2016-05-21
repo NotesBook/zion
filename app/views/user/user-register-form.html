@@ -92,7 +92,7 @@
                         <p ng-message="required">Email requerido</p>
                     </div>
 
-                    <!-- DATE -->
+                    <!-- BIRTHDATE -->
                     <label for="birthdate"><b>Fecha de nacimiento</b></label>
                     <input class="w3-input w3-border"
                         name="birthdate" 
@@ -102,9 +102,9 @@
                         placeholder="Introduce tu fecha de nacimiento"
                         ng-model="form_data['birthdate']"
                         ng-pattern="JSON_validation.birthdate"
-                        required
-                        >
-                    <div ng-messages="userRegisterForm.email.$error" ng-show="userRegisterForm.email.$touched" style="color:red">
+                        required>
+                    </input>
+                    <div ng-messages="userRegisterForm.birthdate.$error" ng-show="userRegisterForm.birthdate.$touched" style="color:red">
                         <p ng-message="pattern">Formato de fecha erroneo.</p>
                         <p ng-message="required">Fecha requerida</p>
                     </div>                        
@@ -114,7 +114,22 @@
                     <select class="w3-select" name="countries" ng-model="form_data['country']">
                         <!-- Manera de iterar en los datos de un objeto JSON-->
                         <option ng-repeat="(key, val) in listCountries">{{val}}</option>
-                    </select>                     
+                    </select>  
+
+                    <!-- REGION -->
+                    <label for="region"><b>Region</b></label>
+                    <input class="w3-input w3-border"
+                        name="region" 
+                        ng-class="{ 'w3-input w3-border-red': userRegisterForm.region.$touched && userRegisterForm.region.$invalid, 
+                                    'w3-input w3-border-green': userRegisterForm.region.$touched && userRegisterForm.region.$valid}"                        
+                        type="text"
+                        placeholder="Introduce tu region"
+                        ng-model="form_data['region']"
+                        required>
+                    </input>
+                    <div ng-messages="userRegisterForm.region.$error" ng-show="userRegisterForm.region.$touched" style="color:red">
+                        <p ng-message="required">Region requerida</p>
+                    </div>                                       
 
                     <!-- SUBMIT -->
                     <button class="w3-btn w3-btn-block w3-section w3-grey w3-ripple" ng-disabled="userRegisterForm.$invalid" ng-click="send_form_data()">Registrate</button>
@@ -122,7 +137,7 @@
                     <!-- SECTION 2 -->
                     <div class="w3-section w3-container w3-border-top w3-padding-hor-16 w3-light-grey">
                         <!-- RESET -->
-                        <input type="reset" class="w3-btn w3-red w3-ripple"></reset>
+                        <input type="reset" class="w3-btn w3-red w3-ripple"></input>
                     </div> 
 
                 </form>                         
