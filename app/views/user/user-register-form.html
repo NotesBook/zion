@@ -1,4 +1,19 @@
-<div id="login-modal-container" class="w3-modal">
+<!-- Show Modal when register is valid -->
+<div id="login-modal-container" class="w3-modal" ng-show="show_valid_modal">
+
+    <div class="w3-modal-content w3-card-4 w3-animate-top" style="max-width:600px">
+        <div class="w3-center"><br>
+            <p class="w3-text-green">Usuario Registrado con Exito!</p>
+            <p>Verifica tu Email para validar la cuenta</p>
+        </div>
+        <a href="#/">
+            <div class="w3-btn w3-btn-block w3-center w3-green w3-margin-bottom">Volver</div>
+        </a>
+    </div>
+</div>    
+
+<!-- Hide Modal when register is valid -->
+<div id="login-modal-container" class="w3-modal" ng-hide="show_valid_modal">
 
     <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
 
@@ -54,25 +69,7 @@
                         <p ng-message="minlength">Apellido muy corto.</p>
                         <p ng-message="pattern">Apellido erroneo.</p>
                         <p ng-message="required">Apellido requerido</p>
-                    </div>                    
-
-                    <!-- PASSWORD -->
-  <!--                   <label for="password"><b>Password</b></label>
-                    <input 
-                        name="password"
-                        class="w3-input w3-border" 
-                        ng-class="{ 'w3-input w3-border-red': userRegisterForm.password.$touched && userRegisterForm.password.$invalid, 
-                                    'w3-input w3-border-green': userRegisterForm.password.$touched && userRegisterForm.password.$valid}"                        
-                        type="password" 
-                        placeholder = "Introduce tu password" 
-                        ng-pattern = "passwordRegExp"
-                        ng-model="password"
-                        required>
-                    </input>
-                    <div ng-messages="userRegisterForm.password.$error" ng-show="userRegisterForm.password.$touched" style="color:red">
-                        <p ng-message="pattern">Contraseña erronea.</p>
-                        <p ng-message="required">Contraseña requerida</p>
-                    </div>   -->                  
+                    </div>                                   
 
                     <!-- Email -->
                     <label for="email"><b>Email</b></label>
