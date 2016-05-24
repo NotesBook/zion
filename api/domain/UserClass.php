@@ -70,9 +70,9 @@
 			$check_name = preg_match($json_array["name"], $name);
 			$check_surname = preg_match($json_array["surname"], $surname);
 			$check_birthdate = preg_match($json_array["birthdate"], $birthdate);
-			// $check_country = preg_match($json_array["country"], $country);
 			$check_country = self::check_country($json_countries,$country);
 			$check_region = preg_match($json_array["region"], $region);
+			$check_email_exist = userRepository::check_email_exists($email);
 			$check_email = preg_match($json_array["email"], $email);
 
 			//3. Parsing error menssages
@@ -88,7 +88,9 @@
 			if (!$check_region)
 				$msg .= ", La región está mal, muy mal";
 			if (!$check_email)
-				$msg .= ", El email está mal, muy mal";
+				$msg .= ", <".$check_email.">,El email está mal, muy mal";
+			if (!$check_email_exist)
+				$msg .= ", Email ya registrado en la BBDD";
 
 	    	//4. Check if any error exists.
 	    	//throw custom exception if error

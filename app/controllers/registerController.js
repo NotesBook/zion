@@ -40,5 +40,4 @@ nbApp.controller('RegisterController', ['$scope','ValidationService','CountriesS
             });
          }
 
-
 	}]);

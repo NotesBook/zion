@@ -1,4 +1,18 @@
-<div id="login-modal-container" class="w3-modal">
+<!-- Show Modal when register is valid -->
+<div id="login-modal-container" class="w3-modal" ng-show="showValidateConfirmation">
+
+    <div class="w3-modal-content w3-card-4 w3-animate-top" style="max-width:600px">
+        <div class="w3-center"><br>
+            <p class="w3-text-green">Usuario validado con exito!</p>
+            <p>Pulsa aceptar para ir al Login</p>
+        </div>
+        <a href="#/">
+            <div class="w3-btn w3-btn-block w3-center w3-green w3-margin-bottom">Aceptar</div>
+        </a>
+    </div>
+</div>  
+
+<div id="login-modal-container" class="w3-modal" ng-hide="showValidateConfirmation">
 
     <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px"> 
 
@@ -7,7 +21,7 @@
         </div>
 
         <form action="#" class="w3-form">
-            <h3 ng-if="showValidateConfirmation">Gracias por registrarte. Ya puedes entrar en tu cuenta</h3>
+            
             <div class="w3-section">
                 <label class="w3-label"><b>Nombre de Usuario</b></label>
                 <input class="w3-input w3-border w3-margin-bottom w3-round" type="text" placeholder="Introduce tu nombre de usuario" name="username" required>                     

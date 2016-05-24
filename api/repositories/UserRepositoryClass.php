@@ -40,6 +40,19 @@
 
 		}
 
+		// Check if Email Exists in DB
+		public static function check_email_exists($email) {
+
+			// $email_field = array("COUNT(*) as email_count");
+			$email_exists = parent::select("users","","email = '$email'","");
+			
+			if($email_exists->num_rows == 0) {
+				return true;
+			} else  {
+				return false;
+			}
+		}
+
 		public static function get_by_id($id) {
 
 			$database_result = parent::select("users", array("id", "name"), "id = $id");
