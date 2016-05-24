@@ -8,7 +8,6 @@ nbApp.factory('UserService', ['AjaxService',
 	  		var uri = "api/user",
 				method = "get";
 				
-			console.log("llamada al servicio ajax");
 	  		return AjaxService.send(method,uri);
 		
 	  	};
@@ -17,6 +16,16 @@ nbApp.factory('UserService', ['AjaxService',
 			var	method = "get";
 				
 	  		return AjaxService.send(method, 'api/user/active/' + email + '/' + token);
+	  	};
+
+	  	self.send_register_form_data = function(method,uri,data) {
+
+	  		return AjaxService.send(method,uri,data);
+	  	};
+
+	  	self.send_login_form_data = function(method,uri,data) {
+
+	  		return AjaxService.send(method,uri,data);
 	  	};
 
 	    return self;
