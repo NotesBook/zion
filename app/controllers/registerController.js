@@ -31,9 +31,9 @@ nbApp.controller('RegisterController', ['$scope','ValidationService','CountriesS
 
             UserService.send_register_form_data('POST','api/user/register',JSON.stringify($scope.form_data)).then(function(response) {
                 
-                 if(response.valid == true) {
+                if(response.valid == true) {
                     $scope.show_valid_modal = true;
-                 } else $scope.show_valid_modal = false;
+                } else $scope.show_valid_modal = false;
 
             });
          }

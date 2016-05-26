@@ -14,6 +14,9 @@ nbApp.config(['$routeProvider',
 			}).when('/user/register', {
 				templateUrl: 'app/views/user/user-register-form.html',
 				controller: 'RegisterController'
+			}).when('/dashboard', {
+				templateUrl: 'app/views/site/dashboard.html',
+				controller: 'MainController'
 			}).
 			otherwise({
 				redirectTo: '/'

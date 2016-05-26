@@ -3,8 +3,12 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8" http-equiv="X-UA-Compatible">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="app/libs/w3-theme-blue-grey.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
     <title>Notesapp</title>
 
     <!-- Main StyleSheet -->
@@ -28,6 +32,8 @@
     <script src="app/app.js"></script>
 
     <!-- Controllers App -->
+    <script src="app/controllers/mainController.js"></script>
+    <script src="app/controllers/articleController.js"></script>
     <script src="app/controllers/userController.js"></script>
     <script src="app/controllers/loginController.js"></script>
     <script src="app/controllers/registerController.js"></script>
@@ -40,9 +46,9 @@
 
 </head>
 
-<body>
-
-    <div class="w3-container" ng-view=""></div>
+<body "w3-theme-l5">
+    
+        <div ng-view=""></div>
 
 </body>
 

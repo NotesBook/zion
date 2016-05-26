@@ -65,10 +65,10 @@
 			//1. Get User's fields from $request_body
 			$request_body = HttpEngineService::get_array_from_json_body();
 
-			$name = $request_body["name"]; 
+			$email = $request_body["email"]; 
 			$password = $request_body["password"]; 
 
-			$user_result = UserRepository::login($name, md5($password));
+			$user_result = UserRepository::login($email, md5($password));
 			$user_tupla = $user_result->fetch_array();
 			$login_valid = $user_tupla["user_count"]; //Valid if exits
 

@@ -2,7 +2,7 @@ nbApp.controller('LoginController', ['$scope', '$routeParams', 'UserService','$l
 	function($scope, $routeParams, UserService,$location) { 
 
 		$scope.login_form_data = {
-			'name':"",
+			'email':"",
 			'password':""
 		};
 
@@ -24,9 +24,8 @@ nbApp.controller('LoginController', ['$scope', '$routeParams', 'UserService','$l
 		$scope.send_login_form_data = function() {
 
 			UserService.send_login_form_data('POST','api/user/login', JSON.stringify($scope.login_form_data)).then(function(response) {
-				console.log(response.valid);
-				if(response.valid == false) {
-					$location.path("user/register");
+				if(response.valid == true) {
+					$location.path("dashboard/");
 				}
 			});
 		};

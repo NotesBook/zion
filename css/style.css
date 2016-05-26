@@ -6,61 +6,12 @@
  * @package    \css
  * @license    https://www.gnu.org/licenses/agpl-3.0.html GNU Affero General Public License Version 3 (AGPL3)
  */
+html,body,h1,h2,h3,h4,h5 {
+	font-family: "Open Sans", sans-serif
+}
 
 #login-modal-container {
 	display: block;
 	background: radial-gradient(#2196F3, white);
 }
 
-header {
-	background-image: url('../images/logoNotesbook.png'),-webkit-linear-gradient(top,white,#77b300);
-	background-repeat: no-repeat;
-	background-size: 150px,contain;
-	background-position: top center;
-	height: 15em;
-	margin: 0;
-}
-
-.banner {
-	height: 8em;
-	width: 100%;
-	background-image: url("../images/banner1.jpg");
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-.content {
-	margin:5px auto;
-	width: 80%;
-	height: 70%;
-	background-color: #909090;
-}
-
-.nav-bar {
-	position: relative;
-	height: 20%;
-	width: 100%;
-	top: 80%;
-
-}
-
-ul {
-	margin:auto;
-	padding: 0;
-	width: 50%;
-	text-align:center;
-	list-style-type: none;
-}
-
-li {
-	display: inline;
-	margin:auto;
-}
-
-a {
-	text-decoration: none;
-	text-align: center;
-	font-family: 'Montserrat', sans-serif;
-	color:white;
-}
