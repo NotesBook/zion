@@ -73,7 +73,7 @@
 
 	/** Domain */
 	include('domain/UserClass.php');
-	include('domain/AulaClass.php');
+	include('domain/ClassroomClass.php');
 	
 	/** Repositories */	
 	include('repositories/UserRepositoryClass.php');
