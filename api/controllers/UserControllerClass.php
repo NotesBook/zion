@@ -125,9 +125,10 @@
 		 * CHECK SESSIOn
 		 */
 		public function check_session() {
-			
+
 			//CheckSession //TODO:FILTER BEFORE EXECUTION
 			SessionManager::check_session_token();
+			return FormattedRequest::format(true, "");
 
 		}
 

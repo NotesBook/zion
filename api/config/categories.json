@@ -1,0 +1,27 @@
+{
+	"categories": [
+		{
+			"id": 1,
+			"name": "FP"
+		},
+		
+		{
+			"id": 2,
+			"name": "UNIVERSIDAD"
+		}
+	],
+	"subcategories": [
+		{
+			"name": "DAW",
+			"categoryId": 1
+		},
+		{
+			"name": "DAM",
+			"categoryId": 1
+		},
+		{
+			"name": "ASIR",
+			"categoryId": 1
+		}
+	]
+}

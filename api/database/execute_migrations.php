@@ -77,7 +77,7 @@ if (!MysqlDatabaseEngine::get_connection()->commit()) {
 
 //1. Comprobamos si existe la tabla de versiones y la creamos, sólo si nuestra versión actual es la anterior a esta Migración (la versión 0)
 if($version_actual == "0") {
-	$sql_create_table_user_if_not_exists = 
+	$sql_create_table_users_if_not_exists = 
 		"CREATE TABLE IF NOT EXISTS users (
 	        id 				INT NOT NULL AUTO_INCREMENT,
 	        				PRIMARY KEY(id),
@@ -94,8 +94,8 @@ if($version_actual == "0") {
 	        session_code	VARCHAR(50),        
 	        last_session_date	DATETIME DEFAULT NULL
 	    )";
-	//print $sql_create_table_user_if_not_exists."<br>";
-	MysqlDatabaseEngine::get_connection()->query($sql_create_table_user_if_not_exists);
+	//print $sql_create_table_users_if_not_exists."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_create_table_users_if_not_exists);
 
 	//2. Insertamos, si no lo están ya los usuarios de prueba (Habrá que hacerlo para cada usuario que se quiera insertar)
 	function insertar_usuario_si_no_existe($name, $surname, $birthdate, $country, $region, $email) {
@@ -120,6 +120,32 @@ if($version_actual == "0") {
 	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_1);
 
 	$version_actual = 1;
+}
+
+//1. Comprobamos si existe la tabla de versiones y la creamos, sólo si nuestra versión actual es la anterior a esta Migración (la versión 0)
+if($version_actual == "1") {
+	$sql_create_table_classrooms_if_not_exists = 
+		"CREATE TABLE IF NOT EXISTS classrooms (
+	        id 				INT NOT NULL AUTO_INCREMENT,
+	        				PRIMARY KEY(id),
+	        name 			VARCHAR(50) NOT NULL,
+	        category 		VARCHAR(100),
+	        subcategory		VARCHAR(100),
+	        description		VARCHAR(1000),
+	        image_path		VARCHAR(50),        
+	        entry_date 		DATETIME DEFAULT NULL,
+	        leaving_date 	DATETIME DEFAULT NULL,
+	        invitation_code	VARCHAR(50)
+	    )";
+	//print $sql_create_table_user_if_not_exists."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_create_table_classrooms_if_not_exists);
+
+	//3. Actualizamos la versión de la bbdd
+	$sql_update_versions_2 = "INSERT INTO versions(version_number, date, description) VALUES(2, '2016/05/26', 'Creación de tabla de aulas')";
+	//print $sql_update_versions_0."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_2);
+
+	$version_actual = 2;
 }
 
 
