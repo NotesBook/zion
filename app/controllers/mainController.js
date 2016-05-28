@@ -1,5 +1,7 @@
-nbApp.controller('MainController', ['$scope','$location',
-	function($scope,$location) {
+nbApp.controller('MainController', ['$scope','$location', 'SecurityService',
+	function($scope, $location, SecurityService) {
+
+		SecurityService.checkSession();
 
 		$scope.groups = [
 			'Grupo 1',

@@ -7,6 +7,9 @@
  * @license    https://www.gnu.org/licenses/agpl-3.0.html GNU Affero General Public License Version 3 (AGPL3)
  */
 
+	/** Include Session Manager */
+	include("core/SessionManagerClass.php");
+
 	/** Global Vars */
 	$_NB_GLOBALS = array();
 	$_NB_GLOBALS["settings"] = array();

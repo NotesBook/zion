@@ -76,10 +76,25 @@
 
 				$token = bin2hex(openssl_random_pseudo_bytes(16));
 				UserRepository::start_session($user_tupla["id"], $token);
+
+				$user_obj = UserRepository::get_by_id($user_tupla["id"]);
+
+				SessionManager::start($user_obj);
+
 				return FormattedRequest::format(true, $token);
 
 			} else 
 				return FormattedRequest::format(false, "", "Invalid Login");
+
+		}
+
+		/* Method GET
+		 * Login and return TOKEN
+		 */
+		public function logout() {
+
+			SessionManager::logout();
+			return FormattedRequest::format(true);
 
 		}
 
@@ -103,6 +118,16 @@
 		public function validationJson() {
 
 			return FormattedRequest::format(true, User::get_validationJson());
+
+		}
+
+		/* Method GET
+		 * CHECK SESSIOn
+		 */
+		public function check_session() {
+			
+			//CheckSession //TODO:FILTER BEFORE EXECUTION
+			SessionManager::check_session_token();
 
 		}
 

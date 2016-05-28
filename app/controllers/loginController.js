@@ -1,5 +1,5 @@
-nbApp.controller('LoginController', ['$scope', '$routeParams', 'UserService','$location',
-	function($scope, $routeParams, UserService,$location) { 
+nbApp.controller('LoginController', ['$scope', '$routeParams', '$location', '$cookies', 'UserService',
+	function($scope, $routeParams, $location, $cookies, UserService) { 
 
 		$scope.login_form_data = {
 			'email':"",
@@ -26,8 +26,13 @@ nbApp.controller('LoginController', ['$scope', '$routeParams', 'UserService','$l
 			UserService.send_login_form_data('POST','api/user/login', JSON.stringify($scope.login_form_data)).then(function(response) {
 				if(response.valid == true) {
 					$location.path("dashboard/");
+
+					//add token to cookie
+					$cookies.put("loginTokenCookie", response.data);
 				}
 			});
 		};
+
+		//TODO: Delete cookie loginTokenCookie when logout
 
 	}]);

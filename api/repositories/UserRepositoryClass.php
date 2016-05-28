@@ -53,25 +53,26 @@
 		// 	}
 		// }
 
-public static function check_email_exists($email) {
+		public static function check_email_exists($email) {
 
-   $email_field = array("email");
-   $email_exists = parent::select("users",$email_field,"email = '$email'","");
+		   $email_field = array("email");
+		   $email_exists = parent::select("users",$email_field,"email = '$email'","");
 
-   if($email_exists->num_rows == 0) {
-	return true;
-    } else return false;
-    
-}		
+		   if($email_exists->num_rows == 0) {
+			return true;
+		    } else return false;
+		    
+		}		
 
 		public static function get_by_id($id) {
 
-			$database_result = parent::select("users", array("id", "name"), "id = $id");
+			$database_result = parent::select("users", array("id", "name", "surname", "birthdate", "country", "region", "email", "session_code"), "id = $id");
 
 			$array_obj_result = array();
 			while($user_tupla = $database_result->fetch_array()) {
+				//$id, $name, $surname, $birthdate, $country, $region, $email
+				$array_obj_result[] = new User($user_tupla["id"], $user_tupla["name"], $user_tupla["surname"], $user_tupla["birthdate"], $user_tupla["country"], $user_tupla["region"], $user_tupla["email"]);
 
-				$array_obj_result[] = new User($user_tupla["id"], $user_tupla["name"]);
 			}
 
 			return $array_obj_result;
@@ -91,7 +92,7 @@ public static function check_email_exists($email) {
 		public static function start_session($id, $session_code) {
 
 			parent::update("users", 
-				"last_session_date = STR_TO_DATE('".date('d/m/Y', time())."','%d/%m/%Y'), session_code = '$session_code'",
+				"last_session_date = STR_TO_DATE('".date('d/m/Y h:m:s', time())."','%d/%m/%Y'), session_code = '$session_code'",
 				"id = '".$id."'");
 
 		}

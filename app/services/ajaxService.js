@@ -1,5 +1,5 @@
-nbApp.factory('AjaxService', ['$q',
-	function($q) {
+nbApp.factory('AjaxService', ['$q', '$cookies', '$location',
+	function($q, $cookies, $location) {
 
 		var self = {};
 
@@ -20,13 +20,21 @@ nbApp.factory('AjaxService', ['$q',
 						var JsonObj = JSON.parse(http_request.responseText);
 						defered.resolve(JsonObj);
 					} else {
-						console.error("AjaxService - Error: ", oXHR.statusText);
-						defered.reject("AjaxService - Error: ", oXHR.statusText);
+						console.error("AjaxService - Error: ", http_request.statusText);
+
+						//TODO: If 405 redirect to home
+						$location.path('/');
+
+						defered.reject("AjaxService - Error: ", http_request.statusText);
 					}
 				}
 			};
 
 			http_request.open(method, uri);
+
+			//inject the token if exits. The xhrOBject must be open
+			http_request.setRequestHeader("token", $cookies.get("loginTokenCookie"));
+
 			http_request.send(data);
 
 			return promise;
