@@ -69,10 +69,11 @@
 
 	/** Controllers */	
 	include('controllers/UserControllerClass.php');
-
+	include('controllers/ClassroomControllerClass.php');
 
 	/** Domain */
 	include('domain/UserClass.php');
+	include('domain/AulaClass.php');
 	
 	/** Repositories */	
 	include('repositories/UserRepositoryClass.php');
