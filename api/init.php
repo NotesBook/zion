@@ -77,6 +77,7 @@
 	
 	/** Repositories */	
 	include('repositories/UserRepositoryClass.php');
+	include('repositories/ClassroomRepositoryClass.php');
 
 
 	/** migrations - comment to avoid executing file */

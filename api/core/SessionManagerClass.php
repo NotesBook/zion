@@ -15,7 +15,7 @@
 
 			if (!isset($_SESSION['user'])) {
 				/*start session*/
-			  	$_SESSION['user'] = $user;
+			  	$_SESSION['user'] = json_decode($user);
 			}
 
 		}

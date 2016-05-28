@@ -7,7 +7,7 @@
  * @license    https://www.gnu.org/licenses/agpl-3.0.html GNU Affero General Public License Version 3 (AGPL3)
  */
 
-	class UserRepository extends BaseRepository implements IBaseRepository {
+	class ClassroomRepository extends BaseRepository implements IBaseRepository {
 
 		/* 
 		 * return: invitation_code 
@@ -37,6 +37,12 @@
 			}
 
 			return $array_obj_result;
+
+		}
+
+		public static function get_all() {
+
+			//TODO:
 
 		}
 

@@ -33,7 +33,7 @@
 			$description = $request_body["description"]; 
 
 			//2. Check if data is correct
-			Aula::check_data($name, $category, $subcategory, $description);
+			Classroom::check_data($name, $category, $subcategory, $description);
 
 			//3. Save User
 			//3.1. Generate Random Password
@@ -44,14 +44,15 @@
 			//3.2. Save User
 			ClassroomRepository::register($name, $category, $subcategory, $description, $invitation_code);
 
+		    print_r($_SESSION["user"]);
 			//4. Send Email
 			//4.1 Compose Email
 			$email_html = file_get_contents("mails/welcome_classroom_mail.html");
 		    $email_html = str_replace("%%INVITATIONCODE%%", $invitation_code, $email_html);
 		    $email_html = str_replace("%%NAME%%", $name, $email_html);
-		    $email_html = str_replace("%%USERNAME%%", $_SESSION["user"]["name"], $email_html);
+		    $email_html = str_replace("%%USERNAME%%", $_SESSION["user"]["1"], $email_html);
 
-			MailEngineService::send("Aula Creada", $email_html, $_SESSION["user"]["email"]);
+			MailEngineService::send("Aula Creada", $email_html, $_SESSION["user"]->get_email());
 
 			//5. Return Ok
 			return FormattedRequest::format(true);
