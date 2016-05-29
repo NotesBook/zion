@@ -85,10 +85,29 @@
         <!-- Middle Column -->
         <div ng-include="'app/views/article/article.html'"></div>
 
-        <!-- Header with logo -->
-        <div class="w3-col m2 w3-right">
-            <img src="images/logo_Notesbook_trans.png" style="height:200px;width:195px">
-            </img>
+        <!-- Right Column -->
+        <div class="w3-col m2">
+            <!-- Logo -->
+            <div class="w3-row">
+                <img src="images/logo_Notesbook_trans.png" class="w3-right" style="height:200px;width:195px"></img>
+            </div>
+
+            <!-- Friend Request Card -->
+            <div class="w3-card-2 w3-round w3-white w3-center">
+                <div class="w3-container">
+                    <p>Peticion de amistad</p>
+                    <img src="images/girl_avatar.jpg" alt="Avatar" style="width:50%"><br>
+                    <span>Jana la Marrana</span>
+                    <div class="w3-row w3-opacity">
+                        <div class="w3-half">
+                            <button class="w3-btn w3-green w3-btn-block w3-section" title="Accept"><i class="fa fa-check"></i></button>
+                        </div>
+                        <div class="w3-half">
+                            <button class="w3-btn w3-red w3-btn-block w3-section" title="Decline"><i class="fa fa-remove"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>   
         </div>
     
     <!-- End Grid -->
