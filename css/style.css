@@ -10,7 +10,7 @@ html,body,h1,h2,h3,h4,h5 {
 	font-family: "Open Sans", sans-serif
 }
 
-#login-modal-container {
+#login-modal-container,body {
 	display: block;
 	background: radial-gradient(#2196F3, white);
 }

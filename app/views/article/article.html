@@ -5,8 +5,11 @@
             	<div class="w3-container w3-padding">
              	<div class="w3-opacity w3-center">{{article.nombre}}</div>
                 <p contenteditable="false">{{article.contenido}}</p>
-              	<p contenteditable="true" class="w3-border w3-padding">{{article.comentario}}</p>
-              	<button type="button" class="w3-btn w3-theme"><i class="fa fa-pencil"></i>  Post</button>
+                <p ng-repeat="respuesta in article.respuestas" class="w3-border w3-padding" contenteditable="false">{{respuesta.respuesta}}</p><br>
+                <br>
+                <text-angular ng-show="mostrar_text_area" class="w3-input w3-border" ta-toolbar="[['h1','h2','h3','h4','p','bold','italics','ul','ol','justifyLeft','justifyCenter','justifyRight','justifyFull', 'redo', 'undo','insertImage','insertLink', 'insertVideo']]"></text-angular><br>
+              	<!-- <textarea class="w3-input w3-border" style="height: 100px; resize: vertical">{{article.comentario}}</textarea><br> -->
+              	<button type="button" ng-click="mostrar_text_area=true" class="w3-btn w3-theme"><i class="fa fa-pencil"></i> Responder</button>
             </div>
         </div><br>
     </div>

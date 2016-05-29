@@ -1,7 +1,9 @@
-var nbApp = angular.module('nbApp',['ngMessages',
+var nbApp = angular.module('nbApp',['ngMessages','textAngular',
 	'ngRoute',
 	'ngCookies'
 	]);
+
+
 
 nbApp.config(['$routeProvider',
   	function($routeProvider) {
