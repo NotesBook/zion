@@ -17,11 +17,11 @@
 		},
 		{
 			"name": "DAM",
-			"categoryId": 1
+			"categoryId": 2
 		},
 		{
 			"name": "ASIR",
-			"categoryId": 1
+			"categoryId": 3
 		}
 	]
 }

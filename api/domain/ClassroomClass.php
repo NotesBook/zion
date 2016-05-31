@@ -109,7 +109,7 @@
 
 	    	foreach ($json_categories["subcategories"] as $key => $value) {
 	    		
-	    		if($value["name"] == $category) {
+	    		if($value["name"] == $subcategory) {
 
 	    			return true;
 

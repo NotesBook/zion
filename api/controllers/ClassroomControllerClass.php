@@ -33,7 +33,7 @@
 			$description = $request_body["description"]; 
 
 			//2. Check if data is correct
-			Aula::check_data($name, $category, $subcategory, $description);
+			Classroom::check_data($name, $category, $subcategory, $description);
 
 			//3. Save User
 			//3.1. Generate Random Password

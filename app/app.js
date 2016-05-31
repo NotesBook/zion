@@ -3,8 +3,6 @@ var nbApp = angular.module('nbApp',['ngMessages','textAngular',
 	'ngCookies'
 	]);
 
-
-
 nbApp.config(['$routeProvider',
   	function($routeProvider) {
 	    $routeProvider
