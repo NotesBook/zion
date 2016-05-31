@@ -2,14 +2,33 @@
 <div class="w3-top">
     <ul class="w3-navbar w3-theme-d2 w3-left-align w3-large">
         <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
-        <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" ng-click="openNav()"><i class="fa fa-bars"></i></a>
+            <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" ng-click="openNav()"><i class="fa fa-bars"></i></a>
         </li>
-        <li><a href="#" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>NotesBook</a></li>
-        <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a></li>
-        <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a></li>
-        <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a></li>
+        <li>
+            <a href="#" class="w3-padding-large w3-theme-d4">
+                <i class="fa fa-home w3-margin-right"></i>NotesBook
+            </a>
+        </li>
+        <li class="w3-hide-small">
+            <a href="#" class="w3-padding-large w3-hover-white" title="Mis Aulas">
+                <i class="fa fa-mortar-board"></i> Mis Aulas
+            </a>
+        </li>
+        <li class="w3-hide-small">
+            <a href="#" class="w3-padding-large w3-hover-white" title="Account Settings">
+                <i class="fa fa-user"></i> Mi Cuenta
+            </a>
+        </li>
+        <li class="w3-hide-small">
+            <a href="#" class="w3-padding-large w3-hover-white" title="Messages">
+                <i class="fa fa-envelope"></i> Mis Articulos
+            </a>
+        </li>
         <li class="w3-hide-small w3-dropdown-hover">
-            <a href="#" class="w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></a>     
+            <a href="#" class="w3-padding-large w3-hover-white" title="Notifications">
+                <i class="fa fa-bell"></i> Mis Notificaciones
+                <span class="w3-badge w3-right w3-small w3-green w3-margin-left">3</span>
+            </a>     
             <div class="w3-dropdown-content w3-white w3-card-4">
                 <a href="#">Nueva peticion de amistad</a>
                 <a href="#">Galo ha posteado en tu articulo</a>
@@ -31,7 +50,8 @@
 </div>
 
 <!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px;margin-left:0">    
+<div class="w3-container" style="margin-top:80px;margin-left:0"> 
+
     <!-- The Grid -->
     <div class="w3-row">
         <!-- Left Column -->
@@ -52,7 +72,7 @@
             <!-- Accordion -->
             <div class="w3-card-2 w3-round">
                 <div class="w3-accordion w3-white">
-                    <button ng-click="acord('Demo1')" class="w3-btn-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Mis Grupos</button>
+                    <button ng-click="accordion('Demo1')" class="w3-btn-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Mis Aulas</button>
                     <div id="Demo1" class="w3-accordion-content w3-container">
                         <p ng-repeat="(key,val) in groups">{{val}}</p>
                     </div>
@@ -64,6 +84,32 @@
         
         <!-- Middle Column -->
         <div ng-include="'app/views/article/article.html'"></div>
+
+        <!-- Right Column -->
+        <div class="w3-col m2">
+            <!-- Logo -->
+            <div class="w3-row">
+                <img src="images/logo_Notesbook_trans.png" class="w3-right" style="height:200px;width:195px"></img>
+            </div>
+
+            <!-- Friend Request Card -->
+            <div class="w3-card-2 w3-round w3-white w3-center">
+                <div class="w3-container">
+                    <p>Peticion de amistad</p>
+                    <img src="images/girl_avatar.jpg" alt="Avatar" style="width:50%"><br>
+                    <span>Jana la Marrana</span>
+                    <div class="w3-row w3-opacity">
+                        <div class="w3-half">
+                            <button class="w3-btn w3-green w3-btn-block w3-section" title="Accept"><i class="fa fa-check"></i></button>
+                        </div>
+                        <div class="w3-half">
+                            <button class="w3-btn w3-red w3-btn-block w3-section" title="Decline"><i class="fa fa-remove"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    
     <!-- End Grid -->
     </div>
 <!-- End Page Container -->

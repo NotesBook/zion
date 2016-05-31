@@ -4,13 +4,13 @@ nbApp.controller('MainController', ['$scope','$location', 'SecurityService',
 		SecurityService.checkSession();
 
 		$scope.groups = [
-			'Grupo 1',
-			'Grupo 2',
-			'Grupo 3',
-			'Grupo 4',
+			'Aula 1',
+			'Aula 2',
+			'Aula 3',
+			'Aula 4',
 		]
 
-		$scope.acord = function(id) {
+		$scope.accordion = function(id) {
 		    var x = document.getElementById(id);
 		    if (x.className.indexOf("w3-show") == -1) {
 		        x.className += " w3-show";
