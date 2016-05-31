@@ -79,7 +79,7 @@
 			if (!$check_category)
 				$msg .= ", La categoría está mal, muy mal";
 			if (!$check_subcategory)
-				$msg .= ", La subcategoría de nacimiento está mal, muy mal";
+				$msg .= ", La subcategoría  está mal, muy mal";
 			if (!$check_description)
 				$msg .= ", La descripción está mal, muy mal";
 
