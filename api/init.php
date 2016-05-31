@@ -70,14 +70,17 @@
 	/** Controllers */	
 	include('controllers/UserControllerClass.php');
 	include('controllers/ClassroomControllerClass.php');
+	include('controllers/ArticleControllerClass.php');
 
 	/** Domain */
 	include('domain/UserClass.php');
 	include('domain/ClassroomClass.php');
+	include('domain/ArticleClass.php');
 	
 	/** Repositories */	
 	include('repositories/UserRepositoryClass.php');
 	include('repositories/ClassroomRepositoryClass.php');
+	include('repositories/ArticleRepositoryClass.php');
 
 
 	/** migrations - comment to avoid executing file */

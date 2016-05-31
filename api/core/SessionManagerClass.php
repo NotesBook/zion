@@ -15,7 +15,7 @@
 
 			if (!isset($_SESSION['user'])) {
 				/*start session*/
-			  	$_SESSION['user'] = json_decode($user);
+			  	$_SESSION['user'] = $user[0]->jsonSerialize();
 			}
 
 		}
@@ -26,7 +26,7 @@
 
 		}
 
-		public static function get_session_token() {
+		public static function get_session_user() {
 
 			//todo: User token
 			return $_SESSION['user'];

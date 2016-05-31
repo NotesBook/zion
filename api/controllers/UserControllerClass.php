@@ -83,8 +83,12 @@
 
 				return FormattedRequest::format(true, $token);
 
-			} else 
+			} else {
+
+				http_response_code(405);
 				return FormattedRequest::format(false, "", "Invalid Login");
+
+			}
 
 		}
 

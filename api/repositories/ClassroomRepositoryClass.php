@@ -1,6 +1,6 @@
 <?php 
 /**
- * NotesBook User Repository
+ * NotesBook Classroom Repository
  *
  * @author     Nombre <email@email.com>
  * @package    \application\core
@@ -27,20 +27,17 @@
 
 		public static function get_by_id($id) {
 
-			$database_result = parent::select("users", array("id", "name", "surname", "birthdate", "country", "region", "email", "session_code"), "id = $id");
-
-			$array_obj_result = array();
-			while($user_tupla = $database_result->fetch_array()) {
-				//$id, $name, $surname, $birthdate, $country, $region, $email
-				$array_obj_result[] = new User($user_tupla["id"], $user_tupla["name"], $user_tupla["surname"], $user_tupla["birthdate"], $user_tupla["country"], $user_tupla["region"], $user_tupla["email"]);
-
-			}
-
-			return $array_obj_result;
+			//TODO:
 
 		}
 
 		public static function get_all() {
+
+			//TODO:
+
+		}
+
+		public static function get_all_by_user() {
 
 			//TODO:
 
