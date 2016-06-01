@@ -29,6 +29,8 @@ nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'Categori
                 console.log(response);
                 if(response.valid == true) {
                     $scope.show_valid_modal = true;
+                    document.getElementById('classroom-modal').style.display='none';
+                    alert("Tu aula ha sido creada. Recibirás un email con la información para continuar.");
                 } else $scope.show_valid_modal = false;
 
             });

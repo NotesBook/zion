@@ -49,9 +49,9 @@
 			$email_html = file_get_contents("mails/welcome_classroom_mail.html");
 		    $email_html = str_replace("%%INVITATIONCODE%%", $invitation_code, $email_html);
 		    $email_html = str_replace("%%NAME%%", $name, $email_html);
-		    $email_html = str_replace("%%USERNAME%%", $_SESSION["user"]["1"], $email_html);
+		    $email_html = str_replace("%%USERNAME%%", $_SESSION["user"]["name"], $email_html);
 
-			MailEngineService::send("Aula Creada", $email_html, $_SESSION["user"]->get_email());
+			MailEngineService::send("Aula Creada", $email_html, $_SESSION["user"]["email"]);
 
 			//5. Return Ok
 			return FormattedRequest::format(true);
