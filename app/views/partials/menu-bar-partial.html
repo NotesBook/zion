@@ -1,0 +1,55 @@
+<!-- Navbar -->
+<div class="w3-top">
+    <ul class="w3-navbar w3-theme-d2 w3-left-align w3-large">
+        <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+            <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" ng-click="openNav()"><i class="fa fa-bars"></i></a>
+        </li>
+        <li>
+            <a href="#" class="w3-padding-large w3-theme-d4">
+                <i class="fa fa-home w3-margin-right"></i>NotesBook
+            </a>
+        </li>
+        <li class="w3-hide-small w3-dropdown-hover">
+            <a href="#/dashboard/myclassroom" class="w3-padding-large w3-hover-white w3-drop" title="Mis Aulas">
+                <i class="fa fa-mortar-board"></i> Mis Aulas
+            </a>
+            <div class="w3-dropdown-content w3-white w3-card-4">
+                    <a ng-click="show_form_classroom_modal()">Crear tu aula
+                        <i class="fa fa-plus-square"></i>
+                    </a>
+            </div>            
+        </li>
+        <li class="w3-hide-small">
+            <a href="#" class="w3-padding-large w3-hover-white" title="Account Settings">
+                <i class="fa fa-user"></i> Mi Cuenta
+            </a>
+        </li>
+        <li class="w3-hide-small">
+            <a href="#" class="w3-padding-large w3-hover-white" title="Messages">
+                <i class="fa fa-envelope"></i> Mis Articulos
+            </a>
+        </li>
+        <li class="w3-hide-small w3-dropdown-hover">
+            <a href="#" class="w3-padding-large w3-hover-white" title="Notifications">
+                <i class="fa fa-bell"></i> Mis Notificaciones
+                <span class="w3-badge w3-right w3-small w3-green w3-margin-left">3</span>
+            </a>     
+            <div class="w3-dropdown-content w3-white w3-card-4">
+                <a href="#">Nueva peticion de amistad</a>
+                <a href="#">Galo ha posteado en tu articulo</a>
+                <a href="#">A galo le gusta tu articulo</a>
+            </div>
+        </li>
+        <li class="w3-hide-small w3-right"><a href="#" class="w3-padding-large w3-hover-white" title="Mi Cuenta"><i class="fa fa-cog"></i></a></li>
+    </ul>
+</div>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
+    <ul class="w3-navbar w3-left-align w3-large w3-theme">
+        <li><a class="w3-padding-large" href="#">Link 1</a></li>
+        <li><a class="w3-padding-large" href="#">Link 2</a></li>
+        <li><a class="w3-padding-large" href="#">Link 3</a></li>
+        <li><a class="w3-padding-large" href="#">Mi Perfil</a></li>
+    </ul>
+</div>

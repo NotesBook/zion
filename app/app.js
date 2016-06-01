@@ -1,6 +1,8 @@
-var nbApp = angular.module('nbApp',['ngMessages','textAngular',
+var nbApp = angular.module('nbApp',[
+	'ngMessages',
+	'textAngular',
 	'ngRoute',
-	'ngCookies'
+	'ngCookies',
 	]);
 
 nbApp.config(['$routeProvider',
@@ -18,6 +20,9 @@ nbApp.config(['$routeProvider',
 			}).when('/dashboard', {
 				templateUrl: 'app/views/site/dashboard.html',
 				controller: 'MainController'
+			}).when('/dashboard/myclassroom', {
+				templateUrl: 'app/views/classroom/my-classroom-view.html',
+				controller: 'ClassRoomController'
 			}).
 			otherwise({
 				redirectTo: '/'

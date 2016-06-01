@@ -32,4 +32,8 @@ nbApp.controller('MainController', ['$scope','$location', 'SecurityService',
 		    }
 		};
 
+         $scope.show_form_classroom_modal = function() {
+            document.getElementById('classroom-modal').style.display='block';
+         };		
+
 	}])
