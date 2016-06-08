@@ -1,15 +1,21 @@
-nbApp.controller('MainController', ['$scope','$location', 'SecurityService',
-	function($scope, $location, SecurityService) {
+nbApp.controller('MainController', ['$scope', 'SecurityService',
+	function($scope, SecurityService) {
 
 		SecurityService.checkSession();
 
+		// Test classroom groups on side menu
 		$scope.groups = [
-			'Aula 1',
-			'Aula 2',
-			'Aula 3',
-			'Aula 4',
+			{ 	
+				id: 1,
+				nombre: 'Aula 1',
+			},
+			{ 	
+				id: 2,
+				nombre: 'Aula 2',
+			}			
 		]
 
+		// Display the side classroom menu
 		$scope.accordion = function(id) {
 		    var x = document.getElementById(id);
 		    if (x.className.indexOf("w3-show") == -1) {
@@ -24,7 +30,7 @@ nbApp.controller('MainController', ['$scope','$location', 'SecurityService',
 
 		// Used to toggle the menu on smaller screens when clicking on the menu button
 	 	$scope.openNav = function() {
-		    var x = document.getElementById("navDemo");
+		    var x = document.getElementById("navToogle");
 		    if (x.className.indexOf("w3-show") == -1) {
 		        x.className += " w3-show";
 		    } else { 
@@ -32,6 +38,7 @@ nbApp.controller('MainController', ['$scope','$location', 'SecurityService',
 		    }
 		};
 
+		// Display the modal form to create a classroom
          $scope.show_form_classroom_modal = function() {
             document.getElementById('classroom-modal').style.display='block';
          };		

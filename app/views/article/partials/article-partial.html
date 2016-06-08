@@ -1,15 +1,16 @@
-<div class="w3-col m7" ng-controller="ArticleController"> 
+<div class="w3-col m8" ng-controller="ArticleController"> 
     <div class="w3-row-padding" ng-repeat="article in articles">
         <div class="w3-col m12">
           	<div class="w3-card-2 w3-round w3-white">
             	<div class="w3-container w3-padding">
              	<div class="w3-opacity w3-center">{{article.nombre}}</div>
-                <p contenteditable="false">{{article.contenido}}</p>
+                <p id="{{article.id}}" contenteditable="false">{{article.contenido}}</p>
                 <p ng-repeat="respuesta in article.respuestas" class="w3-border w3-padding" contenteditable="false">{{respuesta.respuesta}}</p><br>
                 <br>
-                <text-angular ng-show="mostrar_text_area" class="w3-input w3-border" ta-toolbar="[['h1','h2','h3','h4','p','bold','italics','ul','ol','justifyLeft','justifyCenter','justifyRight','justifyFull', 'redo', 'undo','insertImage','insertLink', 'insertVideo']]"></text-angular><br>
-              	<!-- <textarea class="w3-input w3-border" style="height: 100px; resize: vertical">{{article.comentario}}</textarea><br> -->
-              	<button type="button" ng-click="mostrar_text_area=true" class="w3-btn w3-theme"><i class="fa fa-pencil"></i> Responder</button>
+                <text-angular id="{{article.nombre}}" ng-show="show_text" class="article w3-input w3-border" ta-toolbar="[['h1','h2','h3','h4','p','bold','italics','ul','ol','justifyLeft','justifyCenter','justifyRight','justifyFull', 'redo', 'undo','insertImage','insertLink', 'insertVideo']]"></text-angular><br>
+              	<button type="button" ng-click="show_text = !show_text" class="w3-btn w3-theme"><i class="fa fa-pencil"></i> Responder</button>
+                <button type="button" ng-show="show_text" ng-click="edit_article(article.id,article.nombre)" class="w3-btn w3-theme"><i class="fa fa-pencil"></i> Editar</button>
+                <button type="button" ng-show="show_text" ng-click="save_edited_article()" class="w3-btn w3-theme"><i class="fa fa-pencil"></i> Guardar</button>                
             </div>
         </div><br>
     </div>
