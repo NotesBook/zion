@@ -123,7 +123,7 @@ if($version_actual == "0") {
 }
 
 //1. Comprobamos si existe la tabla de versiones y la creamos, sólo si nuestra versión actual es la anterior a esta Migración (la versión 0)
-if($version_actual == "1") {
+if ($version_actual == "1") {
 	$sql_create_table_classrooms_if_not_exists = 
 		"CREATE TABLE IF NOT EXISTS classrooms (
 	        id 				INT NOT NULL AUTO_INCREMENT,
@@ -146,6 +146,31 @@ if($version_actual == "1") {
 	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_2);
 
 	$version_actual = 2;
+}
+
+if ($version_actual == "2") {
+	$sql_create_table_articles_if_not_exists = 
+		"CREATE TABLE IF NOT EXISTS articles (
+	        id 				INT NOT NULL AUTO_INCREMENT,
+	        				PRIMARY KEY(id),
+	        authorId 		INT NOT NULL,
+	        classroomId 	INT,
+	        title 			VARCHAR(100),
+	        body 			VARCHAR(5000),
+	        tags 			VARCHAR(1000),  
+	        create_date 	DATETIME DEFAULT NULL,
+	        modify_date 	DATETIME DEFAULT NULL,
+	        delete_date 	DATETIME DEFAULT NULL
+	    )";
+	//print $sql_create_table_user_if_not_exists."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_create_table_articles_if_not_exists);
+
+	//3. Actualizamos la versión de la bbdd
+	$sql_update_versions_3 = "INSERT INTO versions(version_number, date, description) VALUES(3, '2016/06/09', 'Creación de tabla de de artículo')";
+	//print $sql_update_versions_0."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_3);
+
+	$version_actual = 3;
 }
 
 
