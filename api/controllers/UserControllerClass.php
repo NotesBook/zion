@@ -93,7 +93,7 @@
 		}
 
 		/* Method GET
-		 * Login and return TOKEN
+		 * Logout delete TOKEN
 		 */
 		public function logout() {
 
@@ -103,7 +103,7 @@
 		}
 
 		/* Method GET
-		 * Validate User
+		 * Activate User After Validation
 		 */
 		public function active() {
 
