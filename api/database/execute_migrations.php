@@ -159,8 +159,8 @@ if ($version_actual == "2") {
 		"CREATE TABLE IF NOT EXISTS articles (
 	        id 				INT NOT NULL AUTO_INCREMENT,
 	        				PRIMARY KEY(id),
-	        authorId 		INT NOT NULL,
-	        classroomId 	INT,
+	        author_id 		INT NOT NULL,
+	        classroom_id 	INT,
 	        title 			VARCHAR(100),
 	        topic 			VARCHAR(100),
 	        body 			VARCHAR(5000),
@@ -184,6 +184,31 @@ if ($version_actual == "2") {
 	}
 
 	$version_actual = 3;
+}
+
+if ($version_actual = "3") {
+	$sql_create_table_articles_likes_if_not_exists = 
+		"CREATE TABLE IF NOT EXISTS articles_likes (
+	        article_id		INT NOT NULL,
+	        user_id 		INT NOT NULL,
+	        date 		 	DATETIME DEFAULT NULL,
+	        PRIMARY KEY (article_id, user_id)
+	    )";
+	//print $sql_create_table_user_if_not_exists."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_create_table_articles_likes_if_not_exists);
+
+	//3. Actualizamos la versión de la bbdd
+	$sql_update_versions_4 = "INSERT INTO versions(version_number, date, description) VALUES(4, '2016/06/09', 'Creación de tabla de de artículo')";
+	//print $sql_update_versions_0."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_4);
+
+	//4. Hacemos el commit, porque lo tenemos desactivado
+	if (!MysqlDatabaseEngine::get_connection()->commit()) {
+	    print("Transaction 4 commit failed\n");
+	    exit();
+	}
+
+	$version_actual = 4;
 }
 
 
