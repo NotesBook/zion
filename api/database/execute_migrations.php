@@ -211,6 +211,36 @@ if ($version_actual = "3") {
 	$version_actual = 4;
 }
 
+if ($version_actual = "4") {
+	$sql_create_table_comments_if_not_exists = 
+		"CREATE TABLE IF NOT EXISTS comments (
+	        id				INT NOT NULL,
+	        				PRIMARY KEY(id),
+	        article_id		INT DEFAULT NULL,
+	        classroom_id	INT DEFAULT NULL,
+	        user_id 		INT NOT NULL,
+	        body 			VARCHAR(1000),
+	        date 		 	DATETIME DEFAULT NULL
+	    )";
+
+	//print $sql_create_table_user_if_not_exists."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_create_table_comments_if_not_exists);
+
+	//3. Actualizamos la versión de la bbdd
+	$sql_update_versions_5 = "INSERT INTO versions(version_number, date, description) VALUES(5, '2016/06/09', 'Creación de tabla de comentarios')";
+	//print $sql_update_versions_0."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_5);
+
+	//4. Hacemos el commit, porque lo tenemos desactivado
+	if (!MysqlDatabaseEngine::get_connection()->commit()) {
+	    print("Transaction 5 commit failed\n");
+	    exit();
+	}
+
+	$version_actual = 5;
+}
+
+
 
 /* close connection */
 //MysqlDatabaseEngine::get_connection()->close();

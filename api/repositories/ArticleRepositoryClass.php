@@ -9,18 +9,39 @@
 
 	class ArticleRepository extends BaseRepository implements IBaseRepository {
 
-		public static function save($editor_id, $aula_id, $title, $description, $body, $tags, $category, $article_id) {
+		public static function save($author_id, $classroom_id, $title, $body, $tags, $topic, $article_id = null) {
+ 
+ 			$date = date('Y/m/d H:i:s');
+			
+			if (!isset($article_id)) {
 
-			parent::insert("article", 
-				"editor_id, aula_id, title, tags, category, article_id",
-				"editor_id, '$aula_id', '$title', '$description', '$body', '$tags', '$category', '$article_id'");
+				//New Article
+				parent::insert("articles", 
+					"author_id, classroom_id, title, body, topic, tags, create_date, modify_date",
+					"$author_id, '$classroom_id', '$title', '$body', '$topic', '$tags', '$date', '$date'");
+
+			} else {
+
+				//Update Article
+				parent::update("articles", 
+					"modify_date = '$date', title = '$title', title = '$body', title = '$topic', tags = '$tags'",
+					"id = '".$article_id."'");
+
+			}
 
 		}	
 
 		public static function get_by_id($id) {
 
-			//TODO:
+			$database_result = parent::select("articles", array("author_id", "classroom_id", "title", "body", "topic", "tags", "create_date", "modify_date"),
+			 						"id = $id");
 
+			$array_obj_result = array();
+			$user_tupla = $database_result->fetch_array();
+
+			$user = new User($user_tupla["id"], $user_tupla["author_id"], $user_tupla["classroom_id"], $user_tupla["title"], $user_tupla["body"], $user_tupla["topic"], $user_tupla["tags"], $user_tupla["create_date"], $user_tupla["modify_date"]);
+
+			return $user;	
 		}
 
 		/**
@@ -28,12 +49,12 @@
 		 */
 		public static function get_all() {
 
-			$database_result = parent::select("artciles", array("*"));
+			$database_result = parent::select("articles", array("*"));
 
 			$array_obj_result = array();
 			while($user_tupla = $database_result->fetch_array()) {
 
-				$array_obj_result[] = new Article($user_tupla["editor_id"], $user_tupla["aula_id"], $user_tupla["title"], $user_tupla["category"], $user_tupla["tags"], $user_tupla["article_id"]);
+				$array_obj_result[] = new Article($user_tupla["author_id"], $user_tupla["classroom_id"], $user_tupla["title"], $user_tupla["body"], $user_tupla["tags"], $user_tupla["topic"], $user_tupla["article_id"], $user_tupla["create_date"], $user_tupla["modify_date"], $user_tupla["delete_date"]);
 
 			}
 
