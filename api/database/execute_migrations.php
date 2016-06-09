@@ -145,6 +145,12 @@ if ($version_actual == "1") {
 	//print $sql_update_versions_0."<br>";
 	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_2);
 
+	//4. Hacemos el commit, porque lo tenemos desactivado
+	if (!MysqlDatabaseEngine::get_connection()->commit()) {
+	    print("Transaction 2 commit failed\n");
+	    exit();
+	}
+
 	$version_actual = 2;
 }
 
@@ -156,6 +162,7 @@ if ($version_actual == "2") {
 	        authorId 		INT NOT NULL,
 	        classroomId 	INT,
 	        title 			VARCHAR(100),
+	        topic 			VARCHAR(100),
 	        body 			VARCHAR(5000),
 	        tags 			VARCHAR(1000),  
 	        create_date 	DATETIME DEFAULT NULL,
@@ -169,6 +176,12 @@ if ($version_actual == "2") {
 	$sql_update_versions_3 = "INSERT INTO versions(version_number, date, description) VALUES(3, '2016/06/09', 'Creación de tabla de de artículo')";
 	//print $sql_update_versions_0."<br>";
 	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_3);
+
+	//4. Hacemos el commit, porque lo tenemos desactivado
+	if (!MysqlDatabaseEngine::get_connection()->commit()) {
+	    print("Transaction 3 commit failed\n");
+	    exit();
+	}
 
 	$version_actual = 3;
 }

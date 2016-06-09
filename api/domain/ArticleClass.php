@@ -9,7 +9,7 @@
 
 	class Article extends BaseDomainClass implements JsonSerializable {
 
-		private $editor_id;
+		private $author_id;
 		private $aula_id;
 		private $title;
 		private $description;
@@ -19,26 +19,28 @@
 
 		private $last_modified_date;
 		private $creation_date;
+		private $delete_date;
 
-		private $security_code;
-
-		public function __construct($editor_id, $aula_id, $title, $description, $category, $tags, $article_id) { 
+		public function __construct($author_id, $classroom_id, $title, $body, $tags, $topic, $article_id, $last_modified_date = null, $creation_date = null, $delete_date = null) { 
 
 			//Fields
 			$this->id = $article_id;
-			$this->editor_id = intval($editor_id);
-			$this->aula_id = intval($aula_id);
+			$this->author_id = intval($author_id);
+			$this->classroom_id = intval($classroom_id);
 			$this->title = trim($title);
-			$this->description = trim($description);
-			$this->category = trim($category);
+			$this->body = trim($body);
+			$this->topic = trim($topic);
 			$this->tags = trim($tags);
+			$this->last_modified_date = $last_modified_date;
+			$this->creation_date = $creation_date;
+			$this->delete_date = $delete_date;
 
 		}
 
 		/** Sets */
 
 	    /** Validations */
-	    public static function check_data($editor_id, $aula_id, $title, $description, $category, $tags, $article_id) {
+	    public static function check_data($author_id, $classroom_id, $title, $body, $tags, $topic) {
 
 	    	//TODO:
 
