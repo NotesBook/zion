@@ -29,7 +29,7 @@
 
 			$article_id = isset($request_body["article_id"]) ? $request_body["article_id"] : null; 
 			$classroom_id = $request_body["classroom_id"]; 
-			$author_id = isset($request_body["user_id"]) ? $request_body["user_id"] : SessionManager::get_session_user()->get_id(); 
+			$author_id = isset($request_body["user_id"]) ? $request_body["user_id"] : SessionManager::get_session_user()["id"]; 
 			$title = $request_body["title"]; 
 			$body = $request_body["body"];  
 			$tags = $request_body["tags"]; 

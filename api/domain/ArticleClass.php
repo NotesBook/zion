@@ -72,6 +72,13 @@
 	    	return true;
 	    }
 
+	    public static function get_validationJson() {
+
+			$json_content_txt = file_get_contents("config/validations.json");
+			return json_decode($json_content_txt, TRUE);
+
+	    }
+
 		/** JSON Serializer 
 		 */
 
