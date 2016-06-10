@@ -38,7 +38,7 @@
 
 			if ($database_classroom_result->num_rows) {
 
-				$database_user_classroom_result = parent::select("classrooms_users", array("COUNT(*)"), "classroom_id = $classroom_id AND user_id = $user_id");
+				$database_user_classroom_result = parent::select("classrooms_users", array("*"), "classroom_id = $classroom_id AND user_id = $user_id");
 
 				if ($database_user_classroom_result->num_rows == 0) {
 
