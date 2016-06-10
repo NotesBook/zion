@@ -15,7 +15,7 @@
 
 			if (!isset($_SESSION['user'])) {
 				/*start session*/
-			  	$_SESSION['user'] = $user[0]->jsonSerialize();
+			  	$_SESSION['user'] = $user->jsonSerialize();
 			}
 
 		}

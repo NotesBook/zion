@@ -36,15 +36,11 @@
 			$database_classroom_result = parent::select("classrooms", array("*"), "id = $classroom_id AND invitation_code = '$invitation_code'");
 			$classroom_classroom_tupla = $database_classroom_result->fetch_array();
 
-			if ($classroom_classroom_tupla) {
+			if ($database_classroom_result->num_rows) {
 
-				$database_user_classroom_result = parent::select("classrooms_users", array("*"), "id = $classroom_id AND user_id = $user_id");
+				$database_user_classroom_result = parent::select("classrooms_users", array("COUNT(*)"), "classroom_id = $classroom_id AND user_id = $user_id");
 
-				if ($database_user_classroom_result) {
-
-					$classroom_user_tupla = $database_user_classroom_result->fetch_array();
-
-					if ($classroom_user_tupla) {
+				if ($database_user_classroom_result->num_rows == 0) {
 
 		 				$date = date('Y/m/d H:i:s');
 
@@ -52,8 +48,6 @@
 						parent::insert("classrooms_users", 
 							"user_id, classroom_id, date",
 							"$user_id, $classroom_id, '$date'");
-
-					}
 
 				}
 
