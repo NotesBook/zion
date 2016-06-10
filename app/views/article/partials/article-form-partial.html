@@ -1,25 +1,25 @@
-<div id="classroom-modal" class="w3-modal">
+<div id="article-modal" class="w3-modal" ng-controller="ArticleController">
     <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
 
-            <span onclick="document.getElementById('classroom-modal').style.display='none'" class="w3-closebtn">&times;</span>
+            <span onclick="document.getElementById('article-modal').style.display='none'" class="w3-closebtn">&times;</span>
 
             <div class="w3-center"><br>
                 <img src="/www/git_app/zion/images/logoNotesbook.jpg" alt="Avatar" style="width:20%" class="w3-square w3-margin-top">
             </div>
-            <div class="w3-center w3-section w3-teal">Creacion de Aula</div>
+            <div class="w3-center w3-section w3-teal">Creacion de Articulo</div>
 
             <div class="w3-container">
                 <!-- SECTION 1 -->
                 <div class="w3-section">
                     <!-- FORM --> 
-                    <form class="w3-form" name="classRoomForm" novalidate>
+                    <form class="w3-form" name="articleForm" novalidate>
                         
                         <!-- NAME -->
                         <label for="name"><b>Nombre de la clase</b></label>
                         <input 
                             name="name" 
-                            ng-class="{ 'w3-input w3-border-red': classRoomForm.name.$touched && classRoomForm.name.$invalid, 
-                                        'w3-input w3-border-green': classRoomForm.name.$touched && classRoomForm.name.$valid}"         
+                            ng-class="{ 'w3-input w3-border-red': articleForm.name.$touched && articleForm.name.$invalid, 
+                                        'w3-input w3-border-green': articleForm.name.$touched && articleForm.name.$valid}"         
                             class="w3-input w3-border w3-margin-bottom" 
                             type="text" 
                             value="" 
@@ -30,7 +30,7 @@
                             required>
                         </input>
                                    
-                       <div ng-messages="classRoomForm.name.$error" ng-show="classRoomForm.name.$touched" style="color:red">
+                       <div ng-messages="articleForm.name.$error" ng-show="articleForm.name.$touched" style="color:red">
                             <p ng-message="minlength">Nombre muy corto.</p>
                             <p ng-message="pattern">Nombre erroneo.</p>
                             <p ng-message="required">Nombre requerido</p>
@@ -38,20 +38,19 @@
 
                         <!-- CATEGORIES -->                        
                         <label for="countries"><b>Categoria</b></label>
-                        <select class="w3-select" ng-options="catname.category for catname in JSON_categories" name="categories" ng-model="form_data['category']" required>
+                        <select class="w3-select" name="categories" ng-model="form_data['category']" required>
                             <!-- Manera de iterar en los datos de un objeto JSON-->
                             <option value="">Seleccciona una categoria</option>
+                            <option ng-repeat="(key, val) in JSON_categories.categories">{{val.name}}</option>
                         </select>   
-
+                        
                         <!-- SUBCATEGORIES -->                        
                         <label for="countries"><b>Subcategoria</b></label>
-                        <select class="w3-select" ng-options="subcat.name for subcat in form_data['category'].subcategories" name="subcategories" ng-model="form_data['subcategory']" required>
+                        <select class="w3-select" name="subcategories" ng-model="form_data['subcategory']" required>
                             <!-- Manera de iterar en los datos de un objeto JSON-->
                             <option value="">Seleccciona una subcategoria</option>
-                        </select> 
-
-                        {{form_data['category']}}
-                        {{form_data['subcategory']}} 
+                            <option ng-repeat="(key, val) in JSON_categories.subcategories">{{val.name}}</option>
+                        </select>  
                         
                         <!-- DESCRIPTION -->
                         <div class="w3-group">      
@@ -67,7 +66,7 @@
                             <label class="w3-label">Descripcion</label>
                         </div>
 
-                       <div ng-messages="classRoomForm.description.$error" ng-show="classRoomForm.description.$touched" style="color:red">
+                       <div ng-messages="articleForm.description.$error" ng-show="articleForm.description.$touched" style="color:red">
                             <p ng-message="minlength">Descripcion muy corta.</p>
                             <p ng-message="pattern">Descripcion erronea.</p>
                             <p ng-message="required">Descripcion requerida</p>
@@ -76,7 +75,7 @@
                         <!-- SUBMIT -->
                         <button 
                             class="w3-btn w3-btn-block w3-section w3-grey w3-ripple" 
-                            ng-disabled="classRoomForm.$invalid" 
+                            ng-disabled="articleForm.$invalid" 
                             ng-click="send_form_data()">Crear Aula</button>
 
                         <!-- SECTION 2 -->

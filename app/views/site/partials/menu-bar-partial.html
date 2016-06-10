@@ -2,14 +2,17 @@
 <div ng-controller="MainController">
     <div class="w3-top">
         <ul class="w3-navbar w3-theme-d2 w3-left-align w3-large">
+
             <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
                 <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" ng-click="openNav()"><i class="fa fa-bars"></i></a>
             </li>
+
             <li>
                 <a href="#/dashboard" class="w3-padding-large w3-theme-d4">
                     <i class="fa fa-home w3-margin-right"></i>NotesBook
                 </a>
             </li>
+
             <li class="w3-hide-small w3-dropdown-hover">
                 <a href="#/dashboard/classroom" class="w3-padding-large w3-hover-white w3-drop" title="Mis Aulas">
                     <i class="fa fa-mortar-board"></i> Aulas
@@ -20,16 +23,28 @@
                         </a>
                 </div>            
             </li>
-            <li class="w3-hide-small">
+
+            <li class="w3-hide-small w3-dropdown-hover">
+                <a href="#" class="w3-padding-large w3-hover-white w3-drop" title="Articulos">
+                    <i class="fa fa-envelope"></i> Articulos
+                </a>
+                <div class="w3-dropdown-content w3-white w3-card-4">
+                        <a ng-click="show_form_article_modal()">Crear Articulo
+                            <i class="fa fa-plus-square"></i>
+                        </a>
+                </div>                 
+            </li>
+
+            <li class="w3-hide-small w3-dropdown-hover">
                 <a href="#" class="w3-padding-large w3-hover-white" title="Ajustes de cuenta">
                     <i class="fa fa-user"></i> Mi Cuenta
                 </a>
-            </li>
-            <li class="w3-hide-small">
-                <a href="#" class="w3-padding-large w3-hover-white" title="Articulos">
-                    <i class="fa fa-envelope"></i> Articulos
-                </a>
-            </li>
+                <div class="w3-dropdown-content w3-white w3-card-4">
+                        <a ng-click="logout()">Logout
+                            <i class="fa fa-plus-square"></i>
+                        </a>
+                </div>                 
+            </li>            
             <li class="w3-hide-small w3-right"><a href="#" class="w3-padding-large w3-hover-white" title="Mi Cuenta"><i class="fa fa-cog"></i></a></li>
         </ul>
     </div>

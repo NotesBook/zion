@@ -43,4 +43,11 @@ nbApp.controller('MainController', ['$scope', 'SecurityService',
             document.getElementById('classroom-modal').style.display='block';
          };		
 
+		// Display the modal form to create a classroom
+         $scope.show_form_article_modal = function() {
+            document.getElementById('article-modal').style.display='block';
+         };		
+
+         
+
 	}])
