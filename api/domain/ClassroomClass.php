@@ -60,18 +60,15 @@
 
 	    	//2. Check data
 			$check_name = preg_match($json_array["name"], $name);
-			$check_category = self::check_category($json_categories, $category);
-			$check_subcategory = self::check_subcategory($json_categories, $subcategory);
+			$check_category_subcategory = self::check_category_subcategory($json_categories, $category, $subcategory);
 			$check_description = preg_match($json_array["description"], $description);
 
 			//3. Parsing error menssages
 			$msg = "";
 			if (!$check_name)
 				$msg .= ", El nombre está mal, muy mal";
-			if (!$check_category)
-				$msg .= ", La categoría está mal, muy mal";
-			if (!$check_subcategory)
-				$msg .= ", La subcategoría  está mal, muy mal";
+			if (!$check_category_subcategory)
+				$msg .= ", La categoría o subcategoría está mal, muy mal";
 			if (!$check_description)
 				$msg .= ", La descripción está mal, muy mal";
 
@@ -84,26 +81,18 @@
 	    	return true;
 	    }
 
-	    public static function check_category($json_categories, $category) {
+	    public static function check_category_subcategory($json_categories, $category, $subcategory) {
 
-	    	foreach ($json_categories["categories"] as $key => $value) {
-	    		
-	    		if($value["name"] == $category) {
+	    	foreach ($json_categories as $keyC => $json_category) {
 
-	    			return true;
+	    		if ($json_category["category"] == $category) {
 
-	    		}  
-	    	} return false;
-	    	
-	    }
+	    			foreach ($json_category["subcategories"] as $keyS => $json_subcategory) {
+	    				
+	    				if ($json_subcategory["name"] == $subcategory)
+	    					return true;
 
-	    public static function check_subcategory($json_categories, $subcategory) {
-
-	    	foreach ($json_categories["subcategories"] as $key => $value) {
-	    		
-	    		if($value["name"] == $subcategory) {
-
-	    			return true;
+	    			}
 
 	    		}  
 	    	} return false;

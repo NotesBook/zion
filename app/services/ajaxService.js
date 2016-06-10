@@ -22,8 +22,9 @@ nbApp.factory('AjaxService', ['$q', '$cookies', '$location',
 					} else {
 						console.error("AjaxService - Error: ", http_request.statusText);
 
-						//TODO: If 405 redirect to home
-						$location.path('/');
+						//If 405 redirect to home
+						if (http_request.status == 405)
+							$location.path('/');
 
 						defered.reject("AjaxService - Error: ", http_request.statusText);
 					}
