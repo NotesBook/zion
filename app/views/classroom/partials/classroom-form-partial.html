@@ -38,20 +38,17 @@
 
                         <!-- CATEGORIES -->                        
                         <label for="countries"><b>Categoria</b></label>
-                        <select class="w3-select" ng-options="catname.category for catname in JSON_categories" name="categories" ng-model="form_data['category']" required>
-                            <!-- Manera de iterar en los datos de un objeto JSON-->
+                        <select class="w3-select" ng-options="catname.category for catname in JSON_categories track by catname.category" name="categories" ng-model="form_data['category']" required>
                             <option value="">Seleccciona una categoria</option>
                         </select>   
 
                         <!-- SUBCATEGORIES -->                        
                         <label for="countries"><b>Subcategoria</b></label>
                         <select class="w3-select" ng-options="subcat.name for subcat in form_data['category'].subcategories" name="subcategories" ng-model="form_data['subcategory']" required>
-                            <!-- Manera de iterar en los datos de un objeto JSON-->
                             <option value="">Seleccciona una subcategoria</option>
                         </select> 
 
                         {{form_data['category']}}
-                        {{form_data['subcategory']}} 
                         
                         <!-- DESCRIPTION -->
                         <div class="w3-group">      

@@ -1,20 +1,20 @@
 [
-	{
-	   	"category": "FP",
-		"subcategories": [
-			{
-				"name": "DAW"
-			},
-			{
-				"name": "DAM"
-			},
-			{
-				"name": "ASIR"
-			}
-		]
-	},
-	{
-	   	"category": "UNIVERSIDAD",
-		"subcategories": []
-	}
+{
+   "category": "FP",
+	"subcategories": [
+		{
+			"name": "DAW"
+		},
+		{
+			"name": "DAM"
+		},
+		{
+			"name": "ASIR"
+		}
+	]
+},
+{
+   "category": "UNIVERSIDAD",
+	"subcategories": []
+}
 ]

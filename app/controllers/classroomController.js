@@ -1,9 +1,9 @@
-nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'CategoriesService', 'SiteService',
-	function($scope, ValidationService, CategoriesService,SiteService) {
+nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'CategoriesService', 'ClassroomsService',
+	function($scope, ValidationService, CategoriesService,ClassroomsService) {
 
         $scope.form_data = {
             'name':"",
-            'category':"",
+            'category': "",
             'subcategory':"",
             'description':"",          
         };
@@ -25,7 +25,11 @@ nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'Categori
         // Send the form input data to process it at backend
         $scope.send_form_data = function() {
 
-            SiteService.create_classroom('POST','api/classroom/register',JSON.stringify($scope.form_data)).then(function(response) {
+            $scope.form_data['category'] = $scope.form_data['category'].category;
+
+            $scope.form_data['subcategory'] = $scope.form_data['subcategory'].name;
+
+            ClassroomsService.create_classroom('POST','api/classroom/register',JSON.stringify($scope.form_data)).then(function(response) {
 
                 if(response.valid == true) {
 
