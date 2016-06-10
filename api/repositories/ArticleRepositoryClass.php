@@ -24,7 +24,7 @@
 
 				//Update Article
 				parent::update("articles", 
-					"modify_date = '$date', title = '$title', title = '$body', title = '$topic', tags = '$tags'",
+					"modify_date = '$date', title = '$title', body = '$body', topic = '$topic', tags = '$tags'",
 					"id = '".$article_id."'");
 
 			}
