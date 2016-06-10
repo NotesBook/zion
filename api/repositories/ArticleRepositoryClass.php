@@ -49,11 +49,7 @@
 		 */
 		public static function get_all_by_classroom($classroom_id) {
 
-<<<<<<< HEAD
-			$database_result = parent::select("articles", array("*"));
-=======
 			$database_articles_result = parent::select("articles", array("*"), "classroom_id = $classroom_id", "modify_date DESC");
->>>>>>> refs/remotes/origin/master
 
 			$array_obj_result = array();
 			while($article_tupla = $database_articles_result->fetch_array()) {
