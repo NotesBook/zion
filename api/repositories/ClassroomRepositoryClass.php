@@ -38,13 +38,21 @@
 
 			if ($classroom_tupla) {
 
- 				$date = date('Y/m/d H:i:s');
+				$database_result = parent::select("classrooms_users", array("*"), "id = $classroom_id AND user_id = $user_id");
+				$classroom_user_tupla = $database_result->fetch_array();
 
-				//2. Insert into classrooms_users new field, with actual date
-				parent::insert("classrooms_users", 
-					"user_id, classroom_id, date",
-					"$user_id, $classroom_id, '$date'");
+				if ($classroom_user_tupla) {
+
+	 				$date = date('Y/m/d H:i:s');
+
+					//2. Insert into classrooms_users new field, with actual date
+					parent::insert("classrooms_users", 
+						"user_id, classroom_id, date",
+						"$user_id, $classroom_id, '$date'");
+
 				}
+
+			}
 
 		}	
 
@@ -69,9 +77,21 @@
 
 		}
 
-		public static function get_all_by_user() {
+		public static function get_all_by_user($user_id) {
 
-			//TODO:
+			$database_result = parent::select("classrooms_users", array("classroom_id"), "user_id = $user_id");
+
+			$array_obj_result = array();
+			while($classroom_user_tupla = $database_result->fetch_array()) {
+
+				$database_classrooms_result = parent::select("classrooms", array("*"), "id = ".$classroom_user_tupla["classroom_id"]);
+				$classroom_tupla = $database_classrooms_result->fetch_array();
+
+				$array_obj_result[] = new Classroom($classroom_tupla["id"], $classroom_tupla["name"], $classroom_tupla["category"], $classroom_tupla["subcategory"], $classroom_tupla["description"], $classroom_tupla["image_path"], $classroom_tupla["invitation_code"]);
+
+			}
+
+			return $array_obj_result;
 
 		}
 

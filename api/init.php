@@ -71,6 +71,7 @@
 	include('controllers/UserControllerClass.php');
 	include('controllers/ClassroomControllerClass.php');
 	include('controllers/ArticleControllerClass.php');
+	include('controllers/DashboardControllerClass.php');
 
 	/** Domain */
 	include('domain/UserClass.php');

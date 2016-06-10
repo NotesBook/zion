@@ -47,14 +47,14 @@
 		/**
 		 * return all dashboard user articles
 		 */
-		public static function get_all() {
+		public static function get_all_by_classroom($classroom_id) {
 
-			$database_result = parent::select("articles", array("*"));
+			$database_articles_result = parent::select("articles", array("*"), "classroom_id = $classroom_id", "modify_date DESC");
 
 			$array_obj_result = array();
-			while($article_tupla = $database_result->fetch_array()) {
+			while($article_tupla = $database_articles_result->fetch_array()) {
 
-				$array_obj_result[] = new Article($article_tupla["author_id"], $article_tupla["classroom_id"], $article_tupla["title"], $article_tupla["body"], $article_tupla["tags"], $article_tupla["topic"], $article_tupla["article_id"], $article_tupla["create_date"], $article_tupla["modify_date"], $article_tupla["delete_date"]);
+				$array_obj_result[] = new Article($article_tupla["author_id"], $article_tupla["classroom_id"], $article_tupla["title"], $article_tupla["body"], $article_tupla["tags"], $article_tupla["topic"], $article_tupla["id"], $article_tupla["create_date"], $article_tupla["modify_date"], $article_tupla["delete_date"]);
 
 			}
 
