@@ -27,7 +27,7 @@
 			//Fields
 			$this->name = trim($name);
 			$this->category = trim($category);
-			$this->subcategory = intval($subcategory);
+			$this->subcategory = trim($subcategory);
 			$this->description = trim($description);
 			$this->image_path = trim($image_path);
 			$this->invitation_code = trim($invitation_code);

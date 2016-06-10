@@ -39,16 +39,21 @@
 			if ($classroom_tupla) {
 
 				$database_result = parent::select("classrooms_users", array("*"), "id = $classroom_id AND user_id = $user_id");
-				$classroom_user_tupla = $database_result->fetch_array();
+				
+				if ($database_result) {
 
-				if ($classroom_user_tupla) {
+					$classroom_user_tupla = $database_result->fetch_array();
 
-	 				$date = date('Y/m/d H:i:s');
+					if ($classroom_user_tupla) {
 
-					//2. Insert into classrooms_users new field, with actual date
-					parent::insert("classrooms_users", 
-						"user_id, classroom_id, date",
-						"$user_id, $classroom_id, '$date'");
+		 				$date = date('Y/m/d H:i:s');
+
+						//2. Insert into classrooms_users new field, with actual date
+						parent::insert("classrooms_users", 
+							"user_id, classroom_id, date",
+							"$user_id, $classroom_id, '$date'");
+
+					}
 
 				}
 
