@@ -67,6 +67,7 @@
 
 			//1 Enroll Session User to Classroom
 			ClassroomRepository::enroll_user($id_user, $classroom_id, $invitation_code);
+			return FormattedRequest::format(true);
 
 		}
 
@@ -77,6 +78,7 @@
 
 			//1 Unenroll Session User to Classroom
 			ClassroomRepository::unenroll_user($id_user, $classroom_id);
+			return FormattedRequest::format(true);
 
 		}
 
@@ -88,11 +90,10 @@
 
 			$classroom_id = RoutingEngineService::get_params()[0];
 			//1. Get last articles by activity
-			//TODO:
- 			http_response_code(501);
+			$articles = ArticleRepository::get_all_by_classroom($classroom_id);
 
 			//5. Return Ok
-			return FormattedRequest::format(false, "Not implemented");
+			return FormattedRequest::format(true, $articles);
 
 		}
 
