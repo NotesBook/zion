@@ -33,13 +33,13 @@
 
 		public static function get_by_id($id) {
 
-			$database_result = parent::select("articles", array("author_id", "classroom_id", "title", "body", "topic", "tags", "create_date", "modify_date"),
+			$database_result = parent::select("articles", array("*"),
 			 						"id = $id");
 
 			$array_obj_result = array();
 			$article_tupla = $database_result->fetch_array();
 
-			$article = new Article($article_tupla["id"], $article_tupla["author_id"], $article_tupla["classroom_id"], $article_tupla["title"], $article_tupla["body"], $article_tupla["topic"], $article_tupla["tags"], $article_tupla["create_date"], $article_tupla["modify_date"]);
+			$article = new Article($article_tupla["author_id"], $article_tupla["classroom_id"], $article_tupla["title"], $article_tupla["body"], $article_tupla["tags"], $article_tupla["topic"], $article_tupla["id"], $article_tupla["create_date"], $article_tupla["modify_date"], $article_tupla["delete_date"]);
 
 			return $article;	
 		}

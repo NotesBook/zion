@@ -45,4 +45,18 @@
 			return FormattedRequest::format(true);
 		}
 
+		/* Method GET
+		 * Get article data
+		 */
+		public function get_by_id() {
+
+			$article_id = RoutingEngineService::get_params()[0];
+
+			//1. GET
+			$article = ArticleRepository::get_by_id($article_id);
+
+			return FormattedRequest::format(true, $article);
+
+		}
+
 	}
