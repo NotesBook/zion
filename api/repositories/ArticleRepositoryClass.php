@@ -37,11 +37,11 @@
 			 						"id = $id");
 
 			$array_obj_result = array();
-			$user_tupla = $database_result->fetch_array();
+			$article_tupla = $database_result->fetch_array();
 
-			$user = new User($user_tupla["id"], $user_tupla["author_id"], $user_tupla["classroom_id"], $user_tupla["title"], $user_tupla["body"], $user_tupla["topic"], $user_tupla["tags"], $user_tupla["create_date"], $user_tupla["modify_date"]);
+			$article = new Article($article_tupla["id"], $article_tupla["author_id"], $article_tupla["classroom_id"], $article_tupla["title"], $article_tupla["body"], $article_tupla["topic"], $article_tupla["tags"], $article_tupla["create_date"], $article_tupla["modify_date"]);
 
-			return $user;	
+			return $article;	
 		}
 
 		/**
@@ -52,9 +52,9 @@
 			$database_result = parent::select("articles", array("*"));
 
 			$array_obj_result = array();
-			while($user_tupla = $database_result->fetch_array()) {
+			while($article_tupla = $database_result->fetch_array()) {
 
-				$array_obj_result[] = new Article($user_tupla["author_id"], $user_tupla["classroom_id"], $user_tupla["title"], $user_tupla["body"], $user_tupla["tags"], $user_tupla["topic"], $user_tupla["article_id"], $user_tupla["create_date"], $user_tupla["modify_date"], $user_tupla["delete_date"]);
+				$array_obj_result[] = new Article($article_tupla["author_id"], $article_tupla["classroom_id"], $article_tupla["title"], $article_tupla["body"], $article_tupla["tags"], $article_tupla["topic"], $article_tupla["article_id"], $article_tupla["create_date"], $article_tupla["modify_date"], $article_tupla["delete_date"]);
 
 			}
 

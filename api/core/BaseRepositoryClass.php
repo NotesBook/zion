@@ -16,6 +16,7 @@
 			$join = empty($join) ? "" : "LEFT JOIN $join";
 
 			//echo ("SELECT $fields FROM $table $where;");
+			//exit();
 			$result = MysqlDatabaseEngine::get_connection()->query("SELECT $fields FROM $table $where;");
 
 			return $result;
@@ -26,10 +27,17 @@
 			//echo "INSERT INTO $table($fields) VALUES($values)";
 			$conn = MysqlDatabaseEngine::get_connection();
 			$conn->query("INSERT INTO $table($fields) VALUES($values)");
+			$insert_id = $conn->insert_id;
+
+
 			if (!$conn->commit()) {
 			    throw new Exception('Base Repository: Error Insert $table');
 			    exit();
 			}
+
+
+			return $insert_id;
+
 		}
 
 		protected static function update($table, $updates, $where) {

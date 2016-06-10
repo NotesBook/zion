@@ -15,15 +15,47 @@
 		public static function register($name, $category, $subcategory, $description, $invitation_code) {
 
 			//Generate random code
-			$invitation_code = md5(uniqid(rand(), true));
+			$invitation_code = md5($invitation_code);
 
-			parent::insert("classrooms", 
+			$classroom_id = parent::insert("classrooms", 
 				"name, category, subcategory, description, invitation_code",
 				"'$name', '$category', '$subcategory', '$description', '$invitation_code'");
 
-			return $invitation_code;
+			return $classroom_id;
 
 		}	
+
+		/*
+		 * Enroll user in database
+		 */
+		public static function enroll_user($user_id, $classroom_id, $invitation_code) {
+
+			$invitation_code = md5($invitation_code);
+
+			//1. Check if classroom_id has this invitation_code
+			$database_result = parent::select("classrooms", array("*"), "id = $classroom_id AND invitation_code = '$invitation_code'");
+			$classroom_tupla = $database_result->fetch_array();
+
+			if ($classroom_tupla) {
+
+ 				$date = date('Y/m/d H:i:s');
+
+				//2. Insert into classrooms_users new field, with actual date
+				parent::insert("classrooms_users", 
+					"user_id, classroom_id, date",
+					"$user_id, $classroom_id, '$date'");
+				}
+
+		}	
+
+		/*
+		 * Unenroll user in database
+		 */
+		public static function unenroll_user($user_id, $classroom_id) {
+
+			//1. Delete classrooms_users field with $user_id and $classroom_id 
+
+		}
 
 		public static function get_by_id($id) {
 
