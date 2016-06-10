@@ -9,14 +9,15 @@
 
 	abstract class BaseRepository {
 
-		protected static function select($table, $fields = array(), $where = "", $join = "") {
+		protected static function select($table, $fields = array(), $where = "", $orderby = "") {
 
 			$fields = empty($fields) ? "*" : implode(", ", $fields);
 			$where = empty($where) ? "" : "WHERE $where";
-			$join = empty($join) ? "" : "LEFT JOIN $join";
+			$orderby = empty($orderby) ? "" : "ORDER BY $orderby";
 
-			//echo ("SELECT $fields FROM $table $where;");
-			$result = MysqlDatabaseEngine::get_connection()->query("SELECT $fields FROM $table $where;");
+			//echo ("SELECT $fields FROM $table $where $orderby;");
+			//exit();
+			$result = MysqlDatabaseEngine::get_connection()->query("SELECT $fields FROM $table $where $orderby;");
 
 			return $result;
 		}
@@ -26,10 +27,17 @@
 			//echo "INSERT INTO $table($fields) VALUES($values)";
 			$conn = MysqlDatabaseEngine::get_connection();
 			$conn->query("INSERT INTO $table($fields) VALUES($values)");
+			$insert_id = $conn->insert_id;
+
+
 			if (!$conn->commit()) {
 			    throw new Exception('Base Repository: Error Insert $table');
 			    exit();
 			}
+
+
+			return $insert_id;
+
 		}
 
 		protected static function update($table, $updates, $where) {

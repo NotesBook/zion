@@ -42,7 +42,10 @@
 		    $md5_password = md5($invitation_code);	
 
 			//3.2. Save
-			ClassroomRepository::register($name, $category, $subcategory, $description, $invitation_code);
+			$classroom_id = ClassroomRepository::register($name, $category, $subcategory, $description, $invitation_code);
+
+			//3.3 Enroll Session User to Classroom
+			ClassroomRepository::enroll_user($_SESSION["user"]["id"], $classroom_id, $invitation_code);
 
 			//4. Send Email
 			//4.1 Compose Email
@@ -55,6 +58,32 @@
 
 			//5. Return Ok
 			return FormattedRequest::format(true);
+		}
+
+		/* Method POST
+		 * Enroll classroom
+		 */
+		public function enroll($id_user, $classroom_id, $invitation_code) {
+
+			//1 Enroll Session User to Classroom
+			ClassroomRepository::enroll_user($id_user, $classroom_id, $invitation_code);
+
+		}
+
+		/* Method GET
+		 * Last Articles Order by Activity
+		 * param 0, classroom_id
+		 */
+		public function last_articles() {
+
+			$classroom_id = RoutingEngineService::get_params()[0];
+			//1. Get last articles by activity
+			//TODO:
+ 			http_response_code(501);
+
+			//5. Return Ok
+			return FormattedRequest::format(false, "Not implemented");
+
 		}
 
 	}

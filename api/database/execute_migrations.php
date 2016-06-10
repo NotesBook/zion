@@ -123,7 +123,7 @@ if($version_actual == "0") {
 }
 
 //1. Comprobamos si existe la tabla de versiones y la creamos, sólo si nuestra versión actual es la anterior a esta Migración (la versión 0)
-if($version_actual == "1") {
+if ($version_actual == "1") {
 	$sql_create_table_classrooms_if_not_exists = 
 		"CREATE TABLE IF NOT EXISTS classrooms (
 	        id 				INT NOT NULL AUTO_INCREMENT,
@@ -145,8 +145,128 @@ if($version_actual == "1") {
 	//print $sql_update_versions_0."<br>";
 	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_2);
 
+	//4. Hacemos el commit, porque lo tenemos desactivado
+	if (!MysqlDatabaseEngine::get_connection()->commit()) {
+	    print("Transaction 2 commit failed\n");
+	    exit();
+	}
+
 	$version_actual = 2;
 }
+
+if ($version_actual == "2") {
+	$sql_create_table_articles_if_not_exists = 
+		"CREATE TABLE IF NOT EXISTS articles (
+	        id 				INT NOT NULL AUTO_INCREMENT,
+	        				PRIMARY KEY(id),
+	        author_id 		INT NOT NULL,
+	        classroom_id 	INT,
+	        title 			VARCHAR(100),
+	        topic 			VARCHAR(100),
+	        body 			VARCHAR(5000),
+	        tags 			VARCHAR(1000),  
+	        create_date 	DATETIME DEFAULT NULL,
+	        modify_date 	DATETIME DEFAULT NULL,
+	        delete_date 	DATETIME DEFAULT NULL
+	    )";
+	//print $sql_create_table_user_if_not_exists."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_create_table_articles_if_not_exists);
+
+	//3. Actualizamos la versión de la bbdd
+	$sql_update_versions_3 = "INSERT INTO versions(version_number, date, description) VALUES(3, '2016/06/09', 'Creación de tabla de de artículo')";
+	//print $sql_update_versions_0."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_3);
+
+	//4. Hacemos el commit, porque lo tenemos desactivado
+	if (!MysqlDatabaseEngine::get_connection()->commit()) {
+	    print("Transaction 3 commit failed\n");
+	    exit();
+	}
+
+	$version_actual = 3;
+}
+
+if ($version_actual = "3") {
+	$sql_create_table_articles_likes_if_not_exists = 
+		"CREATE TABLE IF NOT EXISTS articles_likes (
+	        article_id		INT NOT NULL,
+	        user_id 		INT NOT NULL,
+	        date 		 	DATETIME DEFAULT NULL,
+	        PRIMARY KEY (article_id, user_id)
+	    )";
+	//print $sql_create_table_user_if_not_exists."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_create_table_articles_likes_if_not_exists);
+
+	//3. Actualizamos la versión de la bbdd
+	$sql_update_versions_4 = "INSERT INTO versions(version_number, date, description) VALUES(4, '2016/06/09', 'Creación de tabla de de artículo')";
+	//print $sql_update_versions_0."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_4);
+
+	//4. Hacemos el commit, porque lo tenemos desactivado
+	if (!MysqlDatabaseEngine::get_connection()->commit()) {
+	    print("Transaction 4 commit failed\n");
+	    exit();
+	}
+
+	$version_actual = 4;
+}
+
+if ($version_actual = "4") {
+	$sql_create_table_comments_if_not_exists = 
+		"CREATE TABLE IF NOT EXISTS comments (
+	        id				INT NOT NULL,
+	        				PRIMARY KEY(id),
+	        article_id		INT DEFAULT NULL,
+	        classroom_id	INT DEFAULT NULL,
+	        user_id 		INT NOT NULL,
+	        body 			VARCHAR(1000),
+	        date 		 	DATETIME DEFAULT NULL
+	    )";
+
+	//print $sql_create_table_user_if_not_exists."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_create_table_comments_if_not_exists);
+
+	//3. Actualizamos la versión de la bbdd
+	$sql_update_versions_5 = "INSERT INTO versions(version_number, date, description) VALUES(5, '2016/06/09', 'Creación de tabla de comentarios')";
+	//print $sql_update_versions_0."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_5);
+
+	//4. Hacemos el commit, porque lo tenemos desactivado
+	if (!MysqlDatabaseEngine::get_connection()->commit()) {
+	    print("Transaction 5 commit failed\n");
+	    exit();
+	}
+
+	$version_actual = 5;
+}
+
+
+if ($version_actual = "5") {
+	$sql_create_table_classrooms_users_if_not_exists = 
+		"CREATE TABLE IF NOT EXISTS classrooms_users (
+	        classroom_id	INT NOT NULL,
+	        user_id 		INT NOT NULL,
+	        date 		 	DATETIME DEFAULT NULL,
+	        PRIMARY KEY (classroom_id, user_id)
+	    )";
+
+	//print $sql_create_table_user_if_not_exists."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_create_table_classrooms_users_if_not_exists);
+
+	//3. Actualizamos la versión de la bbdd
+	$sql_update_versions_6 = "INSERT INTO versions(version_number, date, description) VALUES(6, '2016/06/10', 'Creación de tabla de comentarios')";
+	//print $sql_update_versions_0."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_6);
+
+	//4. Hacemos el commit, porque lo tenemos desactivado
+	if (!MysqlDatabaseEngine::get_connection()->commit()) {
+	    print("Transaction 6 commit failed\n");
+	    exit();
+	}
+
+	$version_actual = 6;
+}
+
 
 
 /* close connection */

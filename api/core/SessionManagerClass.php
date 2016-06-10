@@ -23,13 +23,19 @@
 		public static function logout() {
 
 			$_SESSION['user'] = null;
+			session_destroy();
 
 		}
 
 		public static function get_session_user() {
 
-			//todo: User token
 			return $_SESSION['user'];
+
+		}
+
+		public static function get_session_id() {
+
+			return session_id();
 
 		}
 

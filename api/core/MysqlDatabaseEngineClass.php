@@ -29,6 +29,8 @@
 				$database_config = $_NB_GLOBALS["settings"]->database;
 				self::$conn = new mysqli($database_config->server, $database_config->user, $database_config->pass, $database_config->scheme);
 
+				self::$conn->set_charset("utf8");
+
 				if (self::$conn->connect_error) {
 				    die('Connect Error (' . self::$conn->connect_errno . ') '
 				            . self::$conn->connect_error);

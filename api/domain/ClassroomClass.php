@@ -10,38 +10,30 @@
 	class Classroom extends BaseDomainClass implements JsonSerializable {
 
 		private $name;
-		private $surname;
-		private $birthdate;
-		private $country;
-		private $region;
-		private $email;
+		private $category;
+		private $subcategory;
+		private $description;
+		private $image_path;
 
 		private $entry_date;
 		private $leaving_date;
 
-		private $security_code;
+		private $invitation_code;
 
-		public function __construct($id, $name, $surname, $birthdate, $country, $region, $email) { 
+		public function __construct($id, $name, $category, $subcategory, $description, $image_path, $invitation_code, $entry_date = null, $leaving_date = null) { 
 
-			//Check if user is new
-			if (is_null($id)) {
-
-				//This code is used when validate user
-				$this->security_code = md5(time());
-
-			} else {
-
-				$this->id = $id;
-
-			}
+			$this->id = $id;
 
 			//Fields
 			$this->name = trim($name);
-			$this->surname = trim($surname);
-			$this->birthdate = intval($birthdate);
-			$this->country = trim($country);
-			$this->region = trim($region);
-			$this->email = trim($email);
+			$this->category = trim($category);
+			$this->subcategory = trim($subcategory);
+			$this->description = trim($description);
+			$this->image_path = trim($image_path);
+			$this->invitation_code = trim($invitation_code);
+
+			$this->entry_date = trim($entry_date);
+			$this->leaving_date = trim($leaving_date);
 
 		}
 
@@ -139,11 +131,11 @@
 	        return [
 	            'id' => $this->id,
 	            'name' => $this->name,
-	            'surname' =>  $this->surname,
-	            'birthdate' => $this->birthdate,
-	            'country' => $this->country,
-	            'region' => $this->region,
-	            'email' => $this->email
+	            'category' =>  $this->category,
+	            'subcategory' => $this->subcategory,
+	            'description' => $this->description,
+	            'image_path' => $this->image_path,
+	            'invitation_code' => $this->invitation_code
 	        ];
 	    }
 
