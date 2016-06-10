@@ -69,6 +69,7 @@
 
 			//1. Get Article
 			$article = self::get_by_id($article_id);
+			UserRepository::modify_karma(1, $user_id);
 
  			$date = date('Y/m/d H:i:s');
 

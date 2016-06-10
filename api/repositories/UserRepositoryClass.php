@@ -103,4 +103,12 @@
 
 		}
 
+		public static function modify_karma($increment, $user_id) {
+
+			parent::update("users", 
+				"karma = karma + $increment",
+				"id = $user_id");
+
+		}
+
 	}

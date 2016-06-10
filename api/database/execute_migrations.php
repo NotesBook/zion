@@ -268,6 +268,28 @@ if ($version_actual = "5") {
 }
 
 
+if ($version_actual = "6") {
+	$sql_alter_table_users_if_not_exists = 
+		"ALTER TABLE users ADD karma INT DEFAULT 0";
+
+	//print $sql_create_table_user_if_not_exists."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_alter_table_users_if_not_exists);
+
+	//3. Actualizamos la versión de la bbdd
+	$sql_update_versions_7 = "INSERT INTO versions(version_number, date, description) VALUES(7, '2016/06/10', 'Creación de columna de karma')";
+	//print $sql_update_versions_0."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_7);
+
+	//4. Hacemos el commit, porque lo tenemos desactivado
+	if (!MysqlDatabaseEngine::get_connection()->commit()) {
+	    print("Transaction 7 commit failed\n");
+	    exit();
+	}
+
+	$version_actual = 7;
+}
+
+
 
 /* close connection */
 //MysqlDatabaseEngine::get_connection()->close();
