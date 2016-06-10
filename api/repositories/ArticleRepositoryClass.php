@@ -28,7 +28,7 @@
 		 */
 		public static function get_all() {
 
-			$database_result = parent::select("artciles", array("*"));
+			$database_result = parent::select("articles", array("*"));
 
 			$array_obj_result = array();
 			while($user_tupla = $database_result->fetch_array()) {

@@ -1,6 +1,9 @@
 <!-- Show Modal when register is valid partial -->
 <div ng-include="'app/views/classroom/partials/classroom-valid-modal-partial.html'"></div>
 
+<!-- Show Modal when article is valid partial -->
+<div ng-include="'app/views/article/partials/article-valid-modal-partial.html'"></div>
+
 <!-- Menu Partial -->
 <div ng-include="'app/views/site/partials/menu-bar-partial.html'"></div>
 
@@ -9,6 +12,9 @@
 
     <!-- Classroom modal form partial-->
     <div  ng-include="'app/views/classroom/partials/classroom-form-partial.html'"></div>
+
+    <!-- Article modal form partial -->
+    <div ng-include="'app/views/article/partials/article-form-partial.html'"></div>
         
     <!-- The Grid -->
     <div class="w3-row w3-container">
@@ -34,14 +40,15 @@
             <br>
                   
             <!-- Accordion -->
-            <div class="w3-card-2 w3-round">
-                <div class="w3-accordion w3-white">
-                    <button ng-click="accordion('side_classroom_bar')" class="w3-btn-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Mis Aulas</button>
-                    <div id="side_classroom_bar" class="w3-accordion-content w3-container">
-                        <a href="#/classroom/{{group.id}}" ng-repeat="group in groups">{{group.nombre}}</a>
-                    </div>
-                </div>      
+            <div class="w3-card-2 w3-white">
+                <div class="w3-center w3-green">Mis Aulas</div>
+                <ul class="w3-ul w3-hoverable">
+                    
+                    <a href="#"><li>Aula 1</li></a>
+                    <a href="#"><li>Aula 2</li></a>
+                </ul>
             </div>
+           
             <br>
         <!-- End Left Column -->
         </div>
@@ -49,26 +56,7 @@
         <!-- Middle Column -->
         <div ng-include="'app/views/article/partials/article-partial.html'"></div>
 
-        <!-- Right Column -->
-        <div class="w3-col m2">
-            <!-- Friend Request Card -->
-            <div class="w3-card-2 w3-round w3-white w3-center">
-                <div class="w3-container">
-                    <p>Peticion de amistad</p>
-                    <img src="images/girl_avatar.jpg" alt="Avatar" style="width:50%"><br>
-                    <span>Gala Aragoneses</span>
-                    <div class="w3-row w3-opacity">
-                        <div class="w3-half">
-                            <button class="w3-btn w3-green w3-btn-block w3-section" title="Accept"><i class="fa fa-check"></i></button>
-                        </div>
-                        <div class="w3-half">
-                            <button class="w3-btn w3-red w3-btn-block w3-section" title="Decline"><i class="fa fa-remove"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>   
-        </div>
-    
+       
     <!-- End Grid -->
     </div>
 <!-- End Page Container -->

@@ -1,15 +1,17 @@
-nbApp.controller('ArticleController', ['$scope',
-	function($scope) {
+nbApp.controller('ArticleController', ['$scope','SiteService',
+	function($scope,SiteService) {
 
 		$scope.show_text = false;
 
-		$scope.edit_article = function(article_id,text_box_id) {
-			var text_box = document.getElementById(text_box_id);
-			var article_content = document.getElementById(article_id).innerHTML;
-			
-			text_box.contentEditable="true";
-			text_box.innerHTML=article_content;
-			
+		$scope.edit_article = function(article_content) {
+
+			$scope.text_box_content = article_content;
+				
+
+		}
+
+		$scope.empty_text_box = function() {
+			$scope.text_box_content = ""
 		}
 
 		
@@ -43,5 +45,26 @@ nbApp.controller('ArticleController', ['$scope',
 				contenido: "Contenido 4" 
 			},								
 		];	
+
+        // Send the form input data to process it at backend
+        $scope.send_form_data = function() {
+
+            SiteService.create_classroom('POST','api/classroom/register',JSON.stringify($scope.form_data)).then(function(response) {
+
+                if(response.valid == true) {
+
+                    document.getElementById('valid-article-modal').style.display='block';
+                    document.getElementById('article-modal').style.display='none';
+            
+                } else $scope.show_valid_modal = false;
+ 
+            });
+        }
+
+        // Hides the valid modal when accept button is clicked 
+        $scope.hide_valid_article_form = function() {
+                
+             document.getElementById('valid-article-modal').style.display='none';
+        };		
 
 }])

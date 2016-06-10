@@ -29,18 +29,18 @@ nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'Categori
 
                 if(response.valid == true) {
 
-                    document.getElementById('valid_classroom_modal').style.display='block';
+                    document.getElementById('valid-classroom-modal').style.display='block';
                     document.getElementById('classroom-modal').style.display='none';
             
                 } else $scope.show_valid_modal = false;
-
+ 
             });
         }
 
         // Hides the valid modal when accept button is clicked 
         $scope.hide_valid_classroomForm = function() {
                 
-             $scope.accepted = true;
+             document.getElementById('valid-classroom-modal').style.display='none';
         };
 
 }])

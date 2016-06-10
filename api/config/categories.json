@@ -1,27 +1,19 @@
-{
-	"categories": [
-		{
-			"id": 1,
-			"name": "FP"
-		},
-		
-		{
-			"id": 2,
-			"name": "UNIVERSIDAD"
-		}
-	],
+[{
+   "category": "FP",
 	"subcategories": [
 		{
-			"name": "DAW",
-			"categoryId": 1
+			"name": "DAW"
 		},
 		{
-			"name": "DAM",
-			"categoryId": 1
+			"name": "DAM"
 		},
 		{
-			"name": "ASIR",
-			"categoryId": 1
+			"name": "ASIR"
 		}
 	]
+},
+{
+   "category": "UNIVERSIDAD",
+	"subcategories": []
 }
+]
