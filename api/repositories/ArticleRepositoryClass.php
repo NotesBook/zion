@@ -62,4 +62,39 @@
 
 		}
 
+		/** Like article
+		 *
+		 */
+		public static function like($user_id, $article_id) {
+
+			//1. Get Article
+			$article = self::get_by_id($article_id);
+
+ 			$date = date('Y/m/d H:i:s');
+
+			//2. Insert articles_likes
+			parent::insert("articles_likes", "article_id, user_id, date", "$article_id, $user_id, '$date'");
+
+		}
+
+		/** Get Likes Counter of Article
+		 *
+		 */
+		public static function likes_count($article_id) {
+
+			//1. Get Article to check if exists
+			$article = self::get_by_id($article_id);
+
+ 			$date = date('Y/m/d H:i:s');
+
+			//2. Get count
+			$database_article_likes_result = parent::select("articles_likes", array("COUNT(*) likes_count"), "article_id = $article_id");
+
+			$array_obj_result = array();
+			$article_tupla = $database_article_likes_result->fetch_array();
+
+			return $article_tupla["likes_count"];
+
+		}
+
 	}

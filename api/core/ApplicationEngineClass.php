@@ -30,7 +30,6 @@
 
 			} catch (Exception $err) {
 				
-
 				http_response_code(500);
 				echo FormattedRequest::format(false, "Application ERROR", $err->getMessage());
 

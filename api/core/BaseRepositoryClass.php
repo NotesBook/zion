@@ -25,6 +25,8 @@
 		protected static function insert($table, $fields, $values) {
 
 			//echo "INSERT INTO $table($fields) VALUES($values)";
+			//exit();
+
 			$conn = MysqlDatabaseEngine::get_connection();
 			$conn->query("INSERT INTO $table($fields) VALUES($values)");
 			$insert_id = $conn->insert_id;
