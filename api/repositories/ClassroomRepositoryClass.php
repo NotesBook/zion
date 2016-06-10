@@ -33,16 +33,16 @@
 			$invitation_code = md5($invitation_code);
 
 			//1. Check if classroom_id has this invitation_code
-			$database_result = parent::select("classrooms", array("*"), "id = $classroom_id AND invitation_code = '$invitation_code'");
-			$classroom_tupla = $database_result->fetch_array();
+			$database_classroom_result = parent::select("classrooms", array("*"), "id = $classroom_id AND invitation_code = '$invitation_code'");
+			$classroom_classroom_tupla = $database_classroom_result->fetch_array();
 
-			if ($classroom_tupla) {
+			if ($classroom_classroom_tupla) {
 
-				$database_result = parent::select("classrooms_users", array("*"), "id = $classroom_id AND user_id = $user_id");
-				
-				if ($database_result) {
+				$database_user_classroom_result = parent::select("classrooms_users", array("*"), "id = $classroom_id AND user_id = $user_id");
 
-					$classroom_user_tupla = $database_result->fetch_array();
+				if ($database_user_classroom_result) {
+
+					$classroom_user_tupla = $database_user_classroom_result->fetch_array();
 
 					if ($classroom_user_tupla) {
 
@@ -67,6 +67,15 @@
 		public static function unenroll_user($user_id, $classroom_id) {
 
 			//1. Delete classrooms_users field with $user_id and $classroom_id 
+			$database_user_classroom_result = parent::select("classrooms_users", array("*"), "id = $classroom_id AND user_id = $user_id");
+
+			if ($database_user_classroom_result) {
+
+				//2. Delete classroom_user
+				$classroom_user_tupla = $database_user_classroom_result->fetch_array();
+				parent::delete("classrooms_users", "user_id = ".$classroom_user_tupla["user_id"]." AND classroom_id = ".$classroom_user_tupla["classroom_id"]);
+
+			}
 
 		}
 

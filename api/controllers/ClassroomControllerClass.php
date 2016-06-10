@@ -70,6 +70,16 @@
 
 		}
 
+		/* Method POST
+		 * Unenroll classroom
+		 */
+		public function unenroll($id_user, $classroom_id) {
+
+			//1 Unenroll Session User to Classroom
+			ClassroomRepository::unenroll_user($id_user, $classroom_id);
+
+		}
+
 		/* Method GET
 		 * Last Articles Order by Activity
 		 * param 0, classroom_id

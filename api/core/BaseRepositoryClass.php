@@ -52,6 +52,17 @@
 			}
 		}
 
+		protected static function delete($table, $where) {
+			
+			$conn = MysqlDatabaseEngine::get_connection();
+			$conn->query("DELETE $table WHERE $where");
+			if (!$conn->commit()) {
+			    throw new Exception('Base Repository: Error Delete $table');
+			    exit();
+			}
+
+		}
+
 
 	}
 
