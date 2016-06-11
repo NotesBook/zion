@@ -1,5 +1,5 @@
-nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'CategoriesService', 'ClassroomsService',
-	function($scope, ValidationService, CategoriesService,ClassroomsService) {
+nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'CategoriesService', 'ClassroomsService','SharedDataService',
+	function($scope, ValidationService, CategoriesService,ClassroomsService,SharedDataService) {
 
         $scope.form_data = {
             'name':"",
@@ -7,6 +7,9 @@ nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'Categori
             'subcategory':"",
             'description':"",          
         };
+
+        // Get the classroom object recived from dashboard
+        $scope.classroom = SharedDataService.get_val();
 
         // Get validation JSON  Object
         ValidationService.getValidationJSON().then(function(response) {

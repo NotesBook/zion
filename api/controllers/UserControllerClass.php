@@ -92,6 +92,10 @@
 
 		}
 
+		// public function get_user_by_id() {
+		// 	return FormattedRequest::format(true,UserRepository::get_by_id($_SESSION['user']));
+		// }
+
 		/* Method GET
 		 * Logout delete TOKEN
 		 */

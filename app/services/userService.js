@@ -3,10 +3,10 @@ nbApp.factory('UserService', ['AjaxService',
 
   		var self = {};
 
-	  	self.getAll = function() {
+	  	self.get_user_by_id = function() {
 
-	  		var uri = "api/user",
-				method = "get";
+	  		var uri = 'api/user/get_user_by_id',
+				method = 'get';
 				
 	  		return AjaxService.send(method,uri);
 		

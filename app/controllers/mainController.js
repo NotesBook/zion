@@ -1,12 +1,26 @@
-nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsService',
-	function($scope, SecurityService,ClassroomsService) {
+nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsService','UserService','SharedDataService',
+	function($scope, SecurityService,ClassroomsService,UserService,SharedDataService) {
 
 		SecurityService.checkSession();
 
+		// Get logged in user data
+		// UserService.get_user_by_id().then(function(response) {
+		// 	console.log(response);
+		// })
+
+
 		// Get all Classrooms by user
 		ClassroomsService.get_classrooms('GET',"api/dashboard/my_classrooms").then(function(response) {
-			console.log(response);
+
+			$scope.classrooms = response.data;
 		})
+
+		// Set the value of the classroom to use anywhere
+		$scope.class_view = function(class_view) {
+			
+			SharedDataService.set_val(class_view);
+			 
+		}
 
 		// Test classroom groups on side menu
 		$scope.groups = [

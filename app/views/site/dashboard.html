@@ -8,7 +8,7 @@
 <div ng-include="'app/views/site/partials/menu-bar-partial.html'"></div>
 
 <!-- Page Container -->
-<div class="w3-container" style="margin-top:80px;" id="page_container" ng-controller="ClassRoomController">
+<div class="w3-container" style="margin-top:80px;" id="page_container">
 
     <!-- Classroom modal form partial-->
     <div  ng-include="'app/views/classroom/partials/classroom-form-partial.html'"></div>
@@ -42,10 +42,8 @@
             <!-- Side Classroom links -->
             <div class="w3-card-2 w3-white">
                 <div class="w3-center w3-green">Mis Aulas</div>
-                <ul class="w3-ul w3-hoverable">
-                    
-                    <a href="#"><li>Aula 1</li></a>
-                    <a href="#"><li>Aula 2</li></a>
+                <ul class="w3-ul w3-hoverable">  
+                   <a href="#/dashboard/classroom"><li ng-repeat="classroom in classrooms" ng-click="class_view(classroom)">{{classroom.name}}</li></a>
                 </ul>
             </div>
            
