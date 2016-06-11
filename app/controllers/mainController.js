@@ -4,9 +4,10 @@ nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsServi
 		SecurityService.checkSession();
 
 		// Get logged in user data
-		// UserService.get_user_by_id().then(function(response) {
-		// 	console.log(response);
-		// })
+		UserService.get_loged_user_data().then(function(response) {
+			$scope.logged_user_data = response.data;
+			console.log($scope.logged_user_data)
+		})
 
 
 		// Get all Classrooms by user
