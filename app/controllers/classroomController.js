@@ -8,8 +8,14 @@ nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'Categori
             'description':"",          
         };
 
+        // Get all Classrooms by user
+        ClassroomsService.get_classrooms('GET',"api/dashboard/my_classrooms").then(function(response) {
+
+            $scope.classroom_list = response.data;
+        })        
+
         // Get the classroom object recived from dashboard
-        $scope.classroom = SharedDataService.get_val();
+        $scope.classroom_item = SharedDataService.get_val();
 
         // Get validation JSON  Object
         ValidationService.getValidationJSON().then(function(response) {

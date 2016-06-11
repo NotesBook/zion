@@ -20,7 +20,7 @@ nbApp.config(['$routeProvider',
 			}).when('/dashboard', {
 				templateUrl: 'app/views/site/dashboard.html',
 				controller: 'MainController'
-			}).when('/dashboard/classroom', {
+			}).when('/dashboard/classroom/', {
 				templateUrl: 'app/views/classroom/classroom-view.html',
 				controller: 'ClassRoomController'
 			}).

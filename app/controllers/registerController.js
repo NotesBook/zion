@@ -11,6 +11,8 @@ nbApp.controller('RegisterController', ['$scope','ValidationService','CountriesS
             'region':"",
             'email':""            
         };
+
+        console.log($scope.form_data)
         
         // Get listCountries JSON object
         CountriesService.getListCountries().then(function(response) {
@@ -30,7 +32,6 @@ nbApp.controller('RegisterController', ['$scope','ValidationService','CountriesS
          $scope.send_form_data = function() {
 
             UserService.send_register_form_data('POST','api/user/register',JSON.stringify($scope.form_data)).then(function(response) {
-                
                 if(response.valid == true) {
                     $scope.show_valid_modal = true;
                 } else $scope.show_valid_modal = false;

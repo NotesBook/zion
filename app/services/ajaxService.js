@@ -16,7 +16,7 @@ nbApp.factory('AjaxService', ['$q', '$cookies', '$location',
 
 				if (http_request.readyState == 4) {
 					if (http_request.status == 200) {
-						//console.log(http_request.responseText);
+						// console.log(http_request.responseText);
 						var JsonObj = JSON.parse(http_request.responseText);
 						defered.resolve(JsonObj);
 					} else {

@@ -6,7 +6,6 @@ nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsServi
 		// Get logged in user data
 		UserService.get_loged_user_data().then(function(response) {
 			$scope.logged_user_data = response.data;
-			console.log($scope.logged_user_data)
 		})
 
 
@@ -16,24 +15,20 @@ nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsServi
 			$scope.classrooms = response.data;
 		})
 
-		// Set the value of the classroom to use anywhere
-		$scope.class_view = function(class_view) {
-			
-			SharedDataService.set_val(class_view);
-			 
+		// Refresh the classroom side list when classroom is created
+		$scope.refresh_classrooms = function() {
+
+			ClassroomsService.get_classrooms('GET',"api/dashboard/my_classrooms").then(function(response) {
+			$scope.classrooms = response.data;
+			})
 		}
 
-		// Test classroom groups on side menu
-		$scope.groups = [
-			{ 	
-				id: 1,
-				nombre: 'Aula 1',
-			},
-			{ 	
-				id: 2,
-				nombre: 'Aula 2',
-			}			
-		]
+		// Set the value of the selected classroom to use anywhere
+		$scope.class_view = function(classroom_item) {
+			
+			SharedDataService.set_val(classroom_item);
+			 
+		}
 
 		// Used to toggle the menu on smaller screens when clicking on the menu button
 	 	$scope.openNav = function() {
@@ -46,14 +41,14 @@ nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsServi
 		};
 
 		// Display the modal form to create a classroom
-         $scope.show_form_classroom_modal = function() {
+        $scope.show_form_classroom_modal = function() {
             document.getElementById('classroom-modal').style.display='block';
-         };		
+        };		
 
 		// Display the modal form to create a classroom
-         $scope.show_form_article_modal = function() {
-            document.getElementById('article-modal').style.display='block';
-         };		
+        $scope.show_form_article_modal = function() {
+        	document.getElementById('article-modal').style.display='block';
+        };		
 
          
 
