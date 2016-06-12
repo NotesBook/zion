@@ -4,13 +4,18 @@ nbApp.factory('UserService', ['AjaxService',
   		var self = {};
 
 	  	self.get_logged_user_data = function() {
-
 	  		var uri = 'api/user/get_logged_user_data',
 				method = 'get';
 				
 	  		return AjaxService.send(method,uri);
-		
 	  	};
+
+	  	self.logout = function() {
+	  		var method = "get",
+	  			uri = "api/user/logout";
+
+  			return AjaxService.send(method,uri);	
+	  	}
 
 	  	self.validate = function(token, email) {
 			var	method = "get";

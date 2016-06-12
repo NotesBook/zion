@@ -1,5 +1,5 @@
-nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'CategoriesService', 'ClassroomsService','SharedDataService','ArticlesService','UserService',
-	function($scope, ValidationService, CategoriesService,ClassroomsService,SharedDataService,ArticlesService,UserService) {
+nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'CategoriesService', 'ClassroomsService','SharedDataService','ArticlesService','UserService','$window',
+	function($scope, ValidationService, CategoriesService,ClassroomsService,SharedDataService,ArticlesService,UserService,$window) {
 
         $scope.classroom_form_data = {
             'name':"",
@@ -17,6 +17,8 @@ nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'Categori
             "topic": ""
         };     
 
+        // --- SERVICES ---
+
         // Get the classroom object recived from dashboard
         $scope.classroom_item = SharedDataService.get_val();  
 
@@ -24,7 +26,7 @@ nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'Categori
         ArticlesService.get_last_articles("GET","api/classroom/last_articles/"+$scope.classroom_item.id).then(function(response) {
 
             $scope.last_classroom_articles = response.data;
-            console.log($scope.last_classroom_articles);
+
         });
 
         // Get all Classrooms by user
@@ -34,12 +36,27 @@ nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'Categori
 
         })      
 
+        // Get categories JSON  Object
+        CategoriesService.getCategoriesJSON().then(function(response) {
+
+            $scope.JSON_categories = response; 
+
+        });        
+
         // Get validation JSON  Object
         ValidationService.getValidationJSON().then(function(response) {
 
             $scope.JSON_validation = response; 
 
-        });                    
+        });  
+
+        // Get logged in user data
+        UserService.get_logged_user_data().then(function(response) {
+
+            $scope.logged_user_data = response.data;
+        });  
+
+        // --- METHODS ---                                 
 
         // Refresh the classroom side list when classroom is created
         $scope.refresh_articles = function() {
@@ -49,11 +66,15 @@ nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'Categori
             });
         };          
 
-        // Get logged in user data
-        UserService.get_logged_user_data().then(function(response) {
+        // Logout user and redirect to login
+        $scope.logout = function() {
 
-            $scope.logged_user_data = response.data;
-        });        
+            UserService.logout().then(function(response) {
+                if(response.valid == true) {
+                    $window.location.href = '#/';
+                }
+            });
+        }                 
 
         // Send the form input data to process it at backend
         $scope.send_classroom_form_data = function() {
@@ -77,7 +98,6 @@ nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'Categori
         // Send the form input data to process it at backend
         $scope.send_article_form_data = function() {
             
-
             $scope.article_form_data['classroom_id'] = $scope.classroom_item.id;
 
             $scope.article_form_data['user_id'] = $scope.logged_user_data.id
@@ -96,11 +116,13 @@ nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'Categori
 
         // Display the modal form to create a classroom
         $scope.show_form_classroom_modal = function() {
+
             document.getElementById('classroom-modal').style.display='block';
         };          
 
         // Display the modal form to create an article
         $scope.show_form_article_modal = function() {
+
             document.getElementById('article-modal').style.display='block';
         };              
 

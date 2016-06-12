@@ -1,5 +1,5 @@
-nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsService','UserService','SharedDataService','ArticlesService','CategoriesService',
-	function($scope, SecurityService,ClassroomsService,UserService,SharedDataService,ArticlesService,CategoriesService) {
+nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsService','UserService','SharedDataService','ArticlesService','CategoriesService','$window',
+	function($scope, SecurityService,ClassroomsService,UserService,SharedDataService,ArticlesService,CategoriesService,$window) {
 
 		SecurityService.checkSession();
 
@@ -15,7 +15,7 @@ nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsServi
 
             $scope.JSON_categories = response; 
 
-        });           
+        });         
 
 		// Get logged in user data
 		UserService.get_logged_user_data().then(function(response) {
@@ -29,6 +29,12 @@ nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsServi
 			$scope.classrooms = response.data;
 		});
 
+		// Get all Dashboard articles
+		ArticlesService.get_dashboard_articles('GET',"api/dashboard/last_articles").then(function(response) {
+
+			$scope.dashboard_articles = response.data;
+		});		
+
 		// Refresh the classroom side list when classroom is created
 		$scope.refresh_classrooms = function() {
 
@@ -37,6 +43,15 @@ nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsServi
 			$scope.classrooms = response.data;
 			});
 		};
+
+		// Logout user and redirect to login
+        $scope.logout = function() {
+        	UserService.logout().then(function(response) {
+        		if(response.valid == true) {
+        			$window.location.href = '#/';
+        		}
+        	});
+        }  
 
 		// Set the value of the selected classroom to use anywhere
 		$scope.class_view = function(classroom_item) {

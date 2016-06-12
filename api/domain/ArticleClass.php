@@ -14,7 +14,7 @@
 		private $title;
 		private $topic;
 		private $tags;
-
+		private $body;
 		private $last_modified_date;
 		private $creation_date;
 		private $delete_date;
@@ -46,7 +46,7 @@
 	    	//2. Check data
 	    	$check_author_id = isset($author_id);
 			$check_title = preg_match($json_array["article_title"], trim($title));
-			$check_topic = preg_match($json_array["article_title"], trim($topic));
+			$check_topic = preg_match($json_array["article_tags"], trim($topic));
 			$check_body = preg_match($json_array["article_body"], trim($body));
 			$check_tags = preg_match($json_array["article_tags"], $tags);
 
@@ -89,6 +89,7 @@
 	            'classroom_id' => $this->classroom_id,
 	            'title' => $this->title,
 	            'topic' => $this->topic,
+	            'body' => $this->body,
 	            'tags' => $this->tags,
 	            'last_modified_date' => $this->last_modified_date,
 	            'creation_date' => $this->creation_date,
