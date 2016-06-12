@@ -3,9 +3,9 @@ nbApp.factory('UserService', ['AjaxService',
 
   		var self = {};
 
-	  	self.get_loged_user_data = function() {
+	  	self.get_logged_user_data = function() {
 
-	  		var uri = 'api/user/get_loged_user_data',
+	  		var uri = 'api/user/get_logged_user_data',
 				method = 'get';
 				
 	  		return AjaxService.send(method,uri);

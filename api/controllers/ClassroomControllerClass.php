@@ -87,14 +87,11 @@
 		 * param 0, classroom_id
 		 */
 		public function last_articles() {
-
+			
 			$classroom_id = RoutingEngineService::get_params()[0];
 			//1. Get last articles by activity
 			$articles = ArticleRepository::get_all_by_classroom($classroom_id);
-
 			//5. Return Ok
 			return FormattedRequest::format(true, $articles);
-
 		}
-
 	}

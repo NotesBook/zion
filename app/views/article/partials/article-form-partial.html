@@ -13,70 +13,106 @@
                 <div class="w3-section">
                     <!-- FORM --> 
                     <form class="w3-form" name="articleForm" novalidate>
-                        
-                        <!-- NAME -->
-                        <label for="name"><b>Nombre de la clase</b></label>
+
+                        <input
+                            name="author_id" 
+                            type="hidden"
+                            ng-model="article_form_data['user_id']"
+                            ng-value="">
+                        </input> 
+
+                        <input
+                            name="classroom_id" 
+                            type="hidden"
+                            ng-model="article_form_data['classroom_id']"
+                            ng-value="">
+                        </input>                         
+
+                        <!-- TITLE -->
+                        <label for="title"><b>Titulo</b></label>
                         <input 
-                            name="name" 
-                            ng-class="{ 'w3-input w3-border-red': articleForm.name.$touched && articleForm.name.$invalid, 
-                                        'w3-input w3-border-green': articleForm.name.$touched && articleForm.name.$valid}"         
+                            name="title" 
+                            ng-class="{ 'w3-input w3-border-red': articleForm.title.$touched && articleForm.title.$invalid, 
+                                        'w3-input w3-border-green': articleForm.title.$touched && articleForm.title.$valid}"         
                             class="w3-input w3-border w3-margin-bottom" 
                             type="text" 
                             value="" 
-                            placeholder="Introduce tu nombre"    
-                            ng-model="form_data['name']" 
-                            ng-pattern="JSON_validation.name"
+                            placeholder="Introduce el titulo"    
+                            ng-model="article_form_data['title']"
+                            ng-pattern="JSON_validation.article_title"
                             minlength=3
                             required>
                         </input>
                                    
-                       <div ng-messages="articleForm.name.$error" ng-show="articleForm.name.$touched" style="color:red">
-                            <p ng-message="minlength">Nombre muy corto.</p>
-                            <p ng-message="pattern">Nombre erroneo.</p>
-                            <p ng-message="required">Nombre requerido</p>
+                       <div ng-messages="articleForm.title.$error" ng-show="articleForm.title.$touched" style="color:red">
+                            <p ng-message="minlength">Titulo muy corto.</p>
+                            <p ng-message="pattern">Titulo erroneo.</p>
+                            <p ng-message="required">Titulo requerido</p>
                         </div>
 
-                        <!-- CATEGORIES -->                        
-                        <label for="countries"><b>Categoria</b></label>
-                        <select class="w3-select" name="categories" ng-model="form_data['category']" required>
-                            <!-- Manera de iterar en los datos de un objeto JSON-->
-                            <option value="">Seleccciona una categoria</option>
-                            <option ng-repeat="(key, val) in JSON_categories.categories">{{val.name}}</option>
-                        </select>   
+
+                        <!-- TAGS -->
+                        <label for="tags"><b>Tags</b></label>
+                        <input 
+                            name="tags" 
+                            ng-class="{ 'w3-input w3-border-red': articleForm.tags.$touched && articleForm.tags.$invalid, 
+                                        'w3-input w3-border-green': articleForm.tags.$touched && articleForm.tags.$valid}"         
+                            class="w3-input w3-border w3-margin-bottom" 
+                            type="text" 
+                            value="" 
+                            placeholder="Introduce los tags"    
+                            ng-model="article_form_data['tags']"
+                            ng-pattern="JSON_validation.article_tags">
+                        </input>
+                                   
+                       <div ng-messages="articleForm.tags.$error" ng-show="articleForm.tags.$touched" style="color:red">
+                            <p ng-message="pattern">Tags erroneos.</p>
+                        </div>     
+
+                        <!-- TOPIC -->
+                        <label for="topic"><b>Tema</b></label>
+                        <input 
+                            name="topic" 
+                            ng-class="{ 'w3-input w3-border-red': articleForm.topic.$touched && articleForm.topic.$invalid, 
+                                        'w3-input w3-border-green': articleForm.topic.$touched && articleForm.topic.$valid}"         
+                            class="w3-input w3-border w3-margin-bottom" 
+                            type="text" 
+                            value="" 
+                            placeholder="Introduce el tema"    
+                            ng-model="article_form_data['topic']"
+                            ng-pattern="JSON_validation.article_tags">
+                        </input>
+                                   
+                       <div ng-messages="articleForm.topic.$error" ng-show="articleForm.topic.$touched" style="color:red">
+                            <p ng-message="pattern">Topic erroneo.</p>
+                        </div>                                                      
                         
-                        <!-- SUBCATEGORIES -->                        
-                        <label for="countries"><b>Subcategoria</b></label>
-                        <select class="w3-select" name="subcategories" ng-model="form_data['subcategory']" required>
-                            <!-- Manera de iterar en los datos de un objeto JSON-->
-                            <option value="">Seleccciona una subcategoria</option>
-                            <option ng-repeat="(key, val) in JSON_categories.subcategories">{{val.name}}</option>
-                        </select>  
-                        
-                        <!-- DESCRIPTION -->
+                        <!-- BODY -->
                         <div class="w3-group">      
                             <textarea 
-                            name="description" 
+                            name="body" 
                             class="w3-input" 
                             style="width:90%;resize: none" 
-                            ng-model="form_data['description']" 
-                            ng-pattern="JSON_validation.description"
+                            ng-model="article_form_data['body']" 
+                            ng-pattern="JSON_validation.article_body"
                             minlength=10
-                            maxlength=1000 
+                            maxlength=5000 
                             required></textarea>
-                            <label class="w3-label">Descripcion</label>
+                            <label class="w3-label">Contenido</label>
                         </div>
 
-                       <div ng-messages="articleForm.description.$error" ng-show="articleForm.description.$touched" style="color:red">
-                            <p ng-message="minlength">Descripcion muy corta.</p>
-                            <p ng-message="pattern">Descripcion erronea.</p>
-                            <p ng-message="required">Descripcion requerida</p>
-                        </div>      
+                       <div ng-messages="articleForm.body.$error" ng-show="articleForm.body.$touched" style="color:red">
+                            <p ng-message="minlength">Contenido muy corto.</p>
+                            <p ng-message="pattern">Contenido erroneo.</p>
+                            <p ng-message="required">Contenido requerido</p>
+                        </div> 
+                           
                                           
                         <!-- SUBMIT -->
                         <button 
                             class="w3-btn w3-btn-block w3-section w3-grey w3-ripple" 
-                            ng-disabled="articleForm.$invalid" 
-                            ng-click="send_form_data()">Crear Aula</button>
+                            ng-disabled="article_form_data.$invalid" 
+                            ng-click="send_article_form_data()">Crear Articulo</button>
 
                         <!-- SECTION 2 -->
                         <div class="w3-section w3-container w3-border-top w3-padding-hor-16 w3-light-grey">

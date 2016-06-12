@@ -27,4 +27,3 @@ nbApp.factory('ValidationService',['AjaxService',
 		return self;
 	}
 ]);
-

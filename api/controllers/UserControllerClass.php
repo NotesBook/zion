@@ -92,7 +92,8 @@
 
 		}
 
-		public function get_loged_user_data() {
+		public function get_logged_user_data() {
+			
 			return FormattedRequest::format(true, $_SESSION['user'],"");
 		}
 
@@ -125,7 +126,7 @@
 		 */
 		public function validationJson() {
 
-			return FormattedRequest::format(true, User::get_validationJson());
+			return FormattedRequest::format(true,User::get_validationJson(),"");
 
 		}
 

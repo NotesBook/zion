@@ -1,4 +1,4 @@
-<div id="classroom-modal" class="w3-modal" ng-controller="ClassRoomController">
+<div id="classroom-modal" class="w3-modal">
     <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
 
             <span onclick="document.getElementById('classroom-modal').style.display='none'" class="w3-closebtn">&times;</span>
@@ -24,7 +24,7 @@
                             type="text" 
                             value="" 
                             placeholder="Introduce tu nombre"    
-                            ng-model="form_data['name']" 
+                            ng-model="classroom_form_data['name']" 
                             ng-pattern="JSON_validation.name"
                             minlength=3
                             required>
@@ -38,13 +38,13 @@
 
                         <!-- CATEGORIES -->                        
                         <label for="countries"><b>Categoria</b></label>
-                        <select class="w3-select" ng-options="catname.category for catname in JSON_categories track by catname.category" name="categories" ng-model="form_data['category']" required>
+                        <select class="w3-select" ng-options="catname.category for catname in JSON_categories track by catname.category" name="categories" ng-model="classroom_form_data['category']" required>
                             <option value="">Seleccciona una categoria</option>
                         </select>   
 
                         <!-- SUBCATEGORIES -->                        
                         <label for="countries"><b>Subcategoria</b></label>
-                        <select class="w3-select" ng-options="subcat.name for subcat in form_data['category'].subcategories" name="subcategories" ng-model="form_data['subcategory']" required>
+                        <select class="w3-select" ng-options="subcat.name for subcat in classroom_form_data['category'].subcategories" name="subcategories" ng-model="classroom_form_data['subcategory']" required>
                             <option value="">Seleccciona una subcategoria</option>
                         </select> 
                         
@@ -54,7 +54,7 @@
                             name="description" 
                             class="w3-input" 
                             style="width:90%;resize: none" 
-                            ng-model="form_data['description']" 
+                            ng-model="classroom_form_data['description']" 
                             ng-pattern="JSON_validation.description"
                             minlength=10
                             maxlength=1000 
@@ -72,7 +72,7 @@
                         <button 
                             class="w3-btn w3-btn-block w3-section w3-grey w3-ripple" 
                             ng-disabled="classRoomForm.$invalid" 
-                            ng-click="send_form_data()">Crear Aula</button>
+                            ng-click="send_classroom_form_data()">Crear Aula</button>
 
                         <!-- SECTION 2 -->
                         <div class="w3-section w3-container w3-border-top w3-padding-hor-16 w3-light-grey">

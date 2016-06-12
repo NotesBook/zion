@@ -1,5 +1,18 @@
 <!-- Navbar -->
 <div>
+
+<!-- Show Modal when article is valid partial -->
+<div ng-include="'app/views/article/partials/article-valid-modal-partial.html'"></div>
+
+<!-- Show Modal when register is valid partial -->
+<div ng-include="'app/views/classroom/partials/classroom-valid-modal-partial.html'"></div>    
+
+<!-- Article modal form partial -->
+<div ng-include="'app/views/article/partials/article-form-partial.html'"></div>
+
+<!-- Classroom modal form partial-->
+<div  ng-include="'app/views/classroom/partials/classroom-form-partial.html'"></div>  
+
     <div class="w3-top">
         <ul class="w3-navbar w3-theme-d2 w3-left-align w3-large">
 
@@ -17,7 +30,7 @@
                 <a href="#/dashboard/classroom" class="w3-padding-large w3-hover-white w3-drop" title="Mis Aulas">
                     <i class="fa fa-mortar-board"></i> Aulas
                 </a>
-                <div class="w3-dropdown-content w3-white w3-card-4">
+                <div class="w3-dropdown-content w3-white w3-card-4" >
                         <a ng-click="show_form_classroom_modal()">Crear aula
                             <i class="fa fa-plus-square"></i>
                         </a>
@@ -46,7 +59,6 @@
                 </div>                 
             </li>    
 
-            <li class="w3-hide-small w3-right"><a href="#" class="w3-padding-large w3-hover-white" title="Mi Cuenta"><i class="fa fa-cog"></i></a></li>
         </ul>
     </div>
 
@@ -84,8 +96,8 @@
                     <p class="w3-center"><img src="images/boy_avatar.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
                     <hr>
                     <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>Diseñador Web</p>
-                    <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> Madrid, España</p>
-                    <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> 2 de Enero de 1987</p>
+                    <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{logged_user_data.region}}, {{logged_user_data.country}}</p>
+                    <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> {{logged_user_data.birthdate}}</p>
                 </div>
             </div>
             <br>
@@ -105,7 +117,7 @@
             <div class="w3-row"></div>{{classroom_item.name}}
         </div>
 
-        <div ng-include="'app/views/article/partials/article-dashboard-partial.html'"></div>
+        <div ng-include="'app/views/article/partials/article-classroom-partial.html'"></div>
      
 
         </div>

@@ -7,6 +7,14 @@ nbApp.factory('ArticlesService', ['AjaxService',
 	    	return AjaxService.send(method,uri,data);
 	    }
 
+	  	self.get_classroom_articles = function(method,uri,data) {
+	    	return AjaxService.send(method,uri,data);
+	    }	    
+
+	    self.get_all_articles = function(method,uri,data) {
+	    	return AjaxService.send(method,uri,data);
+	    }
+
 	    self.create_article = function(method,uri,data) {
 	    	return AjaxService.send(method,uri,data);
 	    }

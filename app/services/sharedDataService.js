@@ -5,7 +5,7 @@ nbApp.service('SharedDataService', function() {
   self = {};
 
   self.set_val = function(Shared_data) {
-      val = Shared_data
+      val = Shared_data;
   };
 
   self.get_val = function(){

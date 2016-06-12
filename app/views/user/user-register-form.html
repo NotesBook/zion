@@ -26,7 +26,7 @@
                         type="text" 
                         value="" 
                         placeholder="Introduce tu nombre"    
-                        ng-model="form_data['name']" 
+                        ng-model="register_form_data['name']" 
                         ng-pattern="JSON_validation.name"
                         minlength=3
                         required>
@@ -48,7 +48,7 @@
                         type="text"  
                         value="" 
                         placeholder="Introduce tus apellidos"  
-                        ng-model="form_data['surname']"
+                        ng-model="register_form_data['surname']"
                         ng-pattern="JSON_validation.surname" 
                         minlength=3
                         required>
@@ -69,7 +69,7 @@
                                     'w3-input w3-border-green': userRegisterForm.email.$touched && userRegisterForm.email.$valid}"                         
                         type="email" 
                         placeholder="Introduce tu email"  
-                        ng-model="form_data['email']"
+                        ng-model="register_form_data['email']"
                         ng-pattern="JSON_validation.email"
                         required>
                     </input>
@@ -86,7 +86,7 @@
                                     'w3-input w3-border-green': userRegisterForm.birthdate.$touched && userRegisterForm.birthdate.$valid}"                        
                         type="text"
                         placeholder="Introduce tu fecha de nacimiento"
-                        ng-model="form_data['birthdate']"
+                        ng-model="register_form_data['birthdate']"
                         ng-pattern="JSON_validation.birthdate"
                         required>
                     </input>
@@ -97,7 +97,7 @@
 
                     <!-- COUNTRIES -->                        
                     <label for="countries"><b>Pais</b></label>
-                    <select class="w3-select" name="countries" ng-model="form_data['country']">
+                    <select class="w3-select" name="countries" ng-model="register_form_data['country']">
                         <!-- Manera de iterar en los datos de un objeto JSON-->
                         <option value="">Seleccciona un pais</option>
                         <option ng-repeat="(key, val) in listCountries">{{val}}</option>
@@ -111,7 +111,7 @@
                                     'w3-input w3-border-green': userRegisterForm.region.$touched && userRegisterForm.region.$valid}"                        
                         type="text"
                         placeholder="Introduce tu region"
-                        ng-model="form_data['region']"
+                        ng-model="register_form_data['region']"
                         required>
                     </input>
                     <div ng-messages="userRegisterForm.region.$error" ng-show="userRegisterForm.region.$touched" style="color:red">
@@ -122,7 +122,7 @@
                     <button 
                         class="w3-btn w3-btn-block w3-section w3-grey w3-ripple" 
                         ng-disabled="userRegisterForm.$invalid" 
-                        ng-click="send_form_data()">Registrate</button>
+                        ng-click="send_register_form_data()">Registrate</button>
 
                     <!-- SECTION 2 -->
                     <div class="w3-section w3-container w3-border-top w3-padding-hor-16 w3-light-grey">
