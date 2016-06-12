@@ -38,7 +38,7 @@
 			//Fields
 			$this->name = trim($name);
 			$this->surname = trim($surname);
-			$this->birthdate = intval($birthdate);
+			$this->birthdate = $birthdate;
 			$this->country = trim($country);
 			$this->region = trim($region);
 			$this->email = trim($email);
