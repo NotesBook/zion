@@ -63,7 +63,10 @@
 		/* Method POST
 		 * Enroll classroom
 		 */
-		public function enroll($id_user, $classroom_id, $invitation_code) {
+		public function enroll($classroom_id, $invitation_code) {
+
+			//TODO: get id user from session
+			$id_user = $_SESSION["user"]["id"];
 
 			//1 Enroll Session User to Classroom
 			ClassroomRepository::enroll_user($id_user, $classroom_id, $invitation_code);
