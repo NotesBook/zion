@@ -67,7 +67,7 @@
 			$article_id = RoutingEngineService::get_params()[0];
 
 			//1. GET
-			$article = ArticleRepository::like($_SESSION["user"]["id"], $article_id);
+			ArticleRepository::like($_SESSION["user"]["id"], $article_id);
 
 			return FormattedRequest::format(true);
 
@@ -84,20 +84,6 @@
 			$article = ArticleRepository::unlike($_SESSION["user"]["id"], $article_id);
 
 			return FormattedRequest::format(true);
-
-		}
-
-		/* Method GET
-		 * Get article data
-		 */
-		public function likes_count() {
-			
-			$article_id = RoutingEngineService::get_params()[0];
-
-			//1. GET
-			$likes_count = ArticleRepository::likes_count($article_id);
-
-			return FormattedRequest::format(true, $likes_count);
 
 		}
 
