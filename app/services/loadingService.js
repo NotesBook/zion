@@ -11,7 +11,7 @@ nbApp.factory('LoadingService', [
 
   		self.hideLoading = function() {
   			
-  			$('#loading').css('display', 'none');
+        setTimeout(function() { $('#loading').css('display', 'none') }, 1000);
 
   		};
 	    
