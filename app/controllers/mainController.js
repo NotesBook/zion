@@ -53,14 +53,7 @@ nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsServi
         			//$cookies.delete("loginTokenCookie");
         		}
         	});
-        }  
-
-		// Set the value of the selected classroom to use anywhere
-		$scope.class_view = function(classroom_item) {
-			
-			SharedDataService.set_val(classroom_item);
-			 
-		};
+        };
 
 		// Used to toggle the menu on smaller screens when clicking on the menu button
 	 	$scope.openNav = function() {
