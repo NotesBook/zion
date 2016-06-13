@@ -16,6 +16,7 @@
 		private $region;
 		private $email;
 		private $karma;
+		private $avatar_src;
 
 		private $entry_date;
 		private $leaving_date;
@@ -27,7 +28,7 @@
 		const KARMA_POSITIVE_VOTE = 1;
 		const KARMA_NEGATIVE_VOTE = -1;
 
-		public function __construct($id, $name, $surname, $birthdate, $country, $region, $email) { 
+		public function __construct($id, $name, $surname, $birthdate, $country, $region, $email, $karma, $avatar_src) { 
 
 			//Check if user is new
 			if (is_null($id)) {
@@ -48,6 +49,8 @@
 			$this->country = trim($country);
 			$this->region = trim($region);
 			$this->email = trim($email);
+			$this->karma = trim($karma);
+			$this->avatar_src = isset($avatar_src) ? $avatar_src : 'images/boy_avatar.jpg';
 
 		}
 
@@ -170,7 +173,8 @@
 	            'country' => $this->country,
 	            'region' => $this->region,
 	            'email' => $this->email,	            
-	            'karma' => $this->karma
+	            'karma' => $this->karma,
+	            'avatar_src' => $this->avatar_src
 	        ];
 	    }
 

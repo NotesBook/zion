@@ -1,14 +1,13 @@
 
-nbApp.controller('UserController', ['$scope', 'UserService',
-	function($scope, UserService) { 
+nbApp.controller('UserController', ['$scope', '$routeParams', 'UserService',
+	function($scope, $routeParams, UserService) { 
 
-		UserService.getAll().then(
-			// Se convierte en el resolve
-			function(usersJSON) {
-				$scope.users = usersJSON;
-			},
-			function(err) {
-				alert("ERROR EN USER CONTROLLER");
-			});
+		$scope.user = {};
+
+		var user_id = $routeParams.user_id;
+
+		UserService.get_by_id(user_id).then(function(response) {
+			$scope.user = response.data;
+		});
 
 	}]);

@@ -29,6 +29,7 @@ nbApp.controller('RegisterController', ['$scope','ValidationService','CountriesS
          ValidationService.getValidationJSON().then(function(response) {
             
            $scope.JSON_validation = response; 
+           
         });
          
          // Send the form input data to process it at backend
@@ -40,8 +41,6 @@ nbApp.controller('RegisterController', ['$scope','ValidationService','CountriesS
                 } else $scope.show_valid_modal = false;
 
             });
-         }
-
-         //TODO: Redirect to dashboard if logged
+         };
 
 	}]);

@@ -11,12 +11,12 @@
 
 		public static function get_all() {
 
-			$database_result = parent::select("users", array("id", "name", "surname", "birthdate", "country", "region", "email"));
+			$database_result = parent::select("users", array("id", "name", "surname", "birthdate", "country", "region", "email", "karma", "avatar_src"));
 
 			$array_obj_result = array();
 			while($user_tupla = $database_result->fetch_array()) {
 
-				$array_obj_result[] = new User($user_tupla["id"], $user_tupla["name"], $user_tupla["surname"], $user_tupla["birthdate"], $user_tupla["country"], $user_tupla["region"], $user_tupla["email"]);
+				$array_obj_result[] = new User($user_tupla["id"], $user_tupla["name"], $user_tupla["surname"], $user_tupla["birthdate"], $user_tupla["country"], $user_tupla["region"], $user_tupla["email"], $user_tupla["karma"], $user_tupla["avatar_src"]);
 
 			}
 
@@ -55,12 +55,12 @@
 
 		public static function get_by_id($id) {
 
-			$database_result = parent::select("users", array("id", "name", "surname", "birthdate", "country", "region", "email", "session_code"), "id = $id");
+			$database_result = parent::select("users", array("id", "name", "surname", "birthdate", "country", "region", "email", "session_code", "karma", "avatar_src"), "id = $id");
 
 			$array_obj_result = array();
 			$user_tupla = $database_result->fetch_array();
 
-			$user = new User($user_tupla["id"], $user_tupla["name"], $user_tupla["surname"], $user_tupla["birthdate"], $user_tupla["country"], $user_tupla["region"], $user_tupla["email"]);
+			$user = new User($user_tupla["id"], $user_tupla["name"], $user_tupla["surname"], $user_tupla["birthdate"], $user_tupla["country"], $user_tupla["region"], $user_tupla["email"], $user_tupla["karma"], $user_tupla["avatar_src"]);
 			
 			return $user;
 

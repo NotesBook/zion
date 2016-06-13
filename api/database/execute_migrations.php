@@ -279,6 +279,32 @@ if ($version_actual ==  "6") {
 }
 
 
+if ($version_actual ==  "7") {
+	$sql_alter_table_users_avatar = 
+		"ALTER TABLE users ADD avatar_src VARCHAR(200)";
+
+	//print $sql_create_table_user_if_not_exists."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_alter_table_users_avatar);
+
+	//3. Actualizamos la versión de la bbdd
+	$sql_update_versions_8 = "INSERT INTO versions(version_number, date, description) VALUES(8, '2016/06/13', 'Añadir columna avatar')";
+	//print $sql_update_versions_0."<br>";
+	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_8);
+
+	//4. Hacemos el commit, porque lo tenemos desactivado
+	if (!MysqlDatabaseEngine::get_connection()->commit()) {
+		
+	    print("Transaction 8 commit failed\n");
+	    exit();
+
+	} else {
+
+		$version_actual = 8;
+
+	}
+}
+
+
 
 /* close connection */
 //MysqlDatabaseEngine::get_connection()->close();

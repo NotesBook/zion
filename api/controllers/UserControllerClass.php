@@ -92,12 +92,40 @@
 
 		}
 
+		/* Method POST
+		 * Upload avatar
+		 */
+		public function upload_avatar() {
+
+			move_uploaded_file($_FILES['avatar']['tmp_name'], '../uploads/' . $_FILES['avatar']['name']);
+			//TODO: Change name and upload user data of database
+
+		}
+
+		/* Method GET
+		 * Get session user
+		 */
 		public function get_logged_user_data() {
 
 			SessionManager::verify_session_or_redirect();
 			return FormattedRequest::format(true, $_SESSION['user'],"");
 
 		}
+
+		/* Method GET
+		 * Get session user
+		 */
+		public function get_by_id() {
+
+			$params = RoutingEngineService::get_params();
+			$user_id = $params[0];
+
+			$user_obj = UserRepository::get_by_id($user_id);
+			return FormattedRequest::format(true, $user_obj);
+
+		}
+
+
 
 		/* Method GET
 		 * Logout delete TOKEN
