@@ -60,6 +60,20 @@
 			return FormattedRequest::format(true);
 		}
 
+		/* Method GET
+		 * Get article data
+		 */
+		public function get_by_id() {
+
+			$classroom_id = RoutingEngineService::get_params()[0];
+
+			//1. GET
+			$classroom = ClassroomRepository::get_by_id($classroom_id);
+
+			return FormattedRequest::format(true, $classroom);
+
+		}
+
 		/* Method POST
 		 * Enroll classroom
 		 */

@@ -75,7 +75,15 @@
 
 		public static function get_by_id($id) {
 
-			//TODO:
+			$database_result = parent::select("classrooms", array("*"),
+			 						"id = $id");
+
+			$array_obj_result = array();
+			$classroom_tupla = $database_result->fetch_array();
+
+			$classroom = new Classroom($classroom_tupla["id"], $classroom_tupla["name"], $classroom_tupla["category"], $classroom_tupla["subcategory"], $classroom_tupla["description"], $classroom_tupla["image_path"], $classroom_tupla["invitation_code"], $classroom_tupla["entry_date"]);
+
+			return $classroom;	
 
 		}
 

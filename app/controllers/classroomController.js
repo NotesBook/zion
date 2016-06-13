@@ -1,5 +1,7 @@
-nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'CategoriesService', 'ClassroomsService','SharedDataService','ArticlesService','UserService','$window',
-	function($scope, ValidationService, CategoriesService,ClassroomsService,SharedDataService,ArticlesService,UserService,$window) {
+nbApp.controller('ClassRoomController',['$scope', '$routeParams', 'ValidationService', 'CategoriesService', 'ClassroomsService','SharedDataService','ArticlesService','UserService','$window',
+	function($scope, $routeParams, ValidationService, CategoriesService,ClassroomsService,SharedDataService,ArticlesService,UserService,$window) {
+
+        $scope.classroom_id = $routeParams.classroom_id;
 
         $scope.classroom_form_data = {
             'name':"",
@@ -20,10 +22,13 @@ nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'Categori
         // --- SERVICES ---
 
         // Get the classroom object recived from dashboard
-        $scope.classroom_item = SharedDataService.get_val();  
+        ClassroomsService.get_classroom($scope.classroom_id)
+                                .then(function (response){
+                                    $scope.classroom_item = response.data;
+                                });  
 
         // Get all classroom articles by id
-        ArticlesService.get_last_articles("GET","api/classroom/last_articles/"+$scope.classroom_item.id).then(function(response) {
+        ArticlesService.get_last_articles("GET","api/classroom/last_articles/" + $scope.classroom_id).then(function(response) {
 
             $scope.last_classroom_articles = response.data;
 
@@ -61,7 +66,7 @@ nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'Categori
         // Refresh the classroom side list when classroom is created
         $scope.refresh_articles = function() {
 
-            ArticlesService.get_classroom_articles('GET',"api/classroom/last_articles/"+$scope.classroom_item.id).then(function(response) {
+            ArticlesService.get_classroom_articles('GET',"api/classroom/last_articles/"+$scope.classroom_id).then(function(response) {
                 $scope.last_classroom_articles = response.data;
             });
         };          
@@ -98,7 +103,7 @@ nbApp.controller('ClassRoomController',['$scope', 'ValidationService', 'Categori
         // Send the form input data to process it at backend
         $scope.send_article_form_data = function() {
             
-            $scope.article_form_data['classroom_id'] = $scope.classroom_item.id;
+            $scope.article_form_data['classroom_id'] = $scope.classroom_id;
 
             $scope.article_form_data['user_id'] = $scope.logged_user_data.id
 
