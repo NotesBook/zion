@@ -45,7 +45,12 @@
 
 		}
 
-		/** Sets */
+		/** Gets */
+		function get_last_modified_date() {
+
+			return $this->last_modified_date;
+
+		}
 
 	    /** Validations */
 	    public static function check_data($author_id, $classroom_id, $title, $body, $tags, $topic) {

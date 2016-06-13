@@ -32,9 +32,18 @@
 			$articles = array();
 			foreach ($classrooms as $key => $classroom) {
 				
-				$articles[] = ArticleRepository::get_all_by_classroom($classroom->get_id());
+				$articles = array_merge($articles, ArticleRepository::get_all_by_classroom($classroom->get_id()));
 
 			}
+
+			function last_articles_order_compare($a, $b) {
+
+				return ($a->get_last_modified_date() < $b->get_last_modified_date()) ? -1 : 1;
+
+			}
+
+			//print_r($articles);
+			//usort($articles, "last_articles_order_compare");
 
 			//5. Return Ok
 			return FormattedRequest::format(true, $articles);
