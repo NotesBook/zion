@@ -109,7 +109,6 @@ nbApp.controller('ClassRoomController',['$scope', '$routeParams', 'ValidationSer
             $scope.article_form_data['user_id'] = $scope.logged_user_data.id
 
             ArticlesService.create_article('POST','api/article/save',JSON.stringify($scope.article_form_data)).then(function(response) {
-                console.log(response);
                 if(response.valid == true) {
 
                     document.getElementById('valid-article-modal').style.display='block';
