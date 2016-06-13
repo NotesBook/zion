@@ -36,4 +36,6 @@ nbApp.controller('RegisterController', ['$scope','ValidationService','CountriesS
             });
          }
 
+         //TODO: Redirect to dashboard if logged
+
 	}]);

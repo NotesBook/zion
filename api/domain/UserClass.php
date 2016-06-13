@@ -15,11 +15,17 @@
 		private $country;
 		private $region;
 		private $email;
+		private $karma;
 
 		private $entry_date;
 		private $leaving_date;
 
 		private $security_code;
+
+		//Karma Values
+		const KARMA_CREATE_ARTICLE = 1;
+		const KARMA_POSITIVE_VOTE = 1;
+		const KARMA_NEGATIVE_VOTE = -1;
 
 		public function __construct($id, $name, $surname, $birthdate, $country, $region, $email) { 
 
@@ -154,10 +160,11 @@
 	            'id' => $this->id,
 	            'name' => $this->name,
 	            'surname' =>  $this->surname,
-	            'birthdate' => $this->birthdate,
+	            'birthdate' => date('Y/m/d', $this->birthdate),
 	            'country' => $this->country,
 	            'region' => $this->region,
-	            'email' => $this->email
+	            'email' => $this->email,	            
+	            'karma' => $this->karma
 	        ];
 	    }
 

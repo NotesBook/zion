@@ -85,7 +85,7 @@
 
 
 	/** migrations - comment to avoid executing file */
-	// include('database/execute_migrations.php');
+	include('database/execute_migrations.php');
 
 	/** Init Application
 	 *

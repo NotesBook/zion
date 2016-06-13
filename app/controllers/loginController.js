@@ -35,4 +35,6 @@ nbApp.controller('LoginController', ['$scope', '$routeParams', '$location', '$co
 
 		//TODO: Delete cookie loginTokenCookie when logout
 
+		//TODO: Redirect to dashboard if logged
+
 	}]);

@@ -49,6 +49,8 @@ nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsServi
         	UserService.logout().then(function(response) {
         		if(response.valid == true) {
         			$window.location.href = '#/';
+        			//TODO: Delete cookie
+        			//$cookies.delete("loginTokenCookie");
         		}
         	});
         }  

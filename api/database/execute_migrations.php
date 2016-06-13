@@ -97,23 +97,6 @@ if($version_actual == "0") {
 	//print $sql_create_table_users_if_not_exists."<br>";
 	MysqlDatabaseEngine::get_connection()->query($sql_create_table_users_if_not_exists);
 
-	//2. Insertamos, si no lo están ya los usuarios de prueba (Habrá que hacerlo para cada usuario que se quiera insertar)
-	function insertar_usuario_si_no_existe($name, $surname, $birthdate, $country, $region, $email) {
-		$sql_check_user1_exists = "SELECT * FROM users WHERE email = '$email'";
-		//print $sql_check_user1_exists."<br>";
-		$result_user1_exists = MysqlDatabaseEngine::get_connection()->query($sql_check_user1_exists);
-		$row_check_user1_exists = $result_user1_exists->fetch_array();
-
-		if(is_null($row_check_user1_exists["name"])) { //Si no existe ningún registro, insertamos la versión 0
-			$sql_insert_user = "INSERT INTO users(name, surname, birthdate, country, region, email) VALUES('$name', '$surname', STR_TO_DATE('$birthdate','%d/%m/%Y'), '$country', '$region', '$email')";
-			//print $sql_insert_user."<br>";
-			MysqlDatabaseEngine::get_connection()->query($sql_insert_user);
-		} 
-	}
-
-	insertar_usuario_si_no_existe("galo", "arargoneses", "01/05/2013", "Spain", "Madrid", "galo.aragoneses@gmail.com");
-	insertar_usuario_si_no_existe("juan f", "medina", "01/05/2013", "Spain", "Madrid", "juanfmedinar@gmail.com");
-
 	//3. Actualizamos la versión de la bbdd
 	$sql_update_versions_1 = "INSERT INTO versions(version_number, date, description) VALUES(1, '2016/04/09', 'Creación de tabla usuarios, inserción de datos de prueba')";
 	//print $sql_update_versions_0."<br>";
@@ -294,6 +277,6 @@ if ($version_actual = "6") {
 /* close connection */
 //MysqlDatabaseEngine::get_connection()->close();
 
-echo "versión actual de bbdd:".$version_actual."<br>";
+//echo "versión actual de bbdd:".$version_actual."<br>";
 
  ?>
