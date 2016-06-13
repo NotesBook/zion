@@ -33,13 +33,22 @@
 
 		public static function get_by_id($id) {
 
-			$database_result = parent::select("articles", array("*"),
-			 						"id = $id");
+			$database_result = parent::select("articles", array("*"), "id = $id");
 
 			$array_obj_result = array();
 			$article_tupla = $database_result->fetch_array();
 
-			$article = new Article($article_tupla["author_id"], $article_tupla["classroom_id"], $article_tupla["title"], $article_tupla["body"], $article_tupla["tags"], $article_tupla["topic"], $article_tupla["id"], $article_tupla["create_date"], $article_tupla["modify_date"], $article_tupla["delete_date"]);
+			//likes and unlikes count
+			$likes_count_result = parent::select("articles_likes", array("*"), "article_id = ".$article_tupla["id"]." AND `like` = 1");
+			$unlikes_count_result = parent::select("articles_likes", array("*"), "article_id = ".$article_tupla["id"]." AND `like` = 0");
+
+			$likes_count = $likes_count_result->num_rows;
+			$unlikes_count = $unlikes_count_result->num_rows;
+
+			//author_name
+			$author = UserRepository::get_by_id($article_tupla["author_id"]);
+
+			$article = new Article($article_tupla["author_id"], $article_tupla["classroom_id"], $article_tupla["title"], $article_tupla["body"], $article_tupla["tags"], $article_tupla["topic"], $article_tupla["id"], $article_tupla["create_date"], $article_tupla["modify_date"], $article_tupla["delete_date"], $likes_count, $unlikes_count, $author);
 
 			return $article;	
 		}
@@ -55,8 +64,8 @@
 			while($article_tupla = $database_articles_result->fetch_array()) {
 
 				//likes and unlikes count
-				$likes_count_result = parent::select("articles_likes", array("*"), "article_id = ".$article_tupla["id"], "`like` = 1");
-				$unlikes_count_result = parent::select("articles_likes", array("*"), "article_id = ".$article_tupla["id"], "`like` = 0");
+				$likes_count_result = parent::select("articles_likes", array("*"), "article_id = ".$article_tupla["id"]." AND `like` = 1");
+				$unlikes_count_result = parent::select("articles_likes", array("*"), "article_id = ".$article_tupla["id"]." AND `like` = 0");
 
 				$likes_count = $likes_count_result->num_rows;
 				$unlikes_count = $unlikes_count_result->num_rows;
