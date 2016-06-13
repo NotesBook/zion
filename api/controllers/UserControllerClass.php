@@ -92,6 +92,19 @@
 
 		}
 
+		/* Method POST
+		 * Upload avatar
+		 */
+		public function upload_avatar() {
+
+			move_uploaded_file($_FILES['avatar']['tmp_name'], '../uploads/' . $_FILES['avatar']['name']);
+			//TODO: Change name and upload user data of database
+
+		}
+
+		/* Method GET
+		 * Get session user
+		 */
 		public function get_logged_user_data() {
 
 			SessionManager::verify_session_or_redirect();

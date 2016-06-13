@@ -39,6 +39,14 @@ nbApp.factory('UserService', ['AjaxService',
 
 	  	};
 
+	  	self.upload_avatar = function(avatar_src) {
+
+        	var formData = new FormData();
+        	formData.append("avatar", avatar_src);
+	  		return AjaxService.send('POST', 'api/user/upload_avatar', formData);
+
+	  	};
+
 	    return self;
 
  	}]);
