@@ -1,5 +1,5 @@
-nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsService','UserService','SharedDataService','ArticlesService','CategoriesService','$window',
-	function($scope, SecurityService,ClassroomsService,UserService,SharedDataService,ArticlesService,CategoriesService,$window) {
+nbApp.controller('MainController', ['$scope', '$cookies', 'SecurityService','ClassroomsService','UserService','SharedDataService','ArticlesService','CategoriesService','$window',
+	function($scope, $cookies, SecurityService,ClassroomsService,UserService,SharedDataService,ArticlesService,CategoriesService,$window) {
 
 		SecurityService.checkSession();
 
@@ -49,8 +49,7 @@ nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsServi
         	UserService.logout().then(function(response) {
         		if(response.valid == true) {
         			$window.location.href = '#/';
-        			//TODO: Delete cookie
-        			//$cookies.delete("loginTokenCookie");
+                    $cookies.remove("loginTokenCookie");
         		}
         	});
         };

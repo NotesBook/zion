@@ -73,8 +73,21 @@
 
  			$date = date('Y/m/d H:i:s');
 
-			//2. Insert articles_likes
-			parent::insert("articles_likes", "like, article_id, user_id, date", "1, $article_id, $user_id, '$date'");
+ 			//2. Check if like or unlike exists
+ 			$article_like_result = parent::select("articles_likes", array("*"), "article_id = $article_id AND user_id = $user_id");
+
+ 			if ($article_like_result->num_rows > 0) {
+
+				parent::update("articles_likes", 
+					"`like` = 1, date = '$date'",
+					"article_id = $article_id AND user_id = $user_id");
+
+ 			} else {
+
+				//2. Insert articles_likes
+				parent::insert("articles_likes", "`like`, article_id, user_id, date", "1, $article_id, $user_id, '$date'");
+
+ 			}
 
 		}
 
@@ -87,10 +100,23 @@
 			$article = self::get_by_id($article_id);
 			//UserRepository::modify_karma(User::KARMA_UNLIKE_ARTICLE, $user_id);
 
+ 			//2. Check if like or unlike exists
+ 			$article_like_result = parent::select("articles_likes", array("*"), "article_id = $article_id AND user_id = $user_id");
+
  			$date = date('Y/m/d H:i:s');
 
-			//2. Insert articles_likes
-			parent::insert("articles_likes", "like, article_id, user_id, date", "0, $article_id, $user_id, '$date'");
+ 			if ($article_like_result->num_rows > 0) {
+
+				parent::update("articles_likes", 
+					"`like` = 0, date = '$date'",
+					"article_id = $article_id AND user_id = $user_id");
+
+ 			} else {
+
+				//2. Insert articles_likes
+				parent::insert("articles_likes", "`like`, article_id, user_id, date", "0, $article_id, $user_id, '$date'");
+ 				
+ 			}
 
 		}
 

@@ -77,6 +77,7 @@ nbApp.controller('ClassRoomController',['$scope', '$routeParams', 'ValidationSer
             UserService.logout().then(function(response) {
                 if(response.valid == true) {
                     $window.location.href = '#/';
+                    $cookies.remove("loginTokenCookie");
                 }
             });
         }                 
