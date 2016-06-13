@@ -43,10 +43,18 @@
 		public static function check_session_token() {
 
 			if(!isset($_SESSION['user'])) {
-				http_response_code(405);
 				return false;
 			} else {
 				return true;
+			}
+
+		}
+
+		public static function verify_session_or_redirect() {
+
+			if (!self::check_session_token()) {
+				http_response_code(405);
+				exit();
 			}
 
 		}

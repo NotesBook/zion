@@ -67,14 +67,30 @@
 		 */
 		public static function like($user_id, $article_id) {
 
-			//1. Get Article
+			//1. Check Article exits
 			$article = self::get_by_id($article_id);
-			//UserRepository::modify_karma(User::KARMA_CREATE_ARTICLE, $user_id);
+			//UserRepository::modify_karma(User::KARMA_LIKE_ARTICLE, $user_id);
 
  			$date = date('Y/m/d H:i:s');
 
 			//2. Insert articles_likes
-			parent::insert("articles_likes", "article_id, user_id, date", "$article_id, $user_id, '$date'");
+			parent::insert("articles_likes", "like, article_id, user_id, date", "1, $article_id, $user_id, '$date'");
+
+		}
+
+		/** unlike article
+		 *
+		 */
+		public static function unlike($user_id, $article_id) {
+
+			//1. Check Article exits
+			$article = self::get_by_id($article_id);
+			//UserRepository::modify_karma(User::KARMA_UNLIKE_ARTICLE, $user_id);
+
+ 			$date = date('Y/m/d H:i:s');
+
+			//2. Insert articles_likes
+			parent::insert("articles_likes", "like, article_id, user_id, date", "0, $article_id, $user_id, '$date'");
 
 		}
 

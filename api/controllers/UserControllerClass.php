@@ -13,6 +13,11 @@
 
 			$domain_name = str_replace("Controller", "", static::class);
 
+			if(!SessionManager::check_session_token()) {
+				http_response_code(405);
+				return FormattedRequest::format(false, "", "Invalid Session");
+			}
+
 			parent::__construct($domain_name);
 
 		}
@@ -93,8 +98,10 @@
 		}
 
 		public function get_logged_user_data() {
-			
+
+			SessionManager::verify_session_or_redirect();
 			return FormattedRequest::format(true, $_SESSION['user'],"");
+
 		}
 
 		/* Method GET

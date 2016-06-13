@@ -76,6 +76,20 @@
 		/* Method GET
 		 * Get article data
 		 */
+		public function unlike() {
+
+			$article_id = RoutingEngineService::get_params()[0];
+
+			//1. GET
+			$article = ArticleRepository::unlike($_SESSION["user"]["id"], $article_id);
+
+			return FormattedRequest::format(true);
+
+		}
+
+		/* Method GET
+		 * Get article data
+		 */
 		public function likes_count() {
 			
 			$article_id = RoutingEngineService::get_params()[0];

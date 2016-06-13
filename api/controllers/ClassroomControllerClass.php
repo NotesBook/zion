@@ -12,6 +12,8 @@
 		public function __construct() {
 
 			$domain_name = str_replace("Controller", "", static::class);
+			
+			SessionManager::verify_session_or_redirect();
 
 			parent::__construct($domain_name);
 

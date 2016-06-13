@@ -102,7 +102,12 @@ if($version_actual == "0") {
 	//print $sql_update_versions_0."<br>";
 	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_1);
 
-	$version_actual = 1;
+	if (!MysqlDatabaseEngine::get_connection()->commit()) {
+	    print("Transaction 1 commit failed\n");
+	    exit();
+	} else {
+		$version_actual = 1;
+	}
 }
 
 //1. Comprobamos si existe la tabla de versiones y la creamos, sólo si nuestra versión actual es la anterior a esta Migración (la versión 0)
@@ -132,9 +137,9 @@ if ($version_actual == "1") {
 	if (!MysqlDatabaseEngine::get_connection()->commit()) {
 	    print("Transaction 2 commit failed\n");
 	    exit();
+	} else {
+		$version_actual = 2;
 	}
-
-	$version_actual = 2;
 }
 
 if ($version_actual == "2") {
@@ -164,24 +169,25 @@ if ($version_actual == "2") {
 	if (!MysqlDatabaseEngine::get_connection()->commit()) {
 	    print("Transaction 3 commit failed\n");
 	    exit();
+	} else {
+		$version_actual = 3;
 	}
-
-	$version_actual = 3;
 }
 
-if ($version_actual = "3") {
+if ($version_actual == "3") {
 	$sql_create_table_articles_likes_if_not_exists = 
 		"CREATE TABLE IF NOT EXISTS articles_likes (
 	        article_id		INT NOT NULL,
 	        user_id 		INT NOT NULL,
+			`like`			tinyint(1) DEFAULT NULL,
 	        date 		 	DATETIME DEFAULT NULL,
 	        PRIMARY KEY (article_id, user_id)
 	    )";
-	//print $sql_create_table_user_if_not_exists."<br>";
+	print $sql_create_table_articles_likes_if_not_exists."<br>";
 	MysqlDatabaseEngine::get_connection()->query($sql_create_table_articles_likes_if_not_exists);
 
 	//3. Actualizamos la versión de la bbdd
-	$sql_update_versions_4 = "INSERT INTO versions(version_number, date, description) VALUES(4, '2016/06/09', 'Creación de tabla de de artículo')";
+	$sql_update_versions_4 = "INSERT INTO versions(version_number, date, description) VALUES(4, '2016/06/09', 'Creación de tabla de likes de artículo')";
 	//print $sql_update_versions_0."<br>";
 	MysqlDatabaseEngine::get_connection()->query($sql_update_versions_4);
 
@@ -189,12 +195,12 @@ if ($version_actual = "3") {
 	if (!MysqlDatabaseEngine::get_connection()->commit()) {
 	    print("Transaction 4 commit failed\n");
 	    exit();
+	} else {
+		$version_actual = 4;
 	}
-
-	$version_actual = 4;
 }
 
-if ($version_actual = "4") {
+if ($version_actual ==  "4") {
 	$sql_create_table_comments_if_not_exists = 
 		"CREATE TABLE IF NOT EXISTS comments (
 	        id				INT NOT NULL,
@@ -218,13 +224,13 @@ if ($version_actual = "4") {
 	if (!MysqlDatabaseEngine::get_connection()->commit()) {
 	    print("Transaction 5 commit failed\n");
 	    exit();
+	} else {
+		$version_actual = 5;
 	}
-
-	$version_actual = 5;
 }
 
 
-if ($version_actual = "5") {
+if ($version_actual ==  "5") {
 	$sql_create_table_classrooms_users_if_not_exists = 
 		"CREATE TABLE IF NOT EXISTS classrooms_users (
 	        classroom_id	INT NOT NULL,
@@ -245,13 +251,13 @@ if ($version_actual = "5") {
 	if (!MysqlDatabaseEngine::get_connection()->commit()) {
 	    print("Transaction 6 commit failed\n");
 	    exit();
+	} else {
+		$version_actual = 6;
 	}
-
-	$version_actual = 6;
 }
 
 
-if ($version_actual = "6") {
+if ($version_actual ==  "6") {
 	$sql_alter_table_users_if_not_exists = 
 		"ALTER TABLE users ADD karma INT DEFAULT 0";
 
@@ -267,9 +273,9 @@ if ($version_actual = "6") {
 	if (!MysqlDatabaseEngine::get_connection()->commit()) {
 	    print("Transaction 7 commit failed\n");
 	    exit();
+	} else {
+		$version_actual = 7;
 	}
-
-	$version_actual = 7;
 }
 
 

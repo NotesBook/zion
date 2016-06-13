@@ -3,7 +3,7 @@ nbApp.controller('RegisterController', ['$scope','ValidationService','CountriesS
 
         //TODO: Block Screen until validate session
         UserService.check_session_dashboard_redirection().then(function(response) {
-            if (response.data["active_session"])
+            if (response.data && response.data["active_session"])
                 $location.path("dashboard/");
         });
 
