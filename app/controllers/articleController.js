@@ -3,6 +3,10 @@ nbApp.controller('ArticleController', ['$scope','$routeParams','$location','Arti
 
 		$scope.show_edit_button = false;
 
+		$scope.show_text_angular = false;
+
+		$scope.show_save_button = false;
+
 		$scope.route_path = $location;
 
 		// Get the article_id recibed by URL
@@ -19,12 +23,12 @@ nbApp.controller('ArticleController', ['$scope','$routeParams','$location','Arti
 
 			// Get article data by ID
 			ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
-				
+
 				$scope.article_data = response.data;
 
 				if ($scope.article_data.author_id == $scope.logged_user_data.id) {
-					$scope.show_edit_button = true;
-				} else $scope.show_edit_button = false;      
+					$scope.show_edit_buttons = true;
+				} else $scope.show_edit_buttons = false;      
 			});
 
 		});
@@ -39,8 +43,11 @@ nbApp.controller('ArticleController', ['$scope','$routeParams','$location','Arti
 
         });	
 
-		// if ($scope.article_data.author_id == $scope.logged_user_data.id) {
-		// 	$scope.show_edit_button = true;
-		// } else $scope.show_edit_button = false;        	
+		$scope.edit_article = function() {
+
+			document.getElementById($scope.article_data.title).setAttribute("contenteditable", "true");
+			$scope.show_text_angular = true;
+			$scope.show_save_button = true;
+		}    	
 
 }])
