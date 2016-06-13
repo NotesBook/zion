@@ -13,11 +13,6 @@
 
 			$domain_name = str_replace("Controller", "", static::class);
 
-			if(!SessionManager::check_session_token()) {
-				http_response_code(405);
-				return FormattedRequest::format(false, "", "Invalid Session");
-			}
-
 			parent::__construct($domain_name);
 
 		}
