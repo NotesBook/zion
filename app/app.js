@@ -35,6 +35,9 @@ nbApp.config(['$routeProvider',
 			}).when('/setup', {
 				templateUrl: 'app/views/setup/setup-view.html',
 				controller: 'SetupController'
+			}).when('/user/:user_id', {
+				templateUrl: 'app/views/user/user-view.html',
+				controller: 'UserController'
 			}).
 			otherwise({
 				redirectTo: '/'

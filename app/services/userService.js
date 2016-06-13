@@ -47,6 +47,12 @@ nbApp.factory('UserService', ['AjaxService',
 
 	  	};
 
+	  	self.get_by_id = function(user_id) {
+
+	  		return AjaxService.send('GET', 'api/user/get_by_id/' + user_id);
+
+	  	};
+
 	    return self;
 
  	}]);
