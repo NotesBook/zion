@@ -23,6 +23,15 @@ nbApp.config(['$routeProvider',
 			}).when('/dashboard/classroom/', {
 				templateUrl: 'app/views/classroom/classroom-view.html',
 				controller: 'ClassRoomController'
+			}).when('/article/edit/:id', {
+				templateUrl: 'app/views/article/article-view.html',
+				controller: 'ArticleController'
+			}).when('/article/:id', {
+				templateUrl: 'app/views/article/article-view.html',
+				controller: 'ArticleController'
+			}).when('/article/create', {
+				templateUrl: 'app/views/article/article-view.html',
+				controller: 'ArticleController'
 			}).
 			otherwise({
 				redirectTo: '/'

@@ -1,6 +1,7 @@
 <div class="w3-col m8"> 
     <div class="w3-row-padding" ng-repeat="article in dashboard_articles">
-        <div ng-repeat="article in article">
+        <a href="#/article/{{article.id}}"><div ng-repeat="article in article">
+            
             <div class="w3-col m12">
               	<div class="w3-card-2 w3-round w3-white">
                 	<div class="w3-container w3-padding">
@@ -14,6 +15,6 @@
                     </div>
                 </div><br>
             </div>
-        </div>
+        </div></a>
     </div>
 </div>
