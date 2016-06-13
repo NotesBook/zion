@@ -112,8 +112,7 @@
 	            'delete_date' => $this->delete_date,
 	            'likes_count' => $this->likes_count,
 	            'unlikes_count' => $this->unlikes_count,
-	            'author_name' => isset($this->author) ? $this->author->get_complete_name() : "",
-	            'author_id' => isset($this->author) ? $this->author->get_id() : 0
+	            'author_name' => isset($this->author) ? $this->author->get_complete_name() : ""
 	        ];
 	    }
 
