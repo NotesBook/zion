@@ -1,5 +1,5 @@
-nbApp.controller('ArticleController', ['$scope','$routeParams','$location','ArticlesService','ValidationService','SharedDataService','UserService','LoadingService',
-	function($scope,$routeParams,$location,ArticlesService,ValidationService,SharedDataService,UserService,LoadingService) {
+nbApp.controller('ArticleController', ['$scope','$routeParams','$location','ArticlesService','ValidationService','SharedDataService','UserService','LoadingService','ClassroomsService',
+	function($scope,$routeParams,$location,ArticlesService,ValidationService,SharedDataService,UserService,LoadingService,ClassroomsService) {
 
 		$scope.article_form_data = {
 			'article_id': "",
@@ -10,9 +10,22 @@ nbApp.controller('ArticleController', ['$scope','$routeParams','$location','Arti
             "topic": ""
         }; 
 
+		$scope.create_article_form_data = {
+            "classroom_id": "",
+            "title": "",
+            "body": "",
+            "tags": "",
+            "topic": ""
+        };         
+
 		LoadingService.showLoading();
 
 
+		$scope.show_edit_view = false;
+
+		$scope.show_read_view = true;
+
+		$scope.show_create_view = false;		
 
 		$scope.show_edit_button = false;
 
@@ -33,10 +46,12 @@ nbApp.controller('ArticleController', ['$scope','$routeParams','$location','Arti
 
 		$scope.body_content;
 
-		// Get likes count
-		ArticlesService.get_likes_count($scope.article_id).then(function(response) {
-			$scope.likes_count = response.data;
-		}) 
+        // Get all Classrooms by user
+        ClassroomsService.get_classrooms('GET',"api/dashboard/my_classrooms").then(function(response) {
+
+            $scope.classroom_list = response.data;
+
+        })   		
 
 		// Get logged in user data
 		UserService.get_logged_user_data().then(function(response) {
@@ -64,6 +79,7 @@ nbApp.controller('ArticleController', ['$scope','$routeParams','$location','Arti
             LoadingService.hideLoading();
         });	
 
+        // Add like to article when thumbs-up is clicked
         $scope.like = function() {
 
         	ArticlesService.like($scope.article_id).then(function(response) {
@@ -73,38 +89,52 @@ nbApp.controller('ArticleController', ['$scope','$routeParams','$location','Arti
 						$scope.article_data = response.data;
 					
 						LoadingService.hideLoading();
-
-						if ($scope.article_data.author_id == $scope.logged_user_data.id) {
-							$scope.show_edit_button = true;
-						} else $scope.show_edit_buttons = false;      
 					});
-
         		}
+        	});
+        }
+
+        // // Add unlike to article when thumbs-up is clicked
+        $scope.unlike = function() {
+
+        	ArticlesService.unlike($scope.article_id).then(function(response) {
+        		if(response.valid == true) {
+        			ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
+
+						$scope.article_data = response.data;
+						
+						LoadingService.hideLoading();
+  
+					});
+  	     		}
         	});
 
         }
 
-        $scope.unlike = function() {
 
-        	ArticlesService.unlike($scope.article_id);
-        	$scope.unlikes = article_data.likes_count;        	
-        }
+		$scope.show_edit_article_view = function() {
 
-
-
-		$scope.edit_article = function() {
-
-			document.getElementById($scope.article_data.title).setAttribute("contenteditable", "true");
-
-			$scope.article_form_data['body'] = $scope.article_data.body;
-			// Show the text angular box when edit button is pressed
-			$scope.show_text_angular = true;
-			// Show the save button when edit button is pressed
-			$scope.show_save_button = true;	
-
-			$scope.hide_body_content = true;
+			$scope.show_edit_view = true;
+			$scope.show_read_view = false;
+			$scope.show_create_view = false;
 
 		}    
+
+		$scope.show_create_article_view = function() {
+
+			$scope.show_edit_view = false;
+			$scope.show_read_view= false;
+			$scope.show_create_view = true;
+
+		} 
+
+		$scope.save_new_article = function() {
+			
+			$scope.create_article_form_data['classroom_id'] = $scope.article_data.classroom_id;
+
+			ArticlesService.save_article(JSON.stringify($scope.create_article_form_data));
+
+		};		
 
 		$scope.save_edited_article = function() {
 
@@ -112,9 +142,10 @@ nbApp.controller('ArticleController', ['$scope','$routeParams','$location','Arti
 			$scope.article_form_data['tags'] = $scope.article_data.tags;
 			$scope.article_form_data['topic'] = $scope.article_data.topic;
 			$scope.article_form_data['classroom_id'] = $scope.article_data.id;
-			$scope.article_form_data['article_id'] = $scope.article_data.classroom_id;					
-			
-			ArticlesService.edit_article(JSON.stringify($scope.article_form_data));
+			$scope.article_form_data['article_id'] = $scope.article_data.classroom_id;
+			$scope.article_form_data['body'] = $scope.article_data.body;					
+
+			ArticlesService.save_article(JSON.stringify($scope.article_form_data));
 
 		};
 

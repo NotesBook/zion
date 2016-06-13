@@ -23,7 +23,7 @@ nbApp.factory('ArticlesService', ['AjaxService',
 	    	return AjaxService.send(method,uri,data);
 	    }
 
-	    self.edit_article = function(data) {
+	    self.save_article = function(data) {
 	    	var method = 'post',
 	    		uri = 'api/article/save',
 	    		data = data;
@@ -43,18 +43,6 @@ nbApp.factory('ArticlesService', ['AjaxService',
 	    		uri = 'api/article/unlike/'+article_id;
 
 	    	return AjaxService.send(method,uri);	    	
-	    }
-
-
-	    self.get_likes_count = function(article_id) {
-	    	var method = 'get',
-	    		uri = 'api/article/likes_count/'+article_id;
-
-	    	return AjaxService.send(method,uri);
-	    }
-
-	    self.create_article = function(method,uri,data) {
-	    	return AjaxService.send(method,uri,data);
 	    }
 	    
 	    return self;

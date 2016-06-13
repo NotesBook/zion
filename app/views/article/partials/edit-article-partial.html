@@ -1,0 +1,23 @@
+        <div id="{{article_data.title}}" ng-model="article_form_data['title']" ng-class="{ 'w3-input w3-red': show_text_angular}" contenteditable="false" class="w3-col m8 w3-large w3-teal w3-center w3-section w3-card-2 w3-padding w3-round">
+            <div class="w3-row">Edicion de articulo</div>
+        </div>
+
+            <div class="w3-col m8"> 
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card-2 w3-round w3-white">
+
+                            <div class="w3-container w3-padding">
+                                
+                                <div class="w3-section"><label class="create w3-label">Titulo: </label><input class="w3-input" type="text" value="{{article_data.title}}"></input></div>
+                                <div class="w3-section"><label class="create w3-label">Tags: </label><input class="w3-input" placeholder="Introduce los tags separados por ','" type="text" value="{{article_data.tags}}"></input></div>
+                                <div class="w3-section"><label class="create w3-label">Tema: </label><input class="w3-input" placeholder="Introduce un tema" type="text" value="{{article_data.topic}}"></input></div>
+                                <label class="w3-label">Contenido: </label><text-angular ng-model="article_data.body" class="article w3-input w3-border" ta-toolbar="[['h1','h2','h3','h4','p','bold','italics','ul','ol','justifyLeft','justifyCenter','justifyRight','justifyFull', 'redo', 'undo','insertImage','insertLink', 'insertVideo']]"></text-angular ><br>
+
+                                <button ng-click="save_edited_article()" class="w3-btn-block w3-center"><i class="fa fa-pencil"></i> Editar Articulo</button>
+                                                                    
+                            </div>
+                        </div><br>
+                    </div>
+                </div>
+            </div>
