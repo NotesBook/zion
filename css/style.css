@@ -22,3 +22,8 @@ text-angular {
 a {
 	text-decoration: none;
 }
+
+div.article {
+
+	cursor: pointer;
+}

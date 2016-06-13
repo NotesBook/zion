@@ -55,6 +55,9 @@ nbApp.controller('MainController', ['$scope', 'SecurityService','ClassroomsServi
         	});
         };
 
+        $scope.redirect_to_article = function(article_id) {
+            $window.location.href = '#/article/'+article_id;
+        }
 		// Used to toggle the menu on smaller screens when clicking on the menu button
 	 	$scope.openNav = function() {
 		    var x = document.getElementById("navToogle");
