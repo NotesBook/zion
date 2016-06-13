@@ -1,6 +1,12 @@
 nbApp.controller('LoginController', ['$scope', '$routeParams', '$location', '$cookies', 'UserService',
 	function($scope, $routeParams, $location, $cookies, UserService) { 
 
+		//TODO: Block Screen until validate session
+		UserService.check_session_dashboard_redirection().then(function(response) {
+  			if (response.data["active_session"])
+  				$location.path("dashboard/");
+  		});
+
 		$scope.login_form_data = {
 			'email':"",
 			'password':""
@@ -34,7 +40,5 @@ nbApp.controller('LoginController', ['$scope', '$routeParams', '$location', '$co
 		};
 
 		//TODO: Delete cookie loginTokenCookie when logout
-
-		//TODO: Redirect to dashboard if logged
 
 	}]);
