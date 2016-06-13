@@ -19,7 +19,12 @@
 		private $creation_date;
 		private $delete_date;
 
-		public function __construct($author_id, $classroom_id, $title, $body, $tags, $topic, $article_id, $last_modified_date = null, $creation_date = null, $delete_date = null) { 
+		//Non database likes
+		private $likes_count = 0;
+		private $unlikes_count = 0;
+		private $author_name;
+
+		public function __construct($author_id, $classroom_id, $title, $body, $tags, $topic, $article_id, $last_modified_date, $creation_date, $delete_date, $likes_count = 0, $unlikes_count = 0, $author = null) { 
 
 			//Fields
 			$this->id = isset($article_id) ? intval($article_id) : null;
@@ -33,9 +38,19 @@
 			$this->creation_date = $creation_date;
 			$this->delete_date = $delete_date;
 
+			//Non Database
+			$this->likes_count = $likes_count;
+			$this->unlikes_count = $unlikes_count;
+			$this->author = $author;
+
 		}
 
-		/** Sets */
+		/** Gets */
+		function get_last_modified_date() {
+
+			return $this->last_modified_date;
+
+		}
 
 	    /** Validations */
 	    public static function check_data($author_id, $classroom_id, $title, $body, $tags, $topic) {
@@ -79,6 +94,7 @@
 
 	    }
 
+
 		/** JSON Serializer 
 		 */
 
@@ -93,7 +109,11 @@
 	            'tags' => $this->tags,
 	            'last_modified_date' => $this->last_modified_date,
 	            'creation_date' => $this->creation_date,
-	            'delete_date' => $this->delete_date
+	            'delete_date' => $this->delete_date,
+	            'likes_count' => $this->likes_count,
+	            'unlikes_count' => $this->unlikes_count,
+	            'author_name' => isset($this->author) ? $this->author->get_complete_name() : "",
+	            'author_id' => isset($this->author) ? $this->author->get_id() : 0
 	        ];
 	    }
 

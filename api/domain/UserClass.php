@@ -77,6 +77,12 @@
 
 		}
 
+		public function get_complete_name() {
+
+			return $this->name." ".$this->surname;
+
+		}
+
 		public function get_email() {
 
 			return $this->email;
