@@ -1,6 +1,8 @@
+
 <div class="w3-col m8"> 
     <div class="w3-row-padding" ng-repeat="article in last_classroom_articles">
         <div class="w3-col m12">
+            <a href="#/article/{{article.id}}">
           	<div class="w3-card-2 w3-round w3-white">
             	<div class="w3-container w3-padding">
                     <span class="w3-text-teal">{{logged_user_data.name}}</span>    
@@ -11,7 +13,7 @@
                         <a href="#"><span class="w3-hover-text-red w3-large" title="No me gusta"> <i class="fa fa-thumbs-o-down fa-lg"></i></span></a><span class="w3-text-red w3-large">  0</span>
                     </div>
                 </div>
-            </div><br>
+            </div></a><br>
         </div>
     </div>
 </div>
