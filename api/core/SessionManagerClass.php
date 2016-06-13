@@ -42,8 +42,12 @@
 
 		public static function check_session_token() {
 
-			if(!isset($_SESSION['user']))
+			if(!isset($_SESSION['user'])) {
 				http_response_code(405);
+				return false;
+			} else {
+				return true;
+			}
 
 		}
 		

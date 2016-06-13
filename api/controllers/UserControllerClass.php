@@ -131,13 +131,14 @@
 		}
 
 		/* Method GET
-		 * CHECK SESSIOn
+		 * Check Session
 		 */
 		public function check_session() {
 
-			//CheckSession //TODO:FILTER BEFORE EXECUTION
-			SessionManager::check_session_token();
-			return FormattedRequest::format(true, "");
+			//CheckSession
+			$valid_session = SessionManager::check_session_token();
+			
+			return FormattedRequest::format(true, array("active_session" => $valid_session));
 
 		}
 

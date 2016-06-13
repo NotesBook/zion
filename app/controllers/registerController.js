@@ -1,6 +1,12 @@
 nbApp.controller('RegisterController', ['$scope','ValidationService','CountriesService','UserService',
 	function($scope,ValidationService,CountriesService,UserService) { 
 
+        //TODO: Block Screen until validate session
+        UserService.check_session_dashboard_redirection().then(function(response) {
+            if (response.data["active_session"])
+                $location.path("dashboard/");
+        });
+
         $scope.show_valid_modal;
 
         $scope.register_form_data = {

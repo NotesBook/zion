@@ -33,6 +33,12 @@ nbApp.factory('UserService', ['AjaxService',
 	  		return AjaxService.send(method,uri,data);
 	  	};
 
+	  	self.check_session_dashboard_redirection = function() {
+
+	  		return AjaxService.send('GET', 'api/user/check_session');
+
+	  	};
+
 	    return self;
 
  	}]);
