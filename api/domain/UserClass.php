@@ -160,7 +160,7 @@
 	            'id' => $this->id,
 	            'name' => $this->name,
 	            'surname' =>  $this->surname,
-	            'birthdate' => date('Y/m/d', strtotime($this->birthdate)),
+	            'birthdate' => date('d/m/Y', strtotime($this->birthdate)),
 	            'country' => $this->country,
 	            'region' => $this->region,
 	            'email' => $this->email,	            

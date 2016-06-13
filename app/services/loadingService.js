@@ -5,11 +5,13 @@ nbApp.factory('LoadingService', [
 
   		self.showLoading = function() {
 
-  			
+  			$('#loading').css('display', 'block');
 
   		};
 
   		self.hideLoading = function() {
+  			
+  			$('#loading').css('display', 'none');
 
   		};
 	    

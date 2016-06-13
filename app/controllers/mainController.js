@@ -1,6 +1,8 @@
-nbApp.controller('MainController', ['$scope', '$cookies', 'SecurityService','ClassroomsService','UserService','SharedDataService','ArticlesService','CategoriesService','$window',
-	function($scope, $cookies, SecurityService,ClassroomsService,UserService,SharedDataService,ArticlesService,CategoriesService,$window) {
+nbApp.controller('MainController', ['$scope', '$cookies', '$window','SecurityService','ClassroomsService','UserService','SharedDataService','ArticlesService','CategoriesService', 'LoadingService',
+	function($scope, $cookies,$window, SecurityService,ClassroomsService,UserService,SharedDataService,ArticlesService,CategoriesService, LoadingService) { 
 
+
+        LoadingService.showLoading();
 		SecurityService.checkSession();
 
 		$scope.classroom_form_data = {
@@ -33,6 +35,8 @@ nbApp.controller('MainController', ['$scope', '$cookies', 'SecurityService','Cla
 		ArticlesService.get_dashboard_articles('GET',"api/dashboard/last_articles").then(function(response) {
 
 			$scope.dashboard_articles = response.data;
+
+            LoadingService.hideLoading();
 		});		
 
 		// Refresh the classroom side list when classroom is created
@@ -41,6 +45,7 @@ nbApp.controller('MainController', ['$scope', '$cookies', 'SecurityService','Cla
 			ClassroomsService.get_classrooms('GET',"api/dashboard/my_classrooms").then(function(response) {
 
 			$scope.classrooms = response.data;
+
 			});
 		};
 
@@ -83,6 +88,8 @@ nbApp.controller('MainController', ['$scope', '$cookies', 'SecurityService','Cla
         // Send the form input data to process it at backend
         $scope.send_classroom_form_data = function() {
 
+            LoadingService.showLoading();
+
             $scope.classroom_form_data['category'] = $scope.classroom_form_data['category'].category;
 
             $scope.classroom_form_data['subcategory'] = $scope.classroom_form_data['subcategory'].name;
@@ -93,6 +100,7 @@ nbApp.controller('MainController', ['$scope', '$cookies', 'SecurityService','Cla
 
                     document.getElementById('valid-classroom-modal').style.display='block';
                     document.getElementById('classroom-modal').style.display='none';
+                    LoadingService.hideLoading();
             
                 } else $scope.show_valid_modal = false;
  
