@@ -48,6 +48,8 @@
     <script src="app/controllers/classroomController.js"></script>
     <script src="app/controllers/setupController.js"></script>
 
+    <script src="app/controllers/modalController.js"></script>
+
     <!-- Services App -->
     <script src="app/services/ajaxService.js">z</script>
     <script src="app/services/userService.js"></script>
@@ -60,11 +62,15 @@
     <script src="app/services/sharedDataService.js"></script>
     <script src="app/services/loadingService.js"></script>
 
+    <script src="app/services/modalService.js"></script>
+
 </head>
 
 <body "w3-theme-l5">
         <div id="loading"><img src="images/loading.gif" /></div>
     
+        <div ng-controller="ModalController" ng-include="'app/views/partials/modal-partial.html'"></div>
+
         <div ng-view=""></div>
 
 </body>

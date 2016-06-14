@@ -14,10 +14,30 @@
             <!-- SECTION 1 -->
             <div class="w3-section">
                 <!-- FORM --> 
-                <form class="w3-form" name="userRegisterForm" novalidate>
+                <form class="w3-form" name="userRegisterForm" novalidate>                                 
+
+                    <!-- Email -->
+                    <label for="email"><b>Email</b></label>
+                    <input 
+                        name="email"
+                        class="w3-input w3-border"
+                        ng-class="{ 'w3-input w3-border-red': (userRegisterForm.email.$touched && userRegisterForm.email.$invalid) || email_is_used, 
+                                    'w3-input w3-border-green': userRegisterForm.email.$touched && userRegisterForm.email.$valid}"                         
+                        type="email" 
+                        placeholder="Introduce tu email"  
+                        ng-model="register_model['email']"
+                        ng-pattern="JSON_validation.email"
+                        required>
+                    </input>
+
+                    <div ng-messages="userRegisterForm.email.$error" ng-show="userRegisterForm.email.$touched" style="color:red">
+                        <p ng-message="pattern">Email erróneo.</p>
+                        <p ng-message="required">Email requerido</p>
+                        <p ng-if="email_is_used">Email ya está registrado.</p>
+                    </div>
                     
                     <!-- NAME -->
-                    <label for="name"><b>Nombre de usuario</b></label>
+                    <label for="name"><b>Nombre</b></label>
                     <input 
                         name="name" 
                         ng-class="{ 'w3-input w3-border-red': userRegisterForm.name.$touched && userRegisterForm.name.$invalid, 
@@ -26,7 +46,7 @@
                         type="text" 
                         value="" 
                         placeholder="Introduce tu nombre"    
-                        ng-model="register_form_data['name']" 
+                        ng-model="register_model.name" 
                         ng-pattern="JSON_validation.name"
                         minlength=3
                         required>
@@ -34,7 +54,7 @@
 
                     <div ng-messages="userRegisterForm.name.$error" ng-show="userRegisterForm.name.$touched" style="color:red">
                         <p ng-message="minlength">Nombre muy corto.</p>
-                        <p ng-message="pattern">Nombre erroneo.</p>
+                        <p ng-message="pattern">Nombre erróneo.</p>
                         <p ng-message="required">Nombre requerido</p>
                     </div>
 
@@ -48,7 +68,7 @@
                         type="text"  
                         value="" 
                         placeholder="Introduce tus apellidos"  
-                        ng-model="register_form_data['surname']"
+                        ng-model="register_model['surname']"
                         ng-pattern="JSON_validation.surname" 
                         minlength=3
                         required>
@@ -56,62 +76,43 @@
 
                     <div ng-messages="userRegisterForm.surname.$error" ng-show="userRegisterForm.surname.$touched" style="color:red">
                         <p ng-message="minlength">Apellido muy corto.</p>
-                        <p ng-message="pattern">Apellido erroneo.</p>
+                        <p ng-message="pattern">Apellido erróneo.</p>
                         <p ng-message="required">Apellido requerido</p>
-                    </div>                                   
-
-                    <!-- Email -->
-                    <label for="email"><b>Email</b></label>
-                    <input 
-                        name="email"
-                        class="w3-input w3-border"
-                        ng-class="{ 'w3-input w3-border-red': userRegisterForm.email.$touched && userRegisterForm.email.$invalid, 
-                                    'w3-input w3-border-green': userRegisterForm.email.$touched && userRegisterForm.email.$valid}"                         
-                        type="email" 
-                        placeholder="Introduce tu email"  
-                        ng-model="register_form_data['email']"
-                        ng-pattern="JSON_validation.email"
-                        required>
-                    </input>
-                    <div ng-messages="userRegisterForm.email.$error" ng-show="userRegisterForm.email.$touched" style="color:red">
-                        <p ng-message="pattern">Email erroneo.</p>
-                        <p ng-message="required">Email requerido</p>
-                    </div>
+                    </div>  
 
                     <!-- BIRTHDATE -->
-                    <label for="birthdate"><b>Fecha de nacimiento</b></label>
+                    <label for="birthdate_input"><b>Fecha de nacimiento</b></label>
                     <input class="w3-input w3-border"
-                        name="birthdate" 
-                        ng-class="{ 'w3-input w3-border-red': userRegisterForm.birthdate.$touched && userRegisterForm.birthdate.$invalid, 
-                                    'w3-input w3-border-green': userRegisterForm.birthdate.$touched && userRegisterForm.birthdate.$valid}"                        
-                        type="text"
+                        name="birthdate_input" 
+                        ng-class="{ 'w3-input w3-border-red': userRegisterForm.birthdate_input.$touched && userRegisterForm.birthdate_input.$invalid, 
+                                    'w3-input w3-border-green': userRegisterForm.birthdate_input.$touched && userRegisterForm.birthdate_input.$valid }"                        
+                        type="date"
                         placeholder="Introduce tu fecha de nacimiento"
-                        ng-model="register_form_data['birthdate']"
-                        ng-pattern="JSON_validation.birthdate"
+                        ng-model="register_model.birthdate_input"
                         required>
                     </input>
-                    <div ng-messages="userRegisterForm.birthdate.$error" ng-show="userRegisterForm.birthdate.$touched" style="color:red">
-                        <p ng-message="pattern">Formato de fecha erroneo.</p>
+                    <div ng-messages="userRegisterForm.birthdate_input.$error" ng-show="userRegisterForm.birthdate_input.$touched" style="color:red">
                         <p ng-message="required">Fecha requerida</p>
+                        <p ng-if="userRegisterForm.birthdate_input.$invalid">Fecha errónea</p>
                     </div>                        
 
                     <!-- COUNTRIES -->                        
-                    <label for="countries"><b>Pais</b></label>
-                    <select class="w3-select" name="countries" ng-model="register_form_data['country']">
+                    <label for="countries"><b>País</b></label>
+                    <select class="w3-select" name="countries" ng-model="register_model['country']">
                         <!-- Manera de iterar en los datos de un objeto JSON-->
-                        <option value="">Seleccciona un pais</option>
+                        <option value="">Seleccciona un país</option>
                         <option ng-repeat="(key, val) in listCountries">{{val}}</option>
                     </select>  
 
                     <!-- REGION -->
-                    <label for="region"><b>Region</b></label>
+                    <label for="region"><b>Región</b></label>
                     <input class="w3-input w3-border"
                         name="region" 
                         ng-class="{ 'w3-input w3-border-red': userRegisterForm.region.$touched && userRegisterForm.region.$invalid, 
                                     'w3-input w3-border-green': userRegisterForm.region.$touched && userRegisterForm.region.$valid}"                        
                         type="text"
                         placeholder="Introduce tu region"
-                        ng-model="register_form_data['region']"
+                        ng-model="register_model['region']"
                         required>
                     </input>
                     <div ng-messages="userRegisterForm.region.$error" ng-show="userRegisterForm.region.$touched" style="color:red">
@@ -121,7 +122,7 @@
                     <!-- SUBMIT -->
                     <button 
                         class="w3-btn w3-btn-block w3-section w3-grey w3-ripple" 
-                        ng-disabled="userRegisterForm.$invalid" 
+                        ng-disabled="userRegisterForm.$invalid || email_is_used" 
                         ng-click="send_register_form_data()">Registrate</button>
 
                     <!-- SECTION 2 -->

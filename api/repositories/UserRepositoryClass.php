@@ -42,10 +42,9 @@
 
 		public static function check_email_exists($email) {
 
-			$email_field = array("email");
-			$email_exists = parent::select("users", $email_field,"email = '$email'","");
+			$email_exists = parent::select("users", array("email"), "email = '$email'");
 
-			if($email_exists->num_rows == 0) {
+			if ($email_exists->num_rows == 0) {
 				
 				return true;
 

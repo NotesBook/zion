@@ -53,6 +53,12 @@ nbApp.factory('UserService', ['AjaxService',
 
 	  	};
 
+	  	self.check_email_exists = function(email) {
+
+	  		return AjaxService.send('GET', 'api/user/check_email_exists/' + email);
+
+	  	};
+
 	    return self;
 
  	}]);

@@ -1,5 +1,5 @@
-nbApp.controller('LoginController', ['$scope', '$routeParams', '$location', '$cookies', 'UserService', 'LoadingService',
-	function($scope, $routeParams, $location, $cookies, UserService, LoadingService) { 
+nbApp.controller('LoginController', ['$scope', '$routeParams', '$location', '$cookies', 'UserService', 'LoadingService', 'ModalService',
+	function($scope, $routeParams, $location, $cookies, UserService, LoadingService, ModalService) { 
 
 		LoadingService.showLoading();
 
@@ -22,12 +22,17 @@ nbApp.controller('LoginController', ['$scope', '$routeParams', '$location', '$co
 			email = $routeParams.email;
 		
 		//1. If registration, validate user
-		$scope.showValidateConfirmation = false;
 
 		if(token)
 			UserService.validate(token, email).then(function(data) {
-				if(data["valid"] === true) {
-					$scope.showValidateConfirmation = true;
+				if (data.valid) {
+                   	
+                   	ModalService.showModal(" ¡ Usuario validado con exito ! ", "Pulsa aceptar para ir al Login", true);
+
+				} else {
+
+					ModalService.showModal(" Este usuario ha sido activado anteriormente ", "", true);
+
 				}
 			});
 

@@ -17,6 +17,20 @@
 
 		}
 
+		/* Method GET
+		 * Check email exists
+		 */
+		public function check_email_exists() {
+
+			$params = RoutingEngineService::get_params();
+			$email = $params[0];
+
+			$email_is_free = UserRepository::check_email_exists($email);
+
+			return FormattedRequest::format($email_is_free);
+
+		}
+
 		/* Method POST
 		 * Save new user data
 		 */
@@ -50,7 +64,7 @@
 			//4.1 Compose Email
 			$email_html = file_get_contents("mails/validate_user_mail.html");
 		    $email_html = str_replace("%%PASSWORD%%", $password, $email_html);
-		    $email_html = str_replace("%%URL_VALIDATE_USER%%", $_NB_GLOBALS["settings"]->baseurl."/#/user/validation/$email/".$security_code, $email_html);
+		    $email_html = str_replace("%%URL_VALIDATE_USER%%", $_NB_GLOBALS["settings"]->baseurl."#/user/validation/$email/".$security_code, $email_html);
 
 			MailEngineService::send("Usuario registrado. ConfirmarCuenta", $email_html, $email);
 
