@@ -59,7 +59,7 @@
 			MailEngineService::send("Aula Creada", $email_html, $_SESSION["user"]["email"]);
 
 			//5. Return Ok
-			return FormattedRequest::format(true);
+			return FormattedRequest::format(true, $classroom_id);
 		}
 
 		/* Method GET

@@ -1,7 +1,7 @@
-<div id="classroom-modal" class="w3-modal">
+<div class="w3-modal" ng-style="modal_create_classroom.style">
     <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
 
-            <span onclick="document.getElementById('classroom-modal').style.display='none'" class="w3-closebtn">&times;</span>
+            <span ng-click="close_form_classroom_modal()" class="w3-closebtn">&times;</span>
 
             <div class="w3-center"><br>
                 <img src="/www/git_app/zion/images/logoNotesbook.jpg" alt="Avatar" style="width:20%" class="w3-square w3-margin-top">
@@ -63,9 +63,9 @@
                         </div>
 
                        <div ng-messages="classRoomForm.description.$error" ng-show="classRoomForm.description.$touched" style="color:red">
-                            <p ng-message="minlength">Descripcion muy corta.</p>
-                            <p ng-message="pattern">Descripcion erronea.</p>
-                            <p ng-message="required">Descripcion requerida</p>
+                            <p ng-message="minlength">Descripción muy corta.</p>
+                            <p ng-message="pattern">Descripción erronea.</p>
+                            <p ng-message="required">Descripción requerida</p>
                         </div>      
                                           
                         <!-- SUBMIT -->
