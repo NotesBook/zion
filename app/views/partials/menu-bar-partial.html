@@ -25,6 +25,17 @@
                 </div> 
             </li>
 
+            <li class="w3-hide-small w3-dropdown-hover" ng-if="show_menu_articles">
+                <a href="#" class="w3-padding-large w3-hover-white w3-drop" title="Articulos">
+                    <i class="fa fa-envelope"></i> Artículos
+                </a>
+                <div class="w3-dropdown-content w3-white w3-card-4">
+                        <a href="javascript:void(0)" ng-click="show_create_article_view()">Crear Articulo
+                            <i class="fa fa-plus-square"></i>
+                        </a>
+                </div>                 
+            </li>
+
             <li class="w3-hide-small w3-dropdown-hover w3-right">
                 <a href="#/setup" class="w3-padding-large w3-hover-white" title="Ajustes de cuenta">
                     <i class="fa fa-user"></i> {{logged_user_data.name}}

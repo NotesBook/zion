@@ -1,128 +1,45 @@
 <!-- Navbar -->
-<div>
+<div ng-controller="MenuController" ng-include="'app/views/partials/menu-bar-partial.html'"></div>
 
-<!-- Show Modal when article is valid partial -->
-<div ng-include="'app/views/article/partials/article-valid-modal-partial.html'"></div>
-
-<!-- Show Modal when register is valid partial -->
-<div ng-include="'app/views/classroom/partials/classroom-valid-modal-partial.html'"></div>    
-
-<!-- Article modal form partial -->
-<div ng-include="'app/views/article/partials/article-form-partial.html'"></div>
-
-<!-- Classroom modal form partial-->
-<div  ng-include="'app/views/classroom/partials/classroom-form-partial.html'"></div>  
-
-    <div class="w3-top">
-        <ul class="w3-navbar w3-theme-d2 w3-left-align w3-large">
-
-            <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
-                <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" ng-click="openNav()"><i class="fa fa-bars"></i></a>
-            </li>
-
-            <li>
-                <a href="#/dashboard" class="w3-padding-large w3-theme-d4">
-                    <i class="fa fa-home w3-margin-right"></i>NotesBook
-                </a>
-            </li>
-
-            <li class="w3-hide-small w3-dropdown-hover">
-                <a class="w3-padding-large w3-hover-white w3-drop" title="Mis Aulas">
-                    <i class="fa fa-mortar-board"></i> Aulas
-                </a>
-                <div class="w3-dropdown-content w3-white w3-card-4" >
-                        <a ng-click="show_form_classroom_modal()">Crear aula
-                            <i class="fa fa-plus-square"></i>
-                        </a>
-                </div>            
-            </li>
-
-            <li class="w3-hide-small w3-dropdown-hover">
-                <a href="#" class="w3-padding-large w3-hover-white w3-drop" title="Articulos">
-                    <i class="fa fa-envelope"></i> Articulos
-                </a>
-                <div class="w3-dropdown-content w3-white w3-card-4">
-                        <a href="" ng-click="show_form_article_modal()">Crear Articulo
-                            <i class="fa fa-plus-square"></i>
-                        </a>
-                </div>                 
-            </li>
-
-            <li class="w3-hide-small w3-dropdown-hover w3-right">
-                <a href="#/setup" class="w3-padding-large w3-hover-white" title="Ajustes de cuenta">
-                    <i class="fa fa-user"></i> {{logged_user_data.name}}
-                </a>
-                <div class="w3-dropdown-content w3-card-2 w3-white">
-                        <a href="" ng-click="logout()">Logout
-                            <i class="fa fa-plus-square"></i>
-                        </a>
-                </div>                 
-            </li>    
-
-        </ul>
-    </div>
-
-    <!-- Navbar on small screens -->
-    <div id="navToogle" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
-        <ul class="w3-navbar w3-left-align w3-large w3-theme">
-            <li><a class="w3-padding-large">Aulas</a></li>
-            <li><a class="w3-padding-large" href="#">Mi cuenta</a></li>
-            <li><a class="w3-padding-large" href="#">Articulos</a></li>
-        </ul>
-    </div>
-</div>    
-
-<!-- Classroom modal form partial-->
-<div  ng-include="'app/views/classroom/partials/classroom-form-partial.html'"></div>
-
-<!-- Show Modal when register is valid partial -->
-<div ng-include="'app/views/classroom/partials/classroom-valid-modal-partial.html'"></div>
-
-<!-- ClassRoom Body -->
-<div class="w3-container" style="margin-top: 80px;">
-    <div class="w3-row">
-
-<div class="w3-col m2">
-                <!-- Logo -->
-        <div class="w3-row">
-            <div class="w3-col w3-center">
-                <img src="images/logo_Notesbook_trans.png" style="height:200px;width:195px;margin:0"></img>
-            </div>
-        </div>
-                <!-- Profile -->
-            <div class="w3-card-2 w3-round w3-white">
-                <div class="w3-container">
-                    <h4 class="w3-center">Mi Perfil</h4>
-                    <p class="w3-center"><img src="images/boy_avatar.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-                    <hr>
-                    <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>Diseñador Web</p>
-                    <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{logged_user_data.region}}, {{logged_user_data.country}}</p>
-                    <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> {{logged_user_data.birthdate}}</p>
+<!-- Page Container -->
+<div class="w3-container" style="margin-top:80px; height:100vh">
+        
+    <!-- The Grid -->
+    <div class="w3-row w3-container">
+        <!-- Left Column -->
+        <div class="w3-col m2">
+            <!-- Logo -->
+            <div class="w3-row">
+                <div class="w3-col w3-center">
+                    <img src="images/logo_Notesbook_trans.png" style="height:200px;width:195px;margin:0"></img>
                 </div>
             </div>
-            <br>
-                  
-            <!-- Side Classroom links -->
-            <div class="w3-card-2 w3-white" ng-controller="MainController">
-                <div class="w3-center w3-green">Mis Aulas</div>
-                <ul class="w3-ul w3-hoverable">  
-                   <a ng-repeat="classroom in classrooms" href="#/classroom/{{classroom.id}}"><li>{{classroom.name}}</li></a>
-                </ul>
-            </div>
-            <br>
+
+            <!-- Profile -->
+            <div ng-include="'app/views/partials/user-profile-data-partial.html'"></div>
+
+            <!-- My Classrooms -->
+            <div ng-include="'app/views/partials/my-classrooms-links-partial.html'"></div>
+
         <!-- End Left Column -->
-</div>
+        </div>   
 
         <!-- Middle Column -->
         <div class="w3-col m8 w3-large w3-teal w3-center w3-section w3-card-2 w3-padding w3-round">
             <div class="w3-row"></div>{{classroom_item.name}}
-        </div>
+        </div>   
 
-        <div ng-include="'app/views/article/partials/article-classroom-partial.html'"></div>
-     
-
-        </div>
+        <div class="w3-col m8"> 
+            <div class="w3-row-padding" ng-repeat="article in last_classroom_articles">
+                <div ng-include="'app/views/partials/article-list-item-partial.html'"></div>
+            </div>
+        </div>     
+       
+    <!-- End Grid -->
     </div>
+<!-- End Page Container -->
 </div>
+<br>
+
 <!-- Footer -->
-<div ng-include="'app/views/site/partials/footer-partial.html'"></div>
+<div ng-include="'app/views/partials/footer-partial.html'"></div>

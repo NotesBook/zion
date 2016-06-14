@@ -93,6 +93,43 @@ nbApp.controller('MenuController', ['$scope', 'SecurityService', 'MenuService', 
 
         $scope.refresh_classrooms();
 
+
+        /* ----------------------- Article ---------------------- */
+        
+        // Send the form input data to process it at backend
+        $scope.send_article_form_data = function() {
+            
+            $scope.article_form_data['classroom_id'] = $scope.classroom_id;
+
+            $scope.article_form_data['user_id'] = $scope.logged_user_data.id;
+
+            ArticlesService.create_article('POST','api/article/save',JSON.stringify($scope.article_form_data)).then(function(response) {
+                if(response.valid == true) {
+
+                    document.getElementById('valid-article-modal').style.display='block';
+                    document.getElementById('article-modal').style.display='none';
+            
+                } else $scope.show_valid_modal = false;
+ 
+            });
+        };       
+
+        // Display the modal form to create an article
+        $scope.show_form_article_modal = function() {
+
+            document.getElementById('article-modal').style.display='block';
+
+        };          
+
+        // Hides the valid modal when accept button is clicked 
+        $scope.hide_valid_article_form = function() {
+                
+             document.getElementById('valid-article-modal').style.display='none';
+
+        };         
+
+        /* ----------------------- Fin Article ---------------------- */
+
         // Logout user and redirect to login
         $scope.logout = function() {
             UserService.logout().then(function(response) {

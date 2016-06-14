@@ -3,12 +3,10 @@ nbApp.factory('ArticlesService', ['AjaxService',
 
   		var self = {};
 
-	  	self.get_last_articles = function(method,uri,data) {
-	    	return AjaxService.send(method,uri,data);
-	    }
+	  	self.get_last_articles = function(class_id) {
 
-	  	self.get_classroom_articles = function(method,uri,data) {
-	    	return AjaxService.send(method,uri,data);
+	    	return AjaxService.send("GET","api/classroom/last_articles/" + class_id);
+
 	    }
 
 	    self.get_article_by_id = function(id) {

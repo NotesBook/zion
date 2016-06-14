@@ -18,7 +18,6 @@ nbApp.controller('ArticleController', ['$scope','$routeParams','$location','Arti
             "topic": ""
         };         
 
-		LoadingService.showLoading();
 
 
 		$scope.show_edit_view = false;
@@ -37,8 +36,11 @@ nbApp.controller('ArticleController', ['$scope','$routeParams','$location','Arti
 
 		$scope.route_path = $location;
 
+		LoadingService.hideLoading();
+
 		// Get the article_id recibed by URL
-		$scope.article_id = $routeParams.id;
+		//TODO: Unccoment
+		//$scope.article_id = $routeParams.id;
 
 		$scope.logged_user_data;
 
@@ -46,38 +48,25 @@ nbApp.controller('ArticleController', ['$scope','$routeParams','$location','Arti
 
 		$scope.body_content;
 
-        // Get all Classrooms by user
-        ClassroomsService.get_classrooms('GET',"api/dashboard/my_classrooms").then(function(response) {
-
-            $scope.classroom_list = response.data;
-
-        })   		
-
 		// Get logged in user data
-		UserService.get_logged_user_data().then(function(response) {
+		//TODO: Unccoment
+		// UserService.get_logged_user_data().then(function(response) {
 
-			$scope.logged_user_data = response.data;
-			LoadingService.hideLoading();
-			// Get article data by ID
-			ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
+		// 	$scope.logged_user_data = response.data;
+		// 	LoadingService.hideLoading();
+		// 	// Get article data by ID
+		// 	ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
 
-				$scope.article_data = response.data;
+		// 		$scope.article_data = response.data;
 			
-				LoadingService.hideLoading();
+		// 		LoadingService.hideLoading();
 
-				if ($scope.article_data.author_id == $scope.logged_user_data.id) {
-					$scope.show_edit_button = true;
-				} else $scope.show_edit_buttons = false;      
-			});
+		// 		if ($scope.article_data.author_id == $scope.logged_user_data.id) {
+		// 			$scope.show_edit_button = true;
+		// 		} else $scope.show_edit_buttons = false;      
+		// 	});
 			
-		});
-
-        // Get validation JSON  Object
-        ValidationService.getValidationJSON().then(function(response) {
-
-            $scope.JSON_validation = response; 
-            LoadingService.hideLoading();
-        });	
+		// });
 
         // Add like to article when thumbs-up is clicked
         $scope.like = function() {
