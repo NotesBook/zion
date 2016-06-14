@@ -39,10 +39,10 @@
 			Article::check_data($author_id, $classroom_id, $title, $body, $tags, $topic);
 
 			//3. Save
-			ArticleRepository::save($author_id, $classroom_id, $title, $body, $tags, $topic, $article_id);
+			$article_id = ArticleRepository::save($author_id, $classroom_id, $title, $body, $tags, $topic, $article_id);
 
 			//5. Return Ok
-			return FormattedRequest::format(true);
+			return FormattedRequest::format(true, $article_id);
 		}
 
 		/* Method GET

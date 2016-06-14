@@ -16,7 +16,7 @@
 			if (!isset($article_id)) {
 
 				//New Article
-				parent::insert("articles", 
+				return parent::insert("articles", 
 					"author_id, classroom_id, title, body, topic, tags, create_date, modify_date",
 					"$author_id, '$classroom_id', '$title', '$body', '$topic', '$tags', '$date', '$date'");
 
@@ -26,6 +26,8 @@
 				parent::update("articles", 
 					"modify_date = '$date', title = '$title', body = '$body', topic = '$topic', tags = '$tags'",
 					"id = '".$article_id."'");
+
+				return $article_id;
 
 			}
 

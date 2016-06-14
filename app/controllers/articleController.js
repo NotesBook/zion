@@ -1,52 +1,52 @@
-nbApp.controller('ArticleController', ['$scope','$routeParams','$location','ArticlesService','ValidationService','SharedDataService','UserService','LoadingService','ClassroomsService',
-	function($scope,$routeParams,$location,ArticlesService,ValidationService,SharedDataService,UserService,LoadingService,ClassroomsService) {
+nbApp.controller('ArticleController', ['$scope', '$routeParams', '$route', '$location', 'ArticlesService','ValidationService','SharedDataService','UserService','LoadingService','ClassroomsService',
+	function($scope, $routeParams, $route, $location, ArticlesService,ValidationService,SharedDataService,UserService,LoadingService,ClassroomsService) {
 
 		$scope.article_form_data = {
-			'article_id': "",
-            "classroom_id": "",
-            "title": "",
-            "body": "",
-            "tags": "",
-            "topic": ""
+			article_id : undefined,
+            classroom_id : "",
+            title : "",
+            body : "",
+            tags : "",
+            topic : ""
         }; 
 
-		$scope.create_article_form_data = {
-            "classroom_id": "",
-            "title": "",
-            "body": "",
-            "tags": "",
-            "topic": ""
-        };         
-
-
-
-		$scope.show_edit_view = false;
-
-		$scope.show_read_view = true;
-
-		$scope.show_create_view = false;		
-
-		$scope.show_edit_button = false;
-
-		$scope.show_text_angular = false;
-
-		$scope.show_save_button = false;
-
-		$scope.hide_body_content = false;
-
-		$scope.route_path = $location;
-
-		LoadingService.hideLoading();
+		LoadingService.showLoading();
 
 		// Get the article_id recibed by URL
-		//TODO: Unccoment
-		//$scope.article_id = $routeParams.id;
 
-		$scope.logged_user_data;
+		
+		$scope.article_id = $routeParams.article_id || $routeParams.id;
+		$scope.article_is_viewing = $routeParams.article_id;
+		$scope.classroom_id = $routeParams.classroom_id;
+		$scope.article_is_new = $routeParams.id == "new";
+		$scope.article_is_editting = !$scope.article_is_new;
 
 		$scope.article_data;
 
-		$scope.body_content;
+		if ($scope.article_is_editting || $scope.article_is_viewing) {
+
+			ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
+
+				$scope.article = {
+					id : response.data.id,
+		            classroom_id : response.data.classroom_id,
+		            title : response.data.title,
+		            body : response.data.body,
+		            tags : response.data.tags,
+		            topic : response.data.topic
+		        }; 
+
+		        $scope.article_form_data.body = response.data.body;
+			
+				LoadingService.hideLoading();  
+
+			});
+
+		} else {
+
+				LoadingService.hideLoading();
+
+		}
 
 		// Get logged in user data
 		//TODO: Unccoment
@@ -69,73 +69,55 @@ nbApp.controller('ArticleController', ['$scope','$routeParams','$location','Arti
 		// });
 
         // Add like to article when thumbs-up is clicked
-        $scope.like = function() {
+     //    $scope.like = function() {
 
-        	ArticlesService.like($scope.article_id).then(function(response) {
-        		if(response.valid == true) {
-        			ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
+     //    	ArticlesService.like($scope.article_id).then(function(response) {
+     //    		if(response.valid == true) {
+     //    			ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
 
-						$scope.article_data = response.data;
+					// 	$scope.article_data = response.data;
 					
-						LoadingService.hideLoading();
-					});
-        		}
-        	});
-        }
+					// 	LoadingService.hideLoading();
+					// });
+     //    		}
+     //    	});
+     //    }
 
         // // Add unlike to article when thumbs-up is clicked
-        $scope.unlike = function() {
+     //    $scope.unlike = function() {
 
-        	ArticlesService.unlike($scope.article_id).then(function(response) {
-        		if(response.valid == true) {
-        			ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
+     //    	ArticlesService.unlike($scope.article_id).then(function(response) {
+     //    		if(response.valid == true) {
+     //    			ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
 
-						$scope.article_data = response.data;
+					// 	$scope.article_data = response.data;
 						
-						LoadingService.hideLoading();
+					// 	LoadingService.hideLoading();
   
-					});
-  	     		}
-        	});
+					// });
+  	  //    		}
+     //    	});
 
-        }
+     //    }
 
 
-		$scope.show_edit_article_view = function() {
+		$scope.save = function() {
 
-			$scope.show_edit_view = true;
-			$scope.show_read_view = false;
-			$scope.show_create_view = false;
+			$scope.article_form_data.classroom_id = $scope.classroom_id;
 
-		}    
+			//TODO: REDO. It's to get dirty field of form data
+			$scope.article_form_data.article_id = $scope.article.id;
+			$scope.article_form_data.body = $scope.article.body;
+			$scope.article_form_data.title = $scope.article_form_data.title || $scope.article.title;
+			$scope.article_form_data.tags = $scope.article_form_data.tags || $scope.article.tags;
+			$scope.article_form_data.topic = $scope.article_form_data.topic || $scope.article.topic;
 
-		$scope.show_create_article_view = function() {
+			ArticlesService.save_article(JSON.stringify($scope.article_form_data)).then(function(response) {
 
-			$scope.show_edit_view = false;
-			$scope.show_read_view= false;
-			$scope.show_create_view = true;
+				$location.path("classroom/" + $scope.classroom_id + "/article/" + response.data);
 
-		} 
+			});
 
-		$scope.save_new_article = function() {
-			
-			$scope.create_article_form_data['classroom_id'] = $scope.article_data.classroom_id;
-
-			ArticlesService.save_article(JSON.stringify($scope.create_article_form_data));
-
-		};		
-
-		$scope.save_edited_article = function() {
-
-			$scope.article_form_data['title'] = $scope.article_data.title;
-			$scope.article_form_data['tags'] = $scope.article_data.tags;
-			$scope.article_form_data['topic'] = $scope.article_data.topic;
-			$scope.article_form_data['classroom_id'] = $scope.article_data.id;
-			$scope.article_form_data['article_id'] = $scope.article_data.classroom_id;
-			$scope.article_form_data['body'] = $scope.article_data.body;					
-
-			ArticlesService.save_article(JSON.stringify($scope.article_form_data));
-
-		};
+		};	
 
 }])
