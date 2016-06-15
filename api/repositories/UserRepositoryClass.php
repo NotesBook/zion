@@ -40,13 +40,18 @@
 
 		}
 
-		/* 
-		 * return: security_code 
-		 */
 		public static function save($id, $name, $surname, $birthdate, $country, $region) {
 
 			parent::update("users", 
 				"name = '$name', surname = '$surname', birthdate = '$birthdate', country = '$country', region = '$region'",
+				"id = '".$id."'");
+
+		}
+
+		public static function upload_avatar($id, $avatar_name) {
+
+			parent::update("users", 
+				"avatar_src = '$avatar_name'",
 				"id = '".$id."'");
 
 		}

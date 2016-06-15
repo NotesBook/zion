@@ -21,9 +21,15 @@ nbApp.controller('SetupController', ['$scope', 'UserService', 'LoadingService', 
 
         $scope.UserService = UserService;
         $scope.upload_avatar = function() {
+            LoadingService.showLoading();
         	
    		 	var file_data = $('#setup_avatar').prop('files')[0];  
-        	this.UserService.upload_avatar(file_data);
+        	this.UserService.upload_avatar(file_data).then(function(response) {
+
+                $scope.logged_user_data.avatar_src = response.data;
+                LoadingService.hideLoading();
+
+            });
 
         };
                 

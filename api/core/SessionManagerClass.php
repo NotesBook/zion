@@ -13,10 +13,7 @@
 
 		public static function start($user) {
 
-			if (!isset($_SESSION['user'])) {
-				/*start session*/
-			  	$_SESSION['user'] = $user->jsonSerialize();
-			}
+		  	self::set_session_user($user);
 
 		}
 

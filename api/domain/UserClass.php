@@ -177,7 +177,7 @@
 	            'region' => $this->region,
 	            'email' => $this->email,	            
 	            'karma' => $this->karma,
-	            'avatar_src' => $this->avatar_src
+	            'avatar_src' => 'avatars/'.$this->avatar_src
 	        ];
 	    }
 

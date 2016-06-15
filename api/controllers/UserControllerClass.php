@@ -94,9 +94,7 @@
 			//3.2. Save User
 			UserRepository::save($_SESSION['user']['id'], $name, $surname, $birthdate, $country, $region);
 
-			$user_obj = UserRepository::get_by_id($_SESSION['user']['id']);
-
-			SessionManager::set_session_user($user_obj);
+			self::refresh_session();
 
 			//5. Return Ok
 			return FormattedRequest::format(true);
@@ -137,13 +135,29 @@
 
 		}
 
+		public function refresh_session() {
+
+			$user_obj = UserRepository::get_by_id($_SESSION['user']['id']);
+
+			SessionManager::set_session_user($user_obj);
+
+		}
+
 		/* Method POST
 		 * Upload avatar
 		 */
 		public function upload_avatar() {
 
-			move_uploaded_file($_FILES['avatar']['tmp_name'], '../uploads/' . $_FILES['avatar']['name']);
-			//TODO: Change name and upload user data of database
+			$identifier = md5(uniqid(rand(), true));
+			$image_name = $identifier.".".substr(strrchr($_FILES['avatar']['name'],'.'),1);
+
+			move_uploaded_file($_FILES['avatar']['tmp_name'], '../avatars/'.$image_name);
+
+			UserRepository::upload_avatar($_SESSION['user']['id'], $image_name);
+
+			self::refresh_session();
+
+			return FormattedRequest::format(true, "avatars/".$image_name);
 
 		}
 
