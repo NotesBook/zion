@@ -22,10 +22,12 @@ nbApp.controller('ClassRoomController',['$scope', '$routeParams', 'LoadingServic
         $scope.refresh_articles = function() {
 
             ArticlesService.get_last_articles($scope.classroom_id).then(function(response) {
+
                 $scope.last_classroom_articles = response.data;
-                    LoadingService.hideLoading(); 
+                LoadingService.hideLoading(); 
+
             });
 
-        };    
+        }; 
 
 }])
