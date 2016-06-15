@@ -231,4 +231,26 @@
 
 		}
 
+		public function send_classroom_invitation() {
+
+			$params = RoutingEngineService::get_params();
+			$email = $params[0];
+			$classroom_id = $params[1];
+
+			$classroom = ClassroomRepository::get_by_id($classroom_id);
+
+			//4. Send Email
+			//4.1 Compose Email
+			$email_html = file_get_contents("mails/invite_user_mail.html");
+			
+		    $email_html = str_replace("%%CLASSROOM_NAME%%", $classroom->get_name(), $email_html);
+		    $email_html = str_replace("%%INVITATION_CODE%%", $classroom->get_invitation_code(), $email_html);
+
+			MailEngineService::send("Has sido invitado al aula: ".$classroom->get_name(), $email_html, $email);
+
+			//5. Return Ok
+			return FormattedRequest::format(true);
+
+		}
+
 	}

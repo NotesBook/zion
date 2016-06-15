@@ -64,6 +64,12 @@ nbApp.factory('UserService', ['AjaxService',
 
 	  	};
 
+	  	self.send_classroom_invitation = function(email, classroom_id) {
+
+	  		return AjaxService.send('GET', 'api/user/send_classroom_invitation/' + email + '/' + classroom_id);
+
+	  	};
+
 	    return self;
 
  	}]);

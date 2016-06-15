@@ -1,0 +1,16 @@
+<!-- Register Valid Modal -->
+<div class="w3-modal" ng-style="modal_enroll_modal.style">
+    <div class="w3-modal-content w3-card-4 w3-animate-top"><!-- Profile -->
+		<div class="w3-card-2 w3-round w3-white">
+		    <div class="w3-container">
+		        <h4 class="w3-center">Introduce el código de invitación</h4>   
+
+                <div class="w3-section"><label class="create w3-label">Código: </label><input ng-model="modal_enroll_modal.invitation_code" class="w3-input" placeholder="Introduce un código" type="text"></input></div>
+
+                <button type="button" ng-click="send_enroll()" class="w3-btn w3-theme"><i class="fa fa-pencil"></i> Acceder </button>
+
+		    </div>
+		</div>
+		<br>
+    </div>
+</div>

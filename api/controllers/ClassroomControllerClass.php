@@ -47,7 +47,7 @@
 			$classroom_id = ClassroomRepository::register($name, $category, $subcategory, $description, $invitation_code);
 
 			//3.3 Enroll Session User to Classroom
-			ClassroomRepository::enroll_user($_SESSION["user"]["id"], $classroom_id, $invitation_code);
+			ClassroomRepository::enroll_user($_SESSION["user"]["id"], $invitation_code);
 
 			//4. Send Email
 			//4.1 Compose Email
@@ -79,14 +79,16 @@
 		/* Method POST
 		 * Enroll classroom
 		 */
-		public function enroll($classroom_id, $invitation_code) {
+		public function enroll() {
+
+			$invitation_code = RoutingEngineService::get_params()[0];
 
 			//TODO: get id user from session
 			$id_user = $_SESSION["user"]["id"];
 
 			//1 Enroll Session User to Classroom
-			ClassroomRepository::enroll_user($id_user, $classroom_id, $invitation_code);
-			return FormattedRequest::format(true);
+			$classroom_id = ClassroomRepository::enroll_user($id_user, $invitation_code);
+			return FormattedRequest::format(true, $classroom_id);
 
 		}
 

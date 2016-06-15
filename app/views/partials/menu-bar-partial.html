@@ -19,9 +19,9 @@
                     <i class="fa fa-graduation-cap"></i> Aulas
                 </a>
                 <div class="w3-dropdown-content w3-card-2 w3-white">
-                        <a ng-click="launch_form_classroom_modal()" style="cursor:hand;cursor:pointer">Crear Aula
-                            <i class="fa fa-plus-square"></i>
-                        </a>
+                    <a ng-click="launch_form_classroom_modal()" style="cursor:hand;cursor:pointer">Crear Aula
+                        <i class="fa fa-plus-square"></i>
+                    </a>
                 </div> 
             </li>
 
@@ -34,6 +34,18 @@
                             <i class="fa fa-plus-square"></i>
                         </a>
                 </div>                 
+            </li>
+
+            <li class="w3-hide-small w3-dropdown-hover" ng-if="show_menu_articles">
+                <a ng-click="launch_invite_modal()" style="cursor:hand;cursor:pointer">
+                    <i class="fa fa-envelope"></i> Invitar
+                </a>            
+            </li>
+
+            <li class="w3-hide-small w3-dropdown-hover">
+                <a ng-click="launch_enroll_modal()" style="cursor:hand;cursor:pointer">
+                    <i class="fa fa-envelope"></i> Acceder a una clase
+                </a>            
             </li>
 
             <li class="w3-hide-small w3-dropdown-hover w3-right">
@@ -60,3 +72,9 @@
 <!-- Partials -->
 <!-- Classroom modal form partial-->
 <div ng-include="'app/views/partials/modal-classroom-form-partial.html'"></div>  
+
+<!-- Invite modal form partial-->
+<div ng-include="'app/views/partials/modal-invite-user-to-classroom.html'"></div>  
+
+<!-- Invite modal form partial-->
+<div ng-include="'app/views/partials/modal_enroll_modal.html'"></div>  

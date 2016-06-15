@@ -36,6 +36,7 @@
                     <div class="w3-card-2 w3-round w3-white">
 
                         <div class="w3-container w3-padding">
+                            <a ng-click="show_user_info(article.author_id)"><span class="w3-text-teal" style="cursor:hand;cursor:pointer">Autor: {{article.author_name}}</i></span></a>
                             
                             <p ng-bind-html="article.body" ng-hide="hide_body_content" contenteditable="false"><label class="w3-label">Contenido:</label><br>{{article.body}}</p>
                             <p ng-model="article_form_data['tags']" contenteditable="false"><label class="w3-label">Tags: </label><br>{{article.tags}}</p>

@@ -23,6 +23,12 @@ nbApp.factory('ClassroomsService', ['AjaxService',
 	  	};
 
 
+	  	self.invitation_enroll = function (invitation_code) {
+
+	  		return AjaxService.send('GET', 'api/classroom/enroll/' + invitation_code);
+
+	  	};
+
 	    return self;
 
 

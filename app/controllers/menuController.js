@@ -81,17 +81,31 @@ nbApp.controller('MenuController', ['$scope', 'SecurityService', 'MenuService', 
 
         }); 
 
+        $scope.my_classrooms = [];
         // Refresh the classroom side list when classroom is created
         $scope.refresh_classrooms = function() {
 
             ClassroomsService.get_classrooms().then(function(response) {
 
                  $scope.$parent.classrooms = response.data;
+                 $scope.my_classrooms = response.data;
 
             });
         };
 
         $scope.refresh_classrooms();
+
+        $scope.show_user_info_modal_aa = function(userid) {
+
+            debugger;
+
+            UserService.get_by_id(userid).then(function(response) {
+
+                debugger;
+
+            });
+
+        };
 
         /* ----------------------- Fin Article ---------------------- */
 
@@ -119,6 +133,125 @@ nbApp.controller('MenuController', ['$scope', 'SecurityService', 'MenuService', 
             } else { 
                 x.className = x.className.replace(" w3-show", "");
             }
-        };      
+        };   
+
+
+        /* -------------------- Invitaciones ------------------------ */
+
+        /* Modal Create Classroom */
+        $scope.modal_user_invite = {};
+        $scope.modal_user_invite.show = false;
+
+        $scope.$watch('modal_user_invite.show', function(show) {
+
+            if (show)
+                $scope.modal_user_invite.style = { "display" : "block" };
+            else
+                $scope.modal_user_invite.style = {};
+
+        });
+
+        $scope.launch_invite_modal = function() {
+
+            return $scope.modal_user_invite.show = true;
+
+        }; 
+
+        $scope.close_invite_modal = function() {
+
+            return $scope.modal_user_invite.show = false;
+
+        };    
+
+
+        $scope.launch_invite_modal = function() {
+
+            return $scope.modal_user_invite.show = true;
+
+        };
+
+        $scope.send_invite = function() {
+
+            LoadingService.showLoading();  
+
+            var custom_scope = this;
+
+            UserService.send_classroom_invitation(this.modal_user_invite.email, this.modal_user_invite.classroom).then(function(response) {
+
+                if(response.valid == true) {
+
+                    ModalService.showModal(" ¡ Hecho ! ", "El email ha sido enviado", true);
+                    custom_scope.close_invite_modal();
+                    LoadingService.hideLoading();  
+            
+                } else ModalService.showModal(" ¡Ups! Ha habido algún error ", "Contacta con el administrador web", true);
+
+            });
+
+        };
+
+
+        /* -------------------- Introducir código de invitación ------------------------ */
+
+        /* Modal Create Classroom */
+        $scope.modal_enroll_modal = {};
+        $scope.modal_enroll_modal.show = false;
+
+        $scope.$watch('modal_enroll_modal.show', function(show) {
+
+            if (show)
+                $scope.modal_enroll_modal.style = { "display" : "block" };
+            else
+                $scope.modal_enroll_modal.style = {};
+
+        });
+
+        $scope.launch_enroll_modal = function() {
+
+            return $scope.modal_enroll_modal.show = true;
+
+        }; 
+
+        $scope.close_enroll_modal = function() {
+
+            return $scope.modal_enroll_modal.show = false;
+
+        };    
+
+
+        $scope.launch_enroll_modal = function() {
+
+            return $scope.modal_enroll_modal.show = true;
+
+        };
+
+        $scope.send_enroll = function() {
+
+            LoadingService.showLoading();  
+
+            var custom_scope = this;
+
+            ClassroomsService.invitation_enroll(this.modal_enroll_modal.invitation_code).then(function(response) {
+
+                if(response.valid == true) {
+
+                    ModalService.showModal(" ¡ Hecho ! ", "ya estás en el nuevo aula", true, '#/classroom/' + response.data);
+                    custom_scope.close_enroll_modal();
+            
+                } else ModalService.showModal(" ¡Ups! Ha habido algún error ", "Contacta con el administrador web", true);
+
+
+                custom_scope.close_enroll_modal();
+                LoadingService.hideLoading();  
+
+            }, function(asd) {
+
+                custom_scope.close_enroll_modal();
+                LoadingService.hideLoading();  
+                ModalService.showModal(" ¡Ups! No existe ese código de invitación ", "No te cueles en las clases :)", true);
+
+            });
+
+        };
 
 	}]);

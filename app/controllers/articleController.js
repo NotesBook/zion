@@ -27,14 +27,7 @@ nbApp.controller('ArticleController', ['$scope', '$routeParams', '$route', '$loc
 
 			ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
 
-				$scope.article = {
-					id : response.data.id,
-		            classroom_id : response.data.classroom_id,
-		            title : response.data.title,
-		            body : response.data.body,
-		            tags : response.data.tags,
-		            topic : response.data.topic
-		        }; 
+				$scope.article = response.data;
 
 		        $scope.article_form_data.body = response.data.body;
 			
@@ -67,5 +60,21 @@ nbApp.controller('ArticleController', ['$scope', '$routeParams', '$route', '$loc
 			});
 
 		};	
+
+        $scope.show_user_info = function(userid) {
+
+			debugger;
+
+			$scope.show_user_info_modal;
+
+			return;
+
+            UserService.get_by_id(userid).then(function(response) {
+
+                debugger;
+
+            });
+
+        };
 
 }])

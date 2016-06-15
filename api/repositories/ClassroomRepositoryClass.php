@@ -28,13 +28,12 @@
 		/*
 		 * Enroll user in database
 		 */
-		public static function enroll_user($user_id, $classroom_id, $invitation_code) {
-
-			$invitation_code = md5($invitation_code);
+		public static function enroll_user($user_id, $invitation_code) {
 
 			//1. Check if classroom_id has this invitation_code
-			$database_classroom_result = parent::select("classrooms", array("*"), "id = $classroom_id AND invitation_code = '$invitation_code'");
-			$classroom_classroom_tupla = $database_classroom_result->fetch_array();
+			$database_classroom_result = parent::select("classrooms", array("*"), "invitation_code = '$invitation_code'");
+			$classroom_tupla = $database_classroom_result->fetch_array();
+			$classroom_id = $classroom_tupla["id"];
 
 			if ($database_classroom_result->num_rows) {
 
@@ -51,7 +50,13 @@
 
 				}
 
+			} else {
+
+				throw new Exception('Code is incorrect');
+
 			}
+
+			return $classroom_id;
 
 		}	
 

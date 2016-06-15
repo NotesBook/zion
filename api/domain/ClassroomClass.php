@@ -51,6 +51,12 @@
 
 		}
 
+		public function get_invitation_code() {
+
+			return $this->invitation_code;
+
+		}
+
 	    /** Validations */
 	    public static function check_data($name, $category, $subcategory, $description) {
 
