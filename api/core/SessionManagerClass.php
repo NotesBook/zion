@@ -33,6 +33,12 @@
 
 		}
 
+		public static function set_session_user($user) {
+
+			$_SESSION['user'] = $user->jsonSerialize($user);
+
+		}
+
 		public static function get_session_id() {
 
 			return session_id();

@@ -56,7 +56,7 @@ nbApp.controller('RegisterController', ['$scope', 'ValidationService', 'Countrie
 
                     LoadingService.showLoading();
 
-                    UserService.send_register_form_data('post','api/user/register',JSON.stringify($scope.register_model)).then(function(response) {
+                    UserService.send_register_form_data(JSON.stringify($scope.register_model)).then(function(response) {
 
                         if (response.valid) {
                             ModalService.showModal("¡ Usuario registrado con exito !", "Verifica tu email para validar la cuenta", true);

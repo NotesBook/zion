@@ -1,5 +1,5 @@
 nbApp.controller('MenuController', ['$scope', 'SecurityService', 'MenuService', 'ModalService', 'LoadingService', 'UserService', 'ClassroomsService', 'CategoriesService',
-	function($scope, SecurityService, MenuService, ModalService, LoadingService, UserService, ClassroomsService, CategoriesService) { 
+	function($scope, SecurityService, MenuService, ModalService, LoadingService, UserService, ClassroomsService, CategoriesService, CountriesService, ValidationService) { 
 
         LoadingService.showLoading();
         SecurityService.checkSession();

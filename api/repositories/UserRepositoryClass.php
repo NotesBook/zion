@@ -40,6 +40,17 @@
 
 		}
 
+		/* 
+		 * return: security_code 
+		 */
+		public static function save($id, $name, $surname, $birthdate, $country, $region) {
+
+			parent::update("users", 
+				"name = '$name', surname = '$surname', birthdate = '$birthdate', country = '$country', region = '$region'",
+				"id = '".$id."'");
+
+		}
+
 		public static function check_email_exists($email) {
 
 			$email_exists = parent::select("users", array("email"), "email = '$email'");

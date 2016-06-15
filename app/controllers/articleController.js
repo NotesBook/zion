@@ -48,58 +48,6 @@ nbApp.controller('ArticleController', ['$scope', '$routeParams', '$route', '$loc
 
 		}
 
-		// Get logged in user data
-		//TODO: Unccoment
-		// UserService.get_logged_user_data().then(function(response) {
-
-		// 	$scope.logged_user_data = response.data;
-		// 	LoadingService.hideLoading();
-		// 	// Get article data by ID
-		// 	ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
-
-		// 		$scope.article_data = response.data;
-			
-		// 		LoadingService.hideLoading();
-
-		// 		if ($scope.article_data.author_id == $scope.logged_user_data.id) {
-		// 			$scope.show_edit_button = true;
-		// 		} else $scope.show_edit_buttons = false;      
-		// 	});
-			
-		// });
-
-        // Add like to article when thumbs-up is clicked
-     //    $scope.like = function() {
-
-     //    	ArticlesService.like($scope.article_id).then(function(response) {
-     //    		if(response.valid == true) {
-     //    			ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
-
-					// 	$scope.article_data = response.data;
-					
-					// 	LoadingService.hideLoading();
-					// });
-     //    		}
-     //    	});
-     //    }
-
-        // // Add unlike to article when thumbs-up is clicked
-     //    $scope.unlike = function() {
-
-     //    	ArticlesService.unlike($scope.article_id).then(function(response) {
-     //    		if(response.valid == true) {
-     //    			ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
-
-					// 	$scope.article_data = response.data;
-						
-					// 	LoadingService.hideLoading();
-  
-					// });
-  	  //    		}
-     //    	});
-
-     //    }
-
 
 		$scope.save = function() {
 

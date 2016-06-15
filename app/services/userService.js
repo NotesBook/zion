@@ -23,9 +23,14 @@ nbApp.factory('UserService', ['AjaxService',
 	  		return AjaxService.send(method, 'api/user/active/' + email + '/' + token);
 	  	};
 
-	  	self.send_register_form_data = function(method,uri,data) {
+	  	self.send_register_form_data = function(data) {
 
-	  		return AjaxService.send(method,uri,data);
+	  		return AjaxService.send('post','api/user/register', data);
+	  	};
+
+	  	self.send_user_form_data = function(data) {
+
+	  		return AjaxService.send('post','api/user/save', data);
 	  	};
 
 	  	self.send_login_form_data = function(method,uri,data) {

@@ -32,7 +32,7 @@
 		}
 
 		/* Method POST
-		 * Save new user data
+		 * Save new user data from register
 		 */
 		public function register() {
 
@@ -70,6 +70,37 @@
 
 			//5. Return Ok
 			return FormattedRequest::format(true);
+		}
+
+
+		/* Method POST
+		 * Save new user data
+		 */
+		public function save() {
+			
+			//1. Get User's fields from $request_body
+			$request_body = HttpEngineService::get_array_from_json_body();
+
+			$name = $request_body["name"]; 
+			$surname = $request_body["surname"]; 
+			$birthdate = $request_body["birthdate"]; 
+			$country = $request_body["country"]; 
+			$region = $request_body["region"]; 
+			$email = $request_body["email"]; 
+
+			//2. Check if data is correct
+			User::check_data($name, $surname, $birthdate, $country, $region);
+
+			//3.2. Save User
+			UserRepository::save($_SESSION['user']['id'], $name, $surname, $birthdate, $country, $region);
+
+			$user_obj = UserRepository::get_by_id($_SESSION['user']['id']);
+
+			SessionManager::set_session_user($user_obj);
+
+			//5. Return Ok
+			return FormattedRequest::format(true);
+
 		}
 
 		/* Method POST
