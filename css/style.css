@@ -71,9 +71,14 @@ div#loading img {
 .w3-text-blue {
 	position: relative;
 }
-#menu_bar {
+.menu_bar {
 	background-color: #32506d;
 	color:white;
+}
+
+.w3-dropdown {
+	background-color: #32506d;
+	color:white;	
 }
 
 .dashboard_articles {

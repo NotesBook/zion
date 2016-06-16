@@ -1,6 +1,6 @@
 <!-- Navbar -->
 <div>
-    <div id="menu_bar" class="w3-top">
+    <div class="menu_bar w3-top">
 
         <ul class="w3-navbar w3-card-8 w3-large">
 
@@ -8,7 +8,7 @@
                 <a class="w3-padding-large w3-hover-white w3-large" href="javascript:void(0);" ng-click="openNav()"><i class="fa fa-bars"></i></a>
             </li>
 
-            <li class="w3-red">
+            <li>
                 <a href="#/dashboard" class="w3-card-2 init_button w3-padding-large w3-hover-white">
                     <i class="fa fa-home w3-margin-right"></i>Inicio
                 </a>
@@ -57,14 +57,61 @@
                             <i class="fa fa-plus-square"></i>
                         </a>
                 </div>                 
-            </li>            
+           </li>            
         </ul>
     </div>
 
     <!-- Navbar on small screens -->
     <div id="navToogle" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
-        <ul class="w3-navbar w3-left-align w3-large w3-theme">
-            <li><a class="w3-padding-large" href="#">Mi cuenta</a></li>
+        <ul class="menu_bar w3-navbar w3-left-align w3-large" >
+
+             <li class="w3-dropdown-hover">
+                <a href="" class="menu_bar w3-padding-large w3-hover-white" title="Ajustes de cuenta">
+                    <i class="fa fa-graduation-cap"></i> Aulas
+                </a>
+
+                <div class="w3-dropdown-content w3-card-2 w3-white">
+                    <a ng-click="launch_form_classroom_modal()" style="cursor:hand;cursor:pointer">Crear Aula
+                        <i class="fa fa-plus-square"></i>
+                    </a>
+                </div> 
+            </li>
+
+            <li>
+                <a href="" class="w3-padding-large w3-hover-white" ng-click="launch_enroll_modal()" style="cursor:hand;cursor:pointer">
+                    <i class="fa fa-envelope"></i> Acceder a una clase
+                </a>            
+            </li>
+
+            <li class="w3-dropdown-hover" ng-if="show_menu_articles">
+                <a href="" class="menu_bar w3-padding-large w3-hover-white w3-drop" title="Articulos">
+                    <i class="fa fa-envelope"></i> Artículos
+                </a>
+
+                <div class="w3-dropdown-content w3-white w3-card-4">
+                    <a href="#/classroom/{{ classroom_id }}/article/new/edit" >Crear Articulo
+                        <i class="fa fa-plus-square"></i>
+                    </a>
+                </div>                 
+            </li>
+
+            <li ng-if="show_menu_articles">
+                <a href="" ng-click="launch_invite_modal()" class="w3-hover-white w3-padding-large" style="cursor:hand;cursor:pointer">
+                    <i class="fa fa-envelope"></i> Invitar
+                </a>            
+            </li>
+
+            <li class="w3-dropdown-hover">
+                <a href="#/setup" class="menu_bar w3-padding-large w3-hover-white" title="Ajustes de cuenta">
+                    <i class="fa fa-user"></i> Mi cuenta
+                </a>
+                <div class="w3-dropdown-content w3-card-2 w3-white">
+                        <a href="" ng-click="logout()">Logout
+                            <i class="fa fa-plus-square"></i>
+                        </a>
+                </div>                 
+           </li>
+
         </ul>
     </div>
 </div> 
