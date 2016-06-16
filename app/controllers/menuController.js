@@ -1,5 +1,5 @@
-nbApp.controller('MenuController', ['$scope', 'SecurityService', 'MenuService', 'ModalService', 'LoadingService', 'UserService', 'ClassroomsService', 'CategoriesService',
-	function($scope, SecurityService, MenuService, ModalService, LoadingService, UserService, ClassroomsService, CategoriesService, CountriesService, ValidationService) { 
+nbApp.controller('MenuController', ['$scope', '$window', 'SecurityService', 'MenuService', 'ModalService', 'LoadingService', 'UserService', 'ClassroomsService', 'CategoriesService',
+	function($scope, $window,SecurityService, MenuService, ModalService, LoadingService, UserService, ClassroomsService, CategoriesService, CountriesService, ValidationService) { 
 
         LoadingService.showLoading();
         SecurityService.checkSession();
@@ -31,7 +31,7 @@ nbApp.controller('MenuController', ['$scope', 'SecurityService', 'MenuService', 
 
         // Send the form input data to process it at backend
         $scope.send_classroom_form_data = function() {
-
+            console.log($scope.classroom_form_data);
             LoadingService.showLoading();
 
             $scope.classroom_form_data['category'] = $scope.classroom_form_data['category'].category;
@@ -39,7 +39,7 @@ nbApp.controller('MenuController', ['$scope', 'SecurityService', 'MenuService', 
             $scope.classroom_form_data['subcategory'] = $scope.classroom_form_data['subcategory'].name;
 
             ClassroomsService.create_classroom(JSON.stringify($scope.classroom_form_data)).then(function(response) {
-
+                
                 if(response.valid == true) {
 
                     ModalService.showModal(" ¡ Aula creada con exito ! ", "Revisa tu email para invitar a otros usuarios", true, '#/classroom/' + response.data);

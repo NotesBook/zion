@@ -8,8 +8,8 @@
                 <a class="w3-padding-large w3-hover-white w3-large" href="javascript:void(0);" ng-click="openNav()"><i class="fa fa-bars"></i></a>
             </li>
 
-            <li>
-                <a href="#/dashboard" class="w3-padding-large w3-hover-white">
+            <li class="w3-red">
+                <a href="#/dashboard" class="w3-card-2 init_button w3-padding-large w3-hover-white">
                     <i class="fa fa-home w3-margin-right"></i>Inicio
                 </a>
             </li>
@@ -36,8 +36,8 @@
                 </div>                 
             </li>
 
-            <li class="w3-hide-small w3-dropdown-hover" ng-if="show_menu_articles">
-                <a ng-click="launch_invite_modal()" style="cursor:hand;cursor:pointer">
+            <li class="w3-hide-small" ng-if="show_menu_articles">
+                <a href="" ng-click="launch_invite_modal()" class="w3-hover-white w3-padding-large" style="cursor:hand;cursor:pointer">
                     <i class="fa fa-envelope"></i> Invitar
                 </a>            
             </li>

@@ -2,11 +2,14 @@
 <div class="w3-col m12">
   	<div class="article w3-card-2 w3-round w3-white">
     	<div class="w3-container w3-padding">
-            <a href="#/dashboard"><span class="w3-text-teal">Autor: {{article.author_name}}</i></span></a>
-         	<div class="w3-opacity w3-center w3-text-red">{{article.name}} - </div>
+            <div class="w3-input w3-light-grey"><a href="#/dashboard">
+                <img class="article_avatar" src="avatars/boy_avatar.jpg">
+                <span class="w3-text-blue">Autor: {{article.author_name}}</span></a>
+            </div>
+            
             <p ng-bind-html="article.body" contenteditable="false">{{article.body}}</p>
             <div class="w3-section w3-left">
-                <a style="w3-btn" href="#/classroom/{{ article.classroom_id }}/article/{{ article.id }}"><div class="w3-btn w3-blue">ver artículo completo...</div></a>
+                <a style="w3-btn" href="#/classroom/{{ article.classroom_id }}/article/{{ article.id }}"><button class="w3-btn w3-blue">ver artículo completo...</button></a>
             </div>
             <div class="w3-section w3-right">
                 <a href="#"><span class="w3-hover-text-green w3-large" title="Me gusta"> <i class="fa fa-thumbs-o-up fa-lg"></i></span></a><span class="w3-text-green w3-large">{{article.likes_count}}</span>

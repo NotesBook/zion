@@ -2,15 +2,15 @@
 <div  ng-controller="MenuController" ng-include="'app/views/partials/menu-bar-partial.html'"></div>
 
 <!-- Page Container -->
-<div class="w3-container" style="margin-top:80px;">
+<div class="w3-container" style="margin-top:80px;min-height: 100vh">
         
     <!-- The Grid -->
-    <div  class="w3-row w3-container">
+    <div  class="w3-row w3-row-padding">
         <!-- Left Column -->
-        <div class="w3-col m2">
+        <div class="w3-col m2 w3-section">
             <!-- Logo -->
             <div class="w3-row">
-                <div class="w3-card-2 w3-white w3-section w3-round w3-col w3-center">
+                <div class="w3-card-2 w3-white w3-round w3-col w3-center">
                     <img id="logo" src="images/logo_Notesbook_trans.png"></img>
                 </div>
             </div>
@@ -21,15 +21,17 @@
         </div>
         
         <!-- Middle Column - Body of page -->
-        <div class="dashboard_articles w3-col m7 w3-large w3-section w3-card-2 w3-padding w3-margin w3-round">
-            <div class="dashboard_title w3-row-padding w3-margin w3-center">Dashboard</div>
-            <div class="w3-row-padding" ng-repeat="article in dashboard_articles">
+        <div class="dashboard_articles w3-col m8 w3-card-2 w3-round w3-container w3-section">
+
+            <div class="dashboard_title w3-row w3-center w3-container">Dashboard</div>
+
+            <div class="" ng-repeat="article in dashboard_articles">
                 <div ng-include="'app/views/partials/article-list-item-partial.html'"></div>
             </div>
         </div> 
 
         <!-- Right Column -->
-        <div class="w3-col m2 w3-section w3-hide-small w3-hide-medium">
+        <div class="w3-col m2 w3-hide-small w3-hide-medium w3-container w3-section w3-right">
              <!-- Profile -->
              <div class="w3-row">
                 <div ng-include="'app/views/partials/user-profile-data-partial.html'"></div> 

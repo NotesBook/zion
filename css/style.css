@@ -6,18 +6,27 @@
  * @package    \css
  * @license    https://www.gnu.org/licenses/agpl-3.0.html GNU Affero General Public License Version 3 (AGPL3)
  */
-html,body,h1,h2,h3,h4,h5 {
-	font-family: "Open Sans", sans-serif
+
+ @font-face {
+	font-family: 'Mohave';
+	src: '../fonts/Mohave-bold.otf';
 }
 
-#login-modal-container,body {
+html,body,h1,h2,h3,h4,h5 {
+	font-family: "Open Sans", sans-serif;
+}
+
+body {
 	display: block;
-	background: radial-gradient(#2196F3, white);
+	background-image: url("../images/texture6.png");
+	background-repeat: repeat;
 }
 
 #login-modal-container {
 
 	z-index: 1;
+	display: block;
+	background-color: #CCD6DD;
 
 }
 
@@ -50,7 +59,6 @@ div#loading {
 }
 
 div#loading img {
-
 	  display:block;
 	  z-index: 10000;
 	  position:fixed;
@@ -58,5 +66,50 @@ div#loading img {
 	  right:0;
 	  top:20vh;
 	  margin:auto;
+}
 
+.w3-text-blue {
+	position: relative;
+}
+#menu_bar {
+	background-color: #32506d;
+	color:white;
+}
+
+.dashboard_articles {
+	background-color: #E1E8ED;	
+}
+
+.dashboard_title {
+	color: #b52e31;
+	font-family: 'Mohave';
+	font-size:40px;
+}
+
+.classroom_articles {
+	background-color: #6b0f24;	
+}
+
+.classroom_title {
+	background-color: #b52e31;
+	color: white;
+	font-family: 'Mohave';
+	font-size: 40px;
+}
+
+#logo {
+	width: 100%;
+}
+
+.modal_accept_button.w3-btn {
+	background-color: #32506d; !important
+}
+
+.article_avatar {
+	vertical-align: middle;
+	height: 50px;
+}
+
+.init_button {
+	background-color: #b52e31;
 }
