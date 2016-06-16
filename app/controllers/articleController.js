@@ -1,5 +1,5 @@
-nbApp.controller('ArticleController', ['$scope', '$routeParams', '$route', '$location', 'ArticlesService','ValidationService','SharedDataService','UserService','LoadingService','ClassroomsService',
-	function($scope, $routeParams, $route, $location, ArticlesService,ValidationService,SharedDataService,UserService,LoadingService,ClassroomsService) {
+nbApp.controller('ArticleController', ['$scope', '$routeParams', '$window', '$route', '$location', 'ArticlesService','ValidationService','SharedDataService','UserService','LoadingService','ClassroomsService',
+	function($scope, $routeParams, $route, $window, $location, ArticlesService,ValidationService,SharedDataService,UserService,LoadingService,ClassroomsService) {
 
 		$scope.article_form_data = {
 			article_id : undefined,
@@ -13,8 +13,6 @@ nbApp.controller('ArticleController', ['$scope', '$routeParams', '$route', '$loc
 		LoadingService.showLoading();
 
 		// Get the article_id recibed by URL
-
-		
 		$scope.article_id = $routeParams.article_id || $routeParams.id;
 		$scope.article_is_viewing = $routeParams.article_id;
 		$scope.classroom_id = $routeParams.classroom_id;
@@ -58,6 +56,10 @@ nbApp.controller('ArticleController', ['$scope', '$routeParams', '$route', '$loc
 			$location.path("classroom/" + classroom_id + "/article/" + article_id + "/edit");
 
 		};
+
+		$scope.redirect_to_classroom = function(classroom_id) {
+			$location.path("classroom/" + classroom_id);
+		} 
 
 		$scope.show_edit_button = function() {
 

@@ -71,7 +71,7 @@ div#loading img {
 .w3-text-blue {
 	position: relative;
 }
-.menu_bar {
+.menu_bar, footer{
 	background-color: #32506d;
 	color:white;
 }
@@ -86,20 +86,29 @@ div#loading img {
 }
 
 .dashboard_title {
-	color: #b52e31;
+	
+	background-color: #b52e31;
+	color: ;
 	font-family: 'Mohave';
 	font-size:40px;
 }
 
 .classroom_articles {
-	background-color: #6b0f24;	
+	background-color: #89ABCC;	
 }
 
 .classroom_title {
+	background-color: white;
+	color: black;
+	font-family: 'Mohave';
+	font-size: 40px;
+}
+
+.article_view_title {
 	background-color: #b52e31;
 	color: white;
 	font-family: 'Mohave';
-	font-size: 40px;
+	font-size: 40px;	
 }
 
 #logo {
@@ -110,6 +119,14 @@ div#loading img {
 	background-color: #32506d; !important
 }
 
+.modal.w3-closebtn {
+    text-decoration: none;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
 .article_avatar {
 	vertical-align: middle;
 	height: 50px;
@@ -117,4 +134,18 @@ div#loading img {
 
 .init_button {
 	background-color: #b52e31;
+}
+
+.article img {
+	max-width: 100%;
+}
+
+.modal_user_invite {
+	background-color: #32506d;
+	color:white;
+}
+
+.invite_modal_send_button {
+	background-color: #32506d;
+	color:white;
 }
