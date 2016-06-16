@@ -12,8 +12,8 @@
                 <a style="w3-btn" href="#/classroom/{{ article.classroom_id }}/article/{{ article.id }}"><button class="w3-btn w3-blue">ver artículo completo...</button></a>
             </div>
             <div class="w3-section w3-right">
-                <a href="#"><span class="w3-hover-text-green w3-large" title="Me gusta"> <i class="fa fa-thumbs-o-up fa-lg"></i></span></a><span class="w3-text-green w3-large">{{article.likes_count}}</span>
-                <a href="#"><span class="w3-hover-text-red w3-large" title="No me gusta"> <i class="fa fa-thumbs-o-down fa-lg"></i></span></a><span class="w3-text-red w3-large">{{article.likes_count}}</span>
+                <a href=""><span ng-click="like(article.id)" class="w3-hover-text-green w3-large" title="Me gusta"> <i class="fa fa-thumbs-o-up fa-lg"></i></span></a><span class="w3-text-green w3-large">{{article.likes_count}}</span>
+                <a href=""><span ng-click="unlike(article.id)" class="w3-hover-text-red w3-large" title="No me gusta"> <i class="fa fa-thumbs-o-down fa-lg"></i></span></a><span class="w3-text-red w3-large">{{article.unlikes_count}}</span>
             </div>
         </div>
     </div><br />

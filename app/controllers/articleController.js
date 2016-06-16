@@ -25,15 +25,7 @@ nbApp.controller('ArticleController', ['$scope', '$routeParams', '$route', '$loc
 
 		if ($scope.article_is_editting || $scope.article_is_viewing) {
 
-			ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
-
-				$scope.article = response.data;
-
-		        $scope.article_form_data.body = response.data.body;
-			
-				LoadingService.hideLoading();  
-
-			});
+			refresh_article();
 
 		} else {
 
@@ -73,6 +65,53 @@ nbApp.controller('ArticleController', ['$scope', '$routeParams', '$route', '$loc
 				return $scope.article.author_id = $scope.logged_user_data.id;
 
 		};
+
+		$scope.like = function(article_id) {
+
+			LoadingService.showLoading();  
+
+			ArticlesService.like(article_id).then(function(response) {
+
+				if(response.valid) {
+
+					refresh_article();
+
+				}
+
+			});
+
+		};
+
+		$scope.unlike = function(article_id) {
+
+			LoadingService.showLoading();  
+
+			ArticlesService.unlike(article_id).then(function(response) {
+
+				if(response.valid) {
+
+					refresh_article();
+
+				}
+
+			});
+
+		};
+
+
+		function refresh_article() {
+			
+			ArticlesService.get_article_by_id($scope.article_id).then(function(response) {
+
+				$scope.article = response.data;
+
+		        $scope.article_form_data.body = response.data.body;
+			
+				LoadingService.hideLoading();  
+
+			});
+
+		}
 
         $scope.show_user_info = function(userid) {
 
