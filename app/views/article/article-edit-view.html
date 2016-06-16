@@ -62,9 +62,9 @@
                 <div ng-include="'app/views/partials/user-profile-data-partial.html'"></div> 
             </div>
 
-             <!-- Classroom Info -->
+             <!-- Article Info -->
              <div class="w3-row">
-                <div ng-include="'app/views/partials/classroom-info.html'"></div> 
+                <div ng-if="!article_is_new" ng-include="'app/views/article/partials/article-info-partial.html'"></div> 
             </div>
 
         </div>        

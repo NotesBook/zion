@@ -72,7 +72,7 @@ nbApp.controller('MenuController', ['$scope', '$window', '$cookies', 'SecuritySe
         UserService.get_logged_user_data().then(function(response) {
 
             $scope.$parent.logged_user_data = response.data;
-            console.log($scope.logged_user_data)
+
         });
 
         CategoriesService.getCategoriesJSON().then(function(response) {

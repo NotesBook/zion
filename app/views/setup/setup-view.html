@@ -6,17 +6,16 @@
 <div class="w3-container" style="margin-top:80px; height:100vh">
         
     <!-- The Grid -->
-    <div class="w3-row w3-container">
+    <div class="w3-row w3-row-padding">
+
         <!-- Left Column -->
-        <div class="w3-col m2">
+        <div class="w3-col m2 w3-section">
             <!-- Logo -->
             <div class="w3-row">
-                <div class="w3-col w3-center">
-                    <img src="images/logo_Notesbook_trans.png" style="height:200px;width:195px;margin:0"></img>
+                <div class="w3-card-2 w3-white w3-round w3-col w3-center">
+                    <img id="logo" src="images/logo_Notesbook_trans.png"></img>
                 </div>
             </div>
-
-            <!-- Profile -->
 
             <!-- My Classrooms -->
             <div ng-include="'app/views/partials/my-classrooms-links-partial.html'"></div>
@@ -25,151 +24,150 @@
         </div>   
 
         <!-- Middle Column -->
-        <div class="w3-col m8 w3-large w3-teal w3-center w3-section w3-card-2 w3-padding w3-round">
-            <div class="w3-row"></div>Mantenimiento de usuario
-        </div>        
+        <div class="user_setup_mid_card w3-col m8 w3-card-2 w3-round w3-container w3-section ">
 
-        <div class="w3-col m8"> 
-            <div class="w3-row-padding">
-                <div class="w3-col m12">
-                    <div class="w3-card-2 w3-round w3-white">
-                        <div class="w3-container">
-                            <h4 class="w3-center">Mi Avatar</h4>
-                            <p class="w3-center"><img src="{{logged_user_data.avatar_src}}" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-                            <input type="file" id="setup_avatar"  ng-model="avatar" />
-                            <button ng-click="upload_avatar()">Subir avatar</button>
+            <div class="setup_view_title w3-col m12 w3-center w3-section w3-card-2 w3-padding w3-round">Mantenimiento de usuario</div>    
+
+            <div class="w3-col m12"> 
+                <div class="article w3-card-2 w3-round w3-white">
+                    <div class="w3-container w3-padding">
+                            <div class="w3-container">
+                                <h4 class="w3-center">Mi Avatar</h4>
+                                <p class="w3-center"><img src="{{logged_user_data.avatar_src}}" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+                                <input class="setup_view_title w3-btn-block w3-section" type="file" id="setup_avatar"  ng-model="avatar" />
+                                <button class="setup_view_action_btn w3-btn-block" ng-click="upload_avatar()">Subir avatar</button>
+                            </div>
                         </div>
+
+                        <div class="w3-card-2 w3-round w3-white">
+
+                            <div class="w3-container w3-padding">
+
+                                <!-- FORM --> 
+                                <form class="w3-form" name="userForm" novalidate>                                 
+
+                                    <!-- Email -->
+                                    <label for="email"><b>Email</b></label>
+                                    <input 
+                                        name="email"
+                                        class="w3-input w3-border"
+                                        readonly                     
+                                        type="email" 
+                                        placeholder="Introduce tu email"  
+                                        ng-pattern="JSON_validation.email"
+                                        ng-value="user.email"
+                                        ng-model="user_form_data.email" ng-value="user.email" 
+                                        required>
+                                    </input>
+                                    
+                                    <!-- NAME -->
+                                    <label for="name"><b>Nombre</b></label>
+                                    <input 
+                                        name="name" 
+                                        ng-class="{ 'w3-input w3-border-red': userForm.name.$invalid, 
+                                                    'w3-input w3-border-green': userForm.name.$valid}"         
+                                        class="w3-input w3-border w3-margin-bottom" 
+                                        type="text" 
+                                        value="" 
+                                        placeholder="Introduce tu nombre"    
+                                        ng-model="user_form_data.name" 
+                                        ng-value="user.name"
+                                        ng-pattern="JSON_validation.name"
+                                        minlength=3
+                                        required>
+                                    </input>
+
+                                    <div ng-messages="userForm.name.$error" ng-show="userForm.name.$touched" style="color:red">
+                                        <p ng-message="minlength">Nombre muy corto.</p>
+                                        <p ng-message="pattern">Nombre erróneo.</p>
+                                        <p ng-message="required">Nombre requerido</p>
+                                    </div>
+
+                                    <!-- SURNAME -->
+                                    <label for="surname"><b>Apellidos</b></label>
+                                    <input 
+                                        name="surname"
+                                        ng-class="{ 'w3-input w3-border-red': userForm.surname.$invalid, 
+                                                    'w3-input w3-border-green': userForm.surname.$valid}"                        
+                                        class="w3-input w3-border w3-margin-bottom" 
+                                        type="text"  
+                                        value="" 
+                                        placeholder="Introduce tus apellidos"  
+                                        ng-model="user_form_data['surname']"
+                                        ng-value="user.surname"
+                                        ng-pattern="JSON_validation.surname" 
+                                        minlength=3
+                                        required>
+                                    </input>
+
+                                    <div ng-messages="userForm.surname.$error" ng-show="userForm.surname.$touched" style="color:red">
+                                        <p ng-message="minlength">Apellido muy corto.</p>
+                                        <p ng-message="pattern">Apellido erróneo.</p>
+                                        <p ng-message="required">Apellido requerido</p>
+                                    </div>  
+
+                                    <!-- BIRTHDATE -->
+                                    <label for="birthdate_input"><b>Fecha de nacimiento</b></label>
+                                    <input class="w3-input w3-border"
+                                        name="birthdate_input" 
+                                        ng-value="user.date"
+                                        ng-class="{ 'w3-input w3-border-red':  userForm.birthdate_input.$invalid, 
+                                                    'w3-input w3-border-green':  userForm.birthdate_input.$valid }"                        
+                                        type="date"
+                                        placeholder="Introduce tu fecha de nacimiento"
+                                        ng-model="user_form_data.birthdate_input"
+                                        required>
+                                    </input>
+                                    <div ng-messages="userForm.birthdate_input.$error" ng-show="userForm.birthdate_input.$touched" style="color:red">
+                                        <p ng-message="required">Fecha requerida</p>
+                                        <p ng-if="userForm.birthdate_input.$invalid">Fecha errónea</p>
+                                    </div>                        
+
+                                    <!-- COUNTRIES -->                        
+                                    <label for="countries"><b>País</b></label>
+                                    <select class="w3-select" name="countries" ng-model="user_form_data['country']">
+                                        <!-- Manera de iterar en los datos de un objeto JSON-->
+                                        <option value="">Seleccciona un país</option>
+                                        <option ng-repeat="(key, val) in listCountries">{{val}}</option>
+                                    </select>  
+
+                                    <!-- REGION -->
+                                    <label for="region"><b>Región</b></label>
+                                    <input class="w3-input w3-border"
+                                        name="region" 
+                                        ng-class="{ 'w3-input w3-border-red': userForm.region.$invalid, 
+                                                    'w3-input w3-border-green': userForm.region.$valid}"                        
+                                        type="text"
+                                        placeholder="Introduce tu region"
+                                        ng-model="user_form_data['region']"
+                                        required>
+                                    </input>
+                                    <div ng-messages="userForm.region.$error" ng-show="userForm.region.$touched" style="color:red">
+                                        <p ng-message="required">Region requerida</p>
+                                    </div>                                       
+
+                                    <!-- SUBMIT -->
+                                    <button 
+                                        class="setup_view_action_btn w3-btn-block w3-btn w3-btn-block w3-section w3-ripple" 
+                                        ng-disabled="userForm.$invalid" 
+                                        ng-click="send_user_form_data()">Guardar</button>
+
+
+                                    <!-- SECTION 2 -->
+                                    <div class="w3-section w3-container w3-border-top w3-padding-hor-16 w3-light-grey">
+                                        <!-- RESET -->
+                                        <input type="reset" class="w3-btn w3-red w3-ripple"></input>
+                                    </div> 
+
+                                </form>    
+                                                                    
+                            </div>
+                        </div><br>
                     </div>
-
-                    <div class="w3-card-2 w3-round w3-white">
-
-                        <div class="w3-container w3-padding">
-
-                            <!-- FORM --> 
-                            <form class="w3-form" name="userForm" novalidate>                                 
-
-                                <!-- Email -->
-                                <label for="email"><b>Email</b></label>
-                                <input 
-                                    name="email"
-                                    class="w3-input w3-border"
-                                    readonly                     
-                                    type="email" 
-                                    placeholder="Introduce tu email"  
-                                    ng-pattern="JSON_validation.email"
-                                    ng-value="user.email"
-                                    ng-model="user_form_data.email" ng-value="user.email" 
-                                    required>
-                                </input>
-                                
-                                <!-- NAME -->
-                                <label for="name"><b>Nombre</b></label>
-                                <input 
-                                    name="name" 
-                                    ng-class="{ 'w3-input w3-border-red': userForm.name.$invalid, 
-                                                'w3-input w3-border-green': userForm.name.$valid}"         
-                                    class="w3-input w3-border w3-margin-bottom" 
-                                    type="text" 
-                                    value="" 
-                                    placeholder="Introduce tu nombre"    
-                                    ng-model="user_form_data.name" 
-                                    ng-value="user.name"
-                                    ng-pattern="JSON_validation.name"
-                                    minlength=3
-                                    required>
-                                </input>
-
-                                <div ng-messages="userForm.name.$error" ng-show="userForm.name.$touched" style="color:red">
-                                    <p ng-message="minlength">Nombre muy corto.</p>
-                                    <p ng-message="pattern">Nombre erróneo.</p>
-                                    <p ng-message="required">Nombre requerido</p>
-                                </div>
-
-                                <!-- SURNAME -->
-                                <label for="surname"><b>Apellidos</b></label>
-                                <input 
-                                    name="surname"
-                                    ng-class="{ 'w3-input w3-border-red': userForm.surname.$invalid, 
-                                                'w3-input w3-border-green': userForm.surname.$valid}"                        
-                                    class="w3-input w3-border w3-margin-bottom" 
-                                    type="text"  
-                                    value="" 
-                                    placeholder="Introduce tus apellidos"  
-                                    ng-model="user_form_data['surname']"
-                                    ng-value="user.surname"
-                                    ng-pattern="JSON_validation.surname" 
-                                    minlength=3
-                                    required>
-                                </input>
-
-                                <div ng-messages="userForm.surname.$error" ng-show="userForm.surname.$touched" style="color:red">
-                                    <p ng-message="minlength">Apellido muy corto.</p>
-                                    <p ng-message="pattern">Apellido erróneo.</p>
-                                    <p ng-message="required">Apellido requerido</p>
-                                </div>  
-
-                                <!-- BIRTHDATE -->
-                                <label for="birthdate_input"><b>Fecha de nacimiento</b></label>
-                                <input class="w3-input w3-border"
-                                    name="birthdate_input" 
-                                    ng-value="user.date"
-                                    ng-class="{ 'w3-input w3-border-red':  userForm.birthdate_input.$invalid, 
-                                                'w3-input w3-border-green':  userForm.birthdate_input.$valid }"                        
-                                    type="date"
-                                    placeholder="Introduce tu fecha de nacimiento"
-                                    ng-model="user_form_data.birthdate_input"
-                                    required>
-                                </input>
-                                <div ng-messages="userForm.birthdate_input.$error" ng-show="userForm.birthdate_input.$touched" style="color:red">
-                                    <p ng-message="required">Fecha requerida</p>
-                                    <p ng-if="userForm.birthdate_input.$invalid">Fecha errónea</p>
-                                </div>                        
-
-                                <!-- COUNTRIES -->                        
-                                <label for="countries"><b>País</b></label>
-                                <select class="w3-select" name="countries" ng-model="user_form_data['country']">
-                                    <!-- Manera de iterar en los datos de un objeto JSON-->
-                                    <option value="">Seleccciona un país</option>
-                                    <option ng-repeat="(key, val) in listCountries">{{val}}</option>
-                                </select>  
-
-                                <!-- REGION -->
-                                <label for="region"><b>Región</b></label>
-                                <input class="w3-input w3-border"
-                                    name="region" 
-                                    ng-class="{ 'w3-input w3-border-red': userForm.region.$invalid, 
-                                                'w3-input w3-border-green': userForm.region.$valid}"                        
-                                    type="text"
-                                    placeholder="Introduce tu region"
-                                    ng-model="user_form_data['region']"
-                                    required>
-                                </input>
-                                <div ng-messages="userForm.region.$error" ng-show="userForm.region.$touched" style="color:red">
-                                    <p ng-message="required">Region requerida</p>
-                                </div>                                       
-
-                                <!-- SUBMIT -->
-                                <button 
-                                    class="w3-btn w3-btn-block w3-section w3-grey w3-ripple" 
-                                    ng-disabled="userForm.$invalid" 
-                                    ng-click="send_user_form_data()">Guardar</button>
-
-
-                                <!-- SECTION 2 -->
-                                <div class="w3-section w3-container w3-border-top w3-padding-hor-16 w3-light-grey">
-                                    <!-- RESET -->
-                                    <input type="reset" class="w3-btn w3-red w3-ripple"></input>
-                                </div> 
-
-                            </form>    
-                                                                
-                        </div>
-                    </div><br>
                 </div>
             </div>
-        </div>
-       
-    <!-- End Grid -->
+        </div>  
+        <!-- End Grid -->  
     </div>
 <!-- End Page Container -->
 </div>

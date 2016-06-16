@@ -6,10 +6,6 @@
                 <img class="w3-circle article_avatar" src="{{article.author_avatar_src}}">
                 <span class="w3-text-blue-grey">  Autor: {{article.author_name}}</span></a>
 
-            <div class="w3-input w3-light-grey"><a href="" ng-click="launch_user_info_modal(article.author_id)">
-                <img class="w3-circle article_avatar" src="{{article.author_avatar_src}}" >
-                <span class="w3-text-blue">Autor: {{article.author_name}}</span></a>
-
             </div>
             
             <p ng-bind-html="article.body" class="w3-input" contenteditable="false">{{article.body}}</p>

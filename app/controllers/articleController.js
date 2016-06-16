@@ -115,20 +115,36 @@ nbApp.controller('ArticleController', ['$scope', '$routeParams', '$window', '$ro
 
 		}
 
-        $scope.show_user_info = function(userid) {
+        $scope.modal_user_info = {};
+        $scope.modal_user_info.show = false;
 
-			debugger;
+        $scope.$watch('modal_user_info.show', function(show) {
 
-			$scope.show_user_info_modal;
+            if (show)
+                $scope.modal_user_info.style = { "display" : "block" };
+            else
+                $scope.modal_user_info.style = {};
 
-			return;
+        });
+        
 
-            UserService.get_by_id(userid).then(function(response) {
+        $scope.launch_user_info_modal = function(user_id) {
 
-                debugger;
+            UserService.get_by_id(user_id).then(function(response) {
+
+                $scope.modal_user_info = response.data;
+                return $scope.modal_user_info.show = true;
 
             });
 
+           
+        }; 
+
+        $scope.close_user_info_modal = function() {
+
+            return $scope.modal_user_info.show = false;
+
         };
+
 
 }])

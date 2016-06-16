@@ -154,3 +154,22 @@ div#loading img {
 	background-color: #b52e31;
 	color:white;	
 }
+
+.user_info_header {
+	background-color: #b52e31;
+	color:white;	
+}
+
+.user_setup_mid_card {
+	background-color: #d6d4e0;	
+}
+
+.setup_view_action_btn {
+	background-color: #5b9aa0;
+	color:white;	
+}
+
+.setup_view_title {
+	background-color: #b8a9c9;
+	color:white;	
+}
