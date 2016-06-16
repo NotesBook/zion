@@ -27,7 +27,7 @@ nbApp.controller('MenuController', ['$scope', 'SecurityService', 'MenuService', 
 
             return $scope.modal_create_classroom.show = false;
 
-        };    
+        };             
 
         // Send the form input data to process it at backend
         $scope.send_classroom_form_data = function() {
@@ -163,13 +163,6 @@ nbApp.controller('MenuController', ['$scope', 'SecurityService', 'MenuService', 
 
         };    
 
-
-        $scope.launch_invite_modal = function() {
-
-            return $scope.modal_user_invite.show = true;
-
-        };
-
         $scope.send_invite = function() {
 
             LoadingService.showLoading();  
@@ -218,12 +211,6 @@ nbApp.controller('MenuController', ['$scope', 'SecurityService', 'MenuService', 
 
         };    
 
-
-        $scope.launch_enroll_modal = function() {
-
-            return $scope.modal_enroll_modal.show = true;
-
-        };
 
         $scope.send_enroll = function() {
 
