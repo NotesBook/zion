@@ -92,6 +92,12 @@
 
 		}
 
+		public function get_avatar_src() {
+
+			return $this->avatar_src;
+
+		}
+
 	    /** Validations */
 	    public static function check_data($name, $surname, $birthdate, $country, $region, $email = null) {
 

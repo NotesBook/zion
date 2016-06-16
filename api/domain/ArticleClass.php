@@ -112,7 +112,8 @@
 	            'delete_date' => $this->delete_date,
 	            'likes_count' => $this->likes_count,
 	            'unlikes_count' => $this->unlikes_count,
-	            'author_name' => isset($this->author) ? $this->author->get_complete_name() : ""
+	            'author_name' => isset($this->author) ? $this->author->get_complete_name() : "",
+	            'author_avatar_src' => isset($this->author) ? "avatars/".$this->author->get_avatar_src() : "images/boy_avatar.jpg"
 	        ];
 	    }
 
