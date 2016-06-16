@@ -1,7 +1,7 @@
 nbApp.factory('ModalService',[
 	function() {
 
-		var self = {};
+	var self = {};
 
         self.title = "";
         self.text = "";

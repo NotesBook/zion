@@ -1,19 +1,22 @@
 <!-- Register Valid Modal -->
 <div class="w3-modal" ng-style="modal_user_invite.style">
     <div class="w3-modal-content w3-card-4 w3-animate-top"><!-- Profile -->
-        <span ng-click="close_invite_modal()" class="w3-closebtn">×</span>
+        
 		<div class="w3-card-2 w3-round w3-white">
 		    <div class="w3-container">
-		        <h4 class="w3-center">Introduce el email - Elige la clasrroom</h4>   
+                <span ng-click="close_invite_modal()" class="modal w3-closebtn">&times;</span>
+		        <h4 class="modal_user_invite w3-center">Introduce el email - Elige la clasrroom</h4>   
 
-                <div class="w3-section"><label class="create w3-label">Email: </label><input ng-model="modal_user_invite.email" class="w3-input" placeholder="Introduce un email" type="email"></input></div>
+                <div class="w3-section"><label class="create w3-label">Email: </label>
+                    <input ng-model="modal_user_invite.email" class="w3-input" placeholder="Introduce un email" type="email"></input>
+                </div>
 
-                <label for="clase"><b>Clase</b></label>
+                <label class="w3-label w3-section" for="clase">Clase</label>
                 <select class="w3-select" ng-model="modal_user_invite.classroom" >
      		 		<option ng-repeat="option in my_classrooms" value="{{option.id}}">{{option.name}}</option>
                 </select>   
 
-                <button type="button" ng-click="send_invite()" class="w3-btn w3-theme"><i class="fa fa-pencil"></i> Enviar</button>
+                <button type="button" ng-click="send_invite()" class="modal_accept_button w3-btn w3-btn-block w3-section"><i class="fa fa-pencil"></i> Enviar</button>
 
 		    </div>
 		</div>

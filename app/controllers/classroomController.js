@@ -11,9 +11,11 @@ nbApp.controller('ClassRoomController',['$scope', '$routeParams', 'LoadingServic
         //1. Get the classroom object recived from dashboard
         ClassroomsService.get_classroom($scope.classroom_id)
             .then(function (response){
+
                 $scope.classroom_item = response.data;
                 //2. Get all classroom articles by id
                 $scope.refresh_articles();
+
             });  
 
         // --- METHODS ---                                 
