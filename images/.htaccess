@@ -1,0 +1,7 @@
+#prevent listing files
+Options -Indexes
+
+#prevent execute php directilly
+<Files *.php>
+deny from all
+</Files>
