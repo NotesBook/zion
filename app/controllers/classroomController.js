@@ -30,4 +30,36 @@ nbApp.controller('ClassRoomController',['$scope', '$routeParams', 'LoadingServic
 
         }; 
 
+        $scope.like = function(article_id) {
+
+            LoadingService.showLoading();  
+
+            ArticlesService.like(article_id).then(function(response) {
+
+                if(response.valid) {
+
+                    $scope.refresh_articles();
+
+                }
+
+            });
+
+        };
+
+        $scope.unlike = function(article_id) {
+
+            LoadingService.showLoading();  
+
+            ArticlesService.unlike(article_id).then(function(response) {
+
+                if(response.valid) {
+
+                    $scope.refresh_articles();
+
+                }
+
+            });
+
+        };
+
 }])
