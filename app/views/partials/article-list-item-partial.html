@@ -2,15 +2,15 @@
   	<div class="article w3-card-2 w3-round w3-white">
     	<div class="w3-container w3-padding">
             <div class="w3-input w3-light-grey"><a href="#/user/{{article.author_id}}">
-                <img class="w3-circle article_avatar" src="{{article.author_avatar_src}}" >
-                <span class="w3-text-blue">Autor: {{article.author_name}}</span></a>
+                <img class="w3-circle article_avatar" src="{{article.author_avatar_src}}">
+                <span class="w3-text-blue-grey">  Autor: {{article.author_name}}</span></a>
             </div>
             
-            <p ng-bind-html="article.body" contenteditable="false">{{article.body}}</p>
-            <div class="w3-section w3-left">
-                <a style="w3-btn" href="#/classroom/{{ article.classroom_id }}/article/{{ article.id }}"><button class="w3-btn w3-blue">ver artículo completo...</button></a>
+            <p ng-bind-html="article.body" class="w3-input" contenteditable="false">{{article.body}}</p>
+            <div class="w3-section">
+                <a style="w3-btn" href="#/classroom/{{ article.classroom_id }}/article/{{ article.id }}"><button class="w3-btn w3-btn-block w3-blue-grey">ver artículo completo...</button></a>
             </div>
-            <div class="w3-section w3-right">
+            <div class="w3-section w3-center">
                 <a href=""><span ng-click="like(article.id)" class="w3-hover-text-green w3-large" title="Me gusta"> <i class="fa fa-thumbs-o-up fa-lg"></i></span></a><span class="w3-text-green w3-large">{{article.likes_count}}</span>
                 <a href=""><span ng-click="unlike(article.id)" class="w3-hover-text-red w3-large" title="No me gusta"> <i class="fa fa-thumbs-o-down fa-lg"></i></span></a><span class="w3-text-red w3-large">{{article.unlikes_count}}</span>
             </div>

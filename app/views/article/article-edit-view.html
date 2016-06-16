@@ -3,21 +3,19 @@
 <div ng-controller="MenuController" ng-include="'app/views/partials/menu-bar-partial.html'"></div>
 
 <!-- Page Container -->
-<div class="w3-container" style="margin-top:80px; height:100vh">
+<div class="w3-container" style="margin-top:80px; min-height:100vh">
         
     <!-- The Grid -->
-    <div class="w3-row w3-container">
+    <div class="w3-row w3-row-padding">
+
         <!-- Left Column -->
-        <div class="w3-col m2">
+        <div class="w3-col m2 w3-section">
             <!-- Logo -->
             <div class="w3-row">
-                <div class="w3-col w3-center">
-                    <img src="images/logo_Notesbook_trans.png" style="height:200px;width:195px;margin:0"></img>
+                <div class="w3-card-2 w3-white w3-round w3-col w3-center">
+                    <img id="logo" src="images/logo_Notesbook_trans.png"></img>
                 </div>
             </div>
-
-            <!-- Profile -->
-            <div ng-include="'app/views/partials/user-profile-data-partial.html'"></div>
 
             <!-- My Classrooms -->
             <div ng-include="'app/views/partials/my-classrooms-links-partial.html'"></div>
@@ -25,30 +23,51 @@
         <!-- End Left Column -->
         </div>   
 
-        <div ng-class="{ 'w3-input w3-red': show_text_angular}" contenteditable="false" class="w3-col m8 w3-large w3-teal w3-center w3-section w3-card-2 w3-padding w3-round">
-            <div class="w3-row"><span ng-if="article_is_new">Creación de artículo</span><span ng-if="article_is_editting">Edicion de artículo</span></div>
-        </div>
+        <!-- Middle Column -->
+        <div class="w3-pale-red w3-col m8 w3-card-2 w3-round w3-container w3-section">
+            <div class="article_view_title w3-col m12 w3-center w3-section w3-card-2 w3-padding w3-round">
+                <span ng-if="article_is_new">Creación de artículo</span>
+                <span ng-if="article_is_editting">Edicion de artículo</span>
+            </div>
 
-        <div class="w3-col m8"> 
-            <div class="w3-row-padding">
-                <div class="w3-col m12">
-                    <div class="w3-card-2 w3-round w3-white">
+            <div class="w3-col m12"> 
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card-2 w3-round w3-white">
 
-                        <div class="w3-container w3-padding">
-                            
-                            <input type="hidden" value="{{article_data.classroom_id}}"/>
-                            <div class="w3-section"><label class="create w3-label">Título: </label><input ng-model="article_form_data.title" ng-value="article.title" class="w3-input" placeholder="Introduce un titulo" type="text"></input></div>
-                            <div class="w3-section"><label class="create w3-label">Tags: </label><input ng-model="article_form_data.tags" ng-value="article.tags" class="w3-input" placeholder="Introduce los tags separados por ','" type="text"></input></div>
-                            <div class="w3-section"><label class="create w3-label">Tema: </label><input ng-model="article_form_data.topic"ng-value="article.topic" class="w3-input" placeholder="Introduce un tema" type="text"></input></div>
-                            <label class="w3-label">Contenido: </label><text-angular id="text" ng-model="article.body" class="w3-input w3-border" ta-toolbar="[['h1','h2','h3','h4','p','bold','italics','ul','ol','justifyLeft','justifyCenter','justifyRight','justifyFull', 'redo', 'undo','insertImage']]"></text-angular><br>
+                            <div class="w3-container w3-padding">
+                                
+                                <input type="hidden" value="{{article_data.classroom_id}}"/>
+                                <div class="w3-section"><label class="create w3-label">Título: </label><input ng-model="article_form_data.title" ng-value="article.title" class="w3-input" placeholder="Introduce un titulo" type="text"></input></div>
+                                <div class="w3-section"><label class="create w3-label">Tags: </label><input ng-model="article_form_data.tags" ng-value="article.tags" class="w3-input" placeholder="Introduce los tags separados por ','" type="text"></input></div>
+                                <div class="w3-section"><label class="create w3-label">Tema: </label><input ng-model="article_form_data.topic"ng-value="article.topic" class="w3-input" placeholder="Introduce un tema" type="text"></input></div>
+                                <label class="w3-label">Contenido: </label><text-angular id="text" ng-model="article.body" class="w3-input w3-border" ta-toolbar="[['h1','h2','h3','h4','p','bold','italics','ul','ol','justifyLeft','justifyCenter','justifyRight','justifyFull', 'redo', 'undo','insertImage']]"></text-angular><br>
 
-                            <button ng-click="save()" ng-value="article.title" type="button" class="w3-btn-block w3-center"><i class="fa fa-pencil"></i> Guardar Artículo </button>
-                                                                
-                        </div>
-                    </div><br>
+                                <button ng-click="save()" ng-value="article.title" type="button" class="article_view_action_btn w3-btn-block w3-section w3-center"><i class="fa fa-pencil"></i> Guardar Artículo </button>
+
+                                <button class="w3-btn w3-btn-block w3-black" ng-click="redirect_to_classroom(article.classroom_id)">
+                                    <i class="fa fa-arrow-left"></i> Volver al aula
+                                </button>                                                                    
+                            </div>
+                        </div><br>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Right Column -->
+        <div class="w3-col m2 w3-hide-small w3-hide-medium w3-container w3-section w3-right">
+             <!-- Profile -->
+             <div class="w3-row">
+                <div ng-include="'app/views/partials/user-profile-data-partial.html'"></div> 
+            </div>
+
+             <!-- Classroom Info -->
+             <div class="w3-row">
+                <div ng-include="'app/views/partials/classroom-info.html'"></div> 
+            </div>
+
+        </div>        
        
     <!-- End Grid -->
     </div>

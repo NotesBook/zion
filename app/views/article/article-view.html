@@ -36,17 +36,17 @@
                             <span class="w3-text-blue">Autor: {{article.author_name}}</span></a>
                         </div>
                         
-                        <p ng-bind-html="article.body" contenteditable="false">{{article.body}}</p>
+                        <p ng-bind-html="article.body" class="w3-input" contenteditable="false">{{article.body}}</p>
 
-                        <button class="w3-btn w3-red" ng-show="show_edit_button()" ng-click="edit_article(article.classroom_id, article.id)" class="w3-btn w3-theme">
+                        <button class="article_view_action_btn w3-btn w3-btn-block w3-section" ng-show="show_edit_button()" ng-click="edit_article(article.classroom_id, article.id)">
                             <i class="fa fa-edit"></i> Editar
                         </button>     
 
-                        <button class="w3-btn w3-black" ng-click="redirect_to_classroom(article.classroom_id)">
+                        <button class="w3-btn w3-btn-block w3-black" ng-click="redirect_to_classroom(article.classroom_id)">
                             <i class="fa fa-arrow-left"></i> Volver al aula
                         </button>                          
                                           
-                    <div class="w3-section w3-right">
+                    <div class="w3-section w3-center">
                             <a href=""><span ng-click="like(article.id)" class="w3-hover-text-green w3-large" title="Me gusta"> <i class="fa fa-thumbs-o-up fa-lg"></i></span></a><span class="w3-text-green w3-large">{{article.likes_count}}</span>
                             <a href=""><span ng-click="unlike(article.id)" class="w3-hover-text-red w3-large" title="No me gusta"> <i class="fa fa-thumbs-o-down fa-lg"></i></span></a><span class="w3-text-red w3-large">{{article.unlikes_count}}</span>
                         </div>
