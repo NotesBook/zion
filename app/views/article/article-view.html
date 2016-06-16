@@ -42,7 +42,7 @@
                             <p ng-model="article_form_data['tags']" contenteditable="false"><label class="w3-label">Tags: </label><br>{{article.tags}}</p>
                             <p ng-model="article_form_data['topic']" contenteditable="false"><label class="w3-label">Tema: </label><br>{{article.topic}}</p>
                             <text-angular id="text" ng-model="article_form_data['body']" ng-show="show_text_angular" class="article w3-input w3-border" ta-toolbar="[['h1','h2','h3','h4','p','bold','italics','ul','ol','justifyLeft','justifyCenter','justifyRight','justifyFull', 'redo', 'undo','insertImage','insertLink', 'insertVideo']]"></text-angular><br>
-                            <button type="button" ng-show="show_edit_button" ng-click="show_edit_article_view()" class="w3-btn w3-theme"><i class="fa fa-pencil"></i> Editar</button>
+                            <button type="button" ng-show="show_edit_button()" ng-click="edit_article(article.classroom_id, article.id)" class="w3-btn w3-theme"><i class="fa fa-pencil"></i> Editar</button>
                             <a href="#/article/{{article_id}}/"><button type="button" ng-show="show_save_button" ng-click="save_edited_article()" class="w3-btn w3-theme"><i class="fa fa-pencil"></i> Guardar</button></a>
                                 
                             <div class="w3-section w3-right">

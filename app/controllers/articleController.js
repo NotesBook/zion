@@ -61,6 +61,19 @@ nbApp.controller('ArticleController', ['$scope', '$routeParams', '$route', '$loc
 
 		};	
 
+		$scope.edit_article = function(classroom_id, article_id) {
+
+			$location.path("classroom/" + classroom_id + "/article/" + article_id + "/edit");
+
+		};
+
+		$scope.show_edit_button = function() {
+
+			if ($scope.logged_user_data)
+				return $scope.article.author_id = $scope.logged_user_data.id;
+
+		};
+
         $scope.show_user_info = function(userid) {
 
 			debugger;
