@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "Password Protected Area"
+AuthUserFile C:\xampp\htdocs\www\git_app\zion\.htpasswd
+Require valid-user
+
+#prevent listing files
+Options -Indexes
