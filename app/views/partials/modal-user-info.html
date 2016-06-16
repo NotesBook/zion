@@ -1,13 +1,14 @@
 <!-- Register Valid Modal -->
-<div class="w3-modal" ng-style="modal_user_invite.style">
+<div class="w3-modal" ng-style="modal_user_info.style">
     <div class="w3-modal-content w3-card-4 w3-animate-top"><!-- Profile -->
+        <span ng-click="close_user_info_modal()" class="w3-closebtn">×</span>
 		<div class="w3-card-2 w3-round w3-white">
 		    <div class="w3-container">
 		        <h4 class="w3-center">Pepito</h4>
-		        <p class="w3-center"><img src="{{logged_user_data.avatar_src}}" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+		        <p class="w3-center"><img src="{{modal_user_info.avatar_src}}" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
 		        <hr>
-		        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{logged_user_data.region}}, {{logged_user_data.country}}</p>
-		        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> {{logged_user_data.birthdate}}</p>
+		        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{modal_user_info.region}}, {{modal_user_info.country}}</p>
+		        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> {{modal_user_info.birthdate}}</p>
 		    </div>
 		</div>
 		<br>

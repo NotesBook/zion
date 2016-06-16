@@ -1,9 +1,15 @@
 <div class="w3-col m12">
   	<div class="article w3-card-2 w3-round w3-white">
     	<div class="w3-container w3-padding">
+<<<<<<< HEAD
             <div class="w3-input w3-light-grey"><a href="#/user/{{article.author_id}}">
                 <img class="w3-circle article_avatar" src="{{article.author_avatar_src}}">
                 <span class="w3-text-blue-grey">  Autor: {{article.author_name}}</span></a>
+=======
+            <div class="w3-input w3-light-grey"><a href="" ng-click="launch_user_info_modal(article.author_id)">
+                <img class="w3-circle article_avatar" src="{{article.author_avatar_src}}" >
+                <span class="w3-text-blue">Autor: {{article.author_name}}</span></a>
+>>>>>>> 760fb4c244b4e2f254ff6ae628da391b8fca113f
             </div>
             
             <p ng-bind-html="article.body" class="w3-input" contenteditable="false">{{article.body}}</p>

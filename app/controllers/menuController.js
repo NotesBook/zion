@@ -95,18 +95,6 @@ nbApp.controller('MenuController', ['$scope', '$window', '$cookies', 'SecuritySe
 
         $scope.refresh_classrooms();
 
-        $scope.show_user_info_modal_aa = function(userid) {
-
-            debugger;
-
-            UserService.get_by_id(userid).then(function(response) {
-
-                debugger;
-
-            });
-
-        };
-
         /* ----------------------- Fin Article ---------------------- */
 
         // Logout user and redirect to login
