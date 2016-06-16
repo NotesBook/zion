@@ -15,7 +15,6 @@
 		public static function register($name, $category, $subcategory, $description, $invitation_code) {
 
 			//Generate random code
-			$invitation_code = md5($invitation_code);
 
 			$classroom_id = parent::insert("classrooms", 
 				"name, category, subcategory, description, invitation_code",
@@ -29,6 +28,7 @@
 		 * Enroll user in database
 		 */
 		public static function enroll_user($user_id, $invitation_code) {
+
 
 			//1. Check if classroom_id has this invitation_code
 			$database_classroom_result = parent::select("classrooms", array("*"), "invitation_code = '$invitation_code'");

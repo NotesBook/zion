@@ -41,7 +41,6 @@
 			//3.1. Generate Random Password
 		    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
 		    $invitation_code = substr( str_shuffle( $chars ), 0, 8 );
-		    $md5_password = md5($invitation_code);	
 
 			//3.2. Save
 			$classroom_id = ClassroomRepository::register($name, $category, $subcategory, $description, $invitation_code);
