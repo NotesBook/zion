@@ -54,6 +54,4 @@ nbApp.controller('LoginController', ['$scope', '$routeParams', '$location', '$co
 			});
 		};
 
-		//TODO: Delete cookie loginTokenCookie when logout
-
 	}]);
