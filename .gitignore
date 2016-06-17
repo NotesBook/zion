@@ -1,2 +1,8 @@
 #Ignore Specific Files
 api/webconfig.xml
+
+# Ignore everything
+/avatars/*
+
+# But not these files...
+!/avatars/.htaccess
