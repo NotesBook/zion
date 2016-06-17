@@ -53,7 +53,7 @@
 			$this->region = trim($region);
 			$this->email = trim($email);
 			$this->karma = trim($karma);
-			$this->avatar_src = isset($avatar_src) ? $avatar_src : 'images/boy_avatar.jpg';
+			$this->avatar_src = $avatar_src;
 
 		}
 
@@ -177,6 +177,9 @@
 		 */
 
 	    public function jsonSerialize() {
+
+	    	$author_has_avatar = $this->get_avatar_src();
+
 	        return [
 	            'id' => $this->id,
 	            'name' => $this->name,
@@ -186,7 +189,7 @@
 	            'region' => $this->region,
 	            'email' => $this->email,	            
 	            'karma' => $this->karma,
-	            'avatar_src' => 'avatars/'.$this->avatar_src
+	            'avatar_src' => $author_has_avatar ? "avatars/".$this->avatar_src : "images/boy_avatar.jpg"
 	        ];
 	    }
 

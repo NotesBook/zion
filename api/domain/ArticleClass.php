@@ -99,6 +99,10 @@
 		 */
 
 	    public function jsonSerialize() {
+
+	    	$author_is_set = isset($this->author);
+	    	$author_has_avatar = $author_is_set && $this->author->get_avatar_src();
+
 	        return [
 	            'id' => $this->id,
 	            'author_id' => $this->author_id,
@@ -112,8 +116,8 @@
 	            'delete_date' => $this->delete_date,
 	            'likes_count' => $this->likes_count,
 	            'unlikes_count' => $this->unlikes_count,
-	            'author_name' => isset($this->author) ? $this->author->get_complete_name() : "",
-	            'author_avatar_src' => isset($this->author) ? "avatars/".$this->author->get_avatar_src() : "images/boy_avatar.jpg"
+	            'author_name' => $author_is_set ? $this->author->get_complete_name() : "",
+	            'author_avatar_src' => $author_is_set && $author_has_avatar ? "avatars/".$this->author->get_avatar_src() : "images/boy_avatar.jpg"
 	        ];
 	    }
 
