@@ -167,6 +167,11 @@ nbApp.controller('MenuController', ['$scope', '$window', '$cookies', 'SecuritySe
             
                 } else ModalService.showModal(" ¡Ups! Ha habido algún error ", "Contacta con el administrador web", true);
 
+            }, function(response) {
+                ModalService.showModal(" ¡Ups! Ha habido algún error ", "Contacta con el administrador web", true);
+                custom_scope.close_invite_modal();
+                LoadingService.hideLoading();  
+            
             });
 
         };

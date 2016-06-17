@@ -43,6 +43,11 @@ div.article {
 	cursor: pointer;
 }
 
+div.article .body {
+	max-height: 350px;
+	overflow: hidden;
+}
+
 div#loading {
 	
 	display:none;
@@ -109,6 +114,13 @@ div#loading img {
 	color: white;
 	font-family: 'Mohave';
 	font-size: 40px;	
+}
+
+.article_view_title_list {
+	background-color: #d1d1d1;
+	color: black;
+	font-family: 'Mohave';
+	font-size: 20px;	
 }
 
 #logo {
