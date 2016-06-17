@@ -44,7 +44,13 @@ nbApp.controller('LoginController', ['$scope', '$routeParams', '$location', '$co
 
 					//add token to cookie
 					$cookies.put("loginTokenCookie", response.data);
+				} else {
+                   	ModalService.showModal(" ¡ Usuario o contraseña incorrectos ! ", "Prueba de nuevo, o regístrate", true);
 				}
+			}, function (response) {
+
+               	ModalService.showModal(" ¡ Usuario o contraseña incorrectos ! ", response.error, true);
+
 			});
 		};
 
