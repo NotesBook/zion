@@ -57,8 +57,8 @@ nbApp.controller('ArticleController', ['$scope', '$routeParams', '$window', '$ro
 
 		};
 
-		$scope.redirect_to_classroom = function(classroom_id) {
-			$location.path("classroom/" + classroom_id);
+		$scope.redirect_to_classroom = function() {
+			$location.path("classroom/" + $scope.classroom_id);
 		} 
 
 		$scope.show_edit_button = function() {
