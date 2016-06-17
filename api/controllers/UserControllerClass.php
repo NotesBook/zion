@@ -248,6 +248,8 @@
 
 			MailEngineService::send("Has sido invitado al aula: ".$classroom->get_name(), $email_html, $email);
 
+			self::refresh_session();
+			
 			//5. Return Ok
 			return FormattedRequest::format(true);
 

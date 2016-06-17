@@ -24,9 +24,12 @@
 		private $security_code;
 
 		//Karma Values
-		const KARMA_CREATE_ARTICLE = 1;
-		const KARMA_POSITIVE_VOTE = 1;
-		const KARMA_NEGATIVE_VOTE = -1;
+		const KARMA_CREATE_CLASSROOM = 5;
+		const KARMA_ENROLL_CLASSROOM = 2;
+		const KARMA_CREATE_ARTICLE = 3;
+		const KARMA_POSITIVE_VOTE = 10;
+		const KARMA_NEGATIVE_VOTE = -10;
+		const KARMA_UPLOAD_AVATAR = 1;
 
 		public function __construct($id, $name, $surname, $birthdate, $country, $region, $email, $karma, $avatar_src) { 
 

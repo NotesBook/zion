@@ -41,6 +41,8 @@
 			//3. Save
 			$article_id = ArticleRepository::save($author_id, $classroom_id, $title, $body, $tags, $topic, $article_id);
 
+			self::refresh_session();
+
 			//5. Return Ok
 			return FormattedRequest::format(true, $article_id);
 		}
@@ -69,6 +71,8 @@
 			//1. GET
 			ArticleRepository::like($_SESSION["user"]["id"], $article_id);
 
+			self::refresh_session();
+
 			return FormattedRequest::format(true);
 
 		}
@@ -83,7 +87,17 @@
 			//1. GET
 			$article = ArticleRepository::unlike($_SESSION["user"]["id"], $article_id);
 
+			self::refresh_session();
+
 			return FormattedRequest::format(true);
+
+		}
+
+		public function refresh_session() {
+
+			$user_obj = UserRepository::get_by_id($_SESSION['user']['id']);
+
+			SessionManager::set_session_user($user_obj);
 
 		}
 

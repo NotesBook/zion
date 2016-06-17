@@ -20,6 +20,8 @@
 			
 			if (!isset($article_id)) {
 
+ 				UserRepository::modify_karma(User::KARMA_CREATE_ARTICLE, $author_id);
+
 				//New Article
 				return parent::insert("articles", 
 					"author_id, classroom_id, title, body, topic, tags, create_date, modify_date",
@@ -95,7 +97,6 @@
 
 			//1. Check Article exits
 			$article = self::get_by_id($article_id);
-			//UserRepository::modify_karma(User::KARMA_LIKE_ARTICLE, $user_id);
 
  			$date = date('Y/m/d H:i:s');
 
@@ -103,6 +104,11 @@
  			$article_like_result = parent::select("articles_likes", array("*"), "article_id = $article_id AND user_id = $user_id");
 
  			if ($article_like_result->num_rows > 0) {
+
+ 				$article_like_tupla = $article_like_result->fetch_array();
+
+ 				if($article_like_tupla["like"] == 0) 
+ 					UserRepository::modify_karma(User::KARMA_POSITIVE_VOTE, $user_id);
 
 				parent::update("articles_likes", 
 					"`like` = 1, date = '$date'",
@@ -112,6 +118,8 @@
 
 				//2. Insert articles_likes
 				parent::insert("articles_likes", "`like`, article_id, user_id, date", "1, $article_id, $user_id, '$date'");
+ 				
+ 				UserRepository::modify_karma(User::KARMA_POSITIVE_VOTE, $user_id);
 
  			}
 
@@ -124,7 +132,6 @@
 
 			//1. Check Article exits
 			$article = self::get_by_id($article_id);
-			//UserRepository::modify_karma(User::KARMA_UNLIKE_ARTICLE, $user_id);
 
  			//2. Check if like or unlike exists
  			$article_like_result = parent::select("articles_likes", array("*"), "article_id = $article_id AND user_id = $user_id");
@@ -132,6 +139,11 @@
  			$date = date('Y/m/d H:i:s');
 
  			if ($article_like_result->num_rows > 0) {
+
+ 				$article_like_tupla = $article_like_result->fetch_array();
+
+ 				if($article_like_tupla["like"] == "1") 
+ 					UserRepository::modify_karma(User::KARMA_NEGATIVE_VOTE, $user_id);
 
 				parent::update("articles_likes", 
 					"`like` = 0, date = '$date'",
@@ -141,6 +153,8 @@
 
 				//2. Insert articles_likes
 				parent::insert("articles_likes", "`like`, article_id, user_id, date", "0, $article_id, $user_id, '$date'");
+ 				
+ 				UserRepository::modify_karma(User::KARMA_NEGATIVE_VOTE, $user_id);
  				
  			}
 

@@ -12,13 +12,15 @@
 		/* 
 		 * return: invitation_code 
 		 */
-		public static function register($name, $category, $subcategory, $description, $invitation_code) {
+		public static function register($name, $category, $subcategory, $description, $invitation_code, $user_id) {
 
 			//Generate random code
 
 			$classroom_id = parent::insert("classrooms", 
 				"name, category, subcategory, description, invitation_code",
 				"'$name', '$category', '$subcategory', '$description', '$invitation_code'");
+
+			UserRepository::modify_karma(User::KARMA_CREATE_CLASSROOM, $user_id);
 
 			return $classroom_id;
 
@@ -42,6 +44,8 @@
 				if ($database_user_classroom_result->num_rows == 0) {
 
 		 				$date = date('Y/m/d H:i:s');
+
+						UserRepository::modify_karma(User::KARMA_ENROLL_CLASSROOM, $user_id);
 
 						//2. Insert into classrooms_users new field, with actual date
 						parent::insert("classrooms_users", 

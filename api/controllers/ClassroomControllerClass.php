@@ -43,7 +43,7 @@
 		    $invitation_code = substr( str_shuffle( $chars ), 0, 8 );
 
 			//3.2. Save
-			$classroom_id = ClassroomRepository::register($name, $category, $subcategory, $description, $invitation_code);
+			$classroom_id = ClassroomRepository::register($name, $category, $subcategory, $description, $invitation_code, $_SESSION["user"]["id"]);
 
 			//3.3 Enroll Session User to Classroom
 			ClassroomRepository::enroll_user($_SESSION["user"]["id"], $invitation_code);
@@ -56,6 +56,8 @@
 		    $email_html = str_replace("%%USERNAME%%", $_SESSION["user"]["name"], $email_html);
 
 			MailEngineService::send("Aula Creada", $email_html, $_SESSION["user"]["email"]);
+
+			self::refresh_session();
 
 			//5. Return Ok
 			return FormattedRequest::format(true, $classroom_id);
@@ -87,6 +89,9 @@
 
 			//1 Enroll Session User to Classroom
 			$classroom_id = ClassroomRepository::enroll_user($id_user, $invitation_code);
+
+			self::refresh_session();
+
 			return FormattedRequest::format(true, $classroom_id);
 
 		}
@@ -113,5 +118,13 @@
 			$articles = ArticleRepository::get_all_by_classroom($classroom_id);
 			//5. Return Ok
 			return FormattedRequest::format(true, $articles);
+		}
+
+		public function refresh_session() {
+
+			$user_obj = UserRepository::get_by_id($_SESSION['user']['id']);
+
+			SessionManager::set_session_user($user_obj);
+
 		}
 	}

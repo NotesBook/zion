@@ -46,9 +46,6 @@
 
 			$conn = MysqlDatabaseEngine::get_connection();
 
-			//print_r("UPDATE $table SET $updates WHERE $where");
-			//exit();
-
 			$conn->query("UPDATE $table SET $updates WHERE $where");
 			if (!$conn->commit()) {
 			    throw new Exception('Base Repository: Error Insert $table');
