@@ -12,8 +12,8 @@
 	src: '../fonts/Mohave-bold.otf';
 }
 
-html,body,h1,h2,h3,h4,h5 {
-	font-family: "Open Sans", sans-serif;
+html,body,h1,h2,h3,h4,h5,i {
+	font-family: "Mohave", sans-serif;
 }
 
 body {
@@ -75,6 +75,7 @@ div#loading img {
 .w3-text-blue {
 	position: relative;
 }
+
 .menu_bar, footer{
 	background-color: #32506d;
 	color:white;

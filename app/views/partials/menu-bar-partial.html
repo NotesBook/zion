@@ -10,41 +10,41 @@
 
             <li>
                 <a href="#/dashboard" class="w3-card-2 init_button w3-padding-large w3-hover-white">
-                    <i class="fa fa-home w3-margin-right"> Inicio</i>
+                    <i class="fa fa-home w3-margin-right"></i>Inicio
                 </a>
             </li>
 
             <li class="w3-hide-small w3-dropdown-hover">
                 <a href="" class="w3-padding-large w3-hover-white" title="Ajustes de cuenta">
-                    <i class="fa fa-graduation-cap"> Aulas</i> 
+                    <i class="fa fa-graduation-cap"></i> Aulas
                 </a>
                 <div class="w3-dropdown-content w3-card-2 w3-white">
-                    <a ng-click="launch_form_classroom_modal()" style="cursor:hand;cursor:pointer">
-                        <i class="fa fa-plus-square"> Crear Aula</i>
+                    <a ng-click="launch_form_classroom_modal()" style="cursor:hand;cursor:pointer">Crear Aula
+                        <i class="fa fa-plus-square"></i>
                     </a>
                 </div> 
             </li>
 
             <li class="w3-hide-small">
                 <a href="" ng-click="launch_invite_modal()" class="w3-hover-white w3-padding-large" style="cursor:hand;cursor:pointer">
-                    <i class="fa fa-user-plus"> Invitar</i> 
+                    <i class="fa fa-user-plus"></i> Invitar
                 </a>            
             </li>
 
             <li class="w3-hide-small w3-dropdown-hover" ng-if="show_menu_articles">
                 <a href="" class="w3-padding-large w3-hover-white w3-drop" title="Articulos">
-                    <i class="fa fa-envelope"> Artículos</i> 
+                    <i class="fa fa-envelope"></i> Artículos
                 </a>
                 <div class="w3-dropdown-content w3-white w3-card-4">
-                        <a href="#/classroom/{{ classroom_id }}/article/new/edit" >
-                            <i class="fa fa-pencil"> Crear Articulo</i>
+                        <a href="#/classroom/{{ classroom_id }}/article/new/edit" >Crear Articulo
+                            <i class="fa fa-pencil"></i>
                         </a>
                 </div>                 
             </li>
 
             <li class="w3-hide-small">
                 <a href="" class="w3-padding-large w3-hover-white" ng-click="launch_enroll_modal()" style="cursor:hand;cursor:pointer">
-                    <i class="fa fa-university"> Acceder a una clase</i> 
+                    <i class="fa fa-university"></i> Acceder a una clase
                 </a>            
             </li>
 
@@ -53,11 +53,11 @@
                     <i class="fa fa-user"></i> {{logged_user_data.name}}
                 </a>
                 <div class="w3-dropdown-content w3-card-2 w3-white">
-                        <a href="" ng-click="launch_change_password_modal()">
-                            <i class="fa fa-plus-square"> Cambiar password</i>
+                        <a href="" ng-click="launch_change_password_modal()">Cambiar pass
+                            <i class="fa fa-plus-square"></i>
                         </a>
-                        <a href="" ng-click="logout()">
-                            <i class="fa fa-plus-square"> Logout</i>
+                        <a href="" ng-click="logout()">Logout
+                            <i class="fa fa-plus-square"></i>
                         </a>
                 </div>                 
            </li>            
@@ -70,47 +70,47 @@
 
              <li class="w3-dropdown-hover">
                 <a href="" class="menu_bar w3-padding-large w3-hover-white" title="Ajustes de cuenta">
-                    <i class="fa fa-graduation-cap"> Aulas</i> 
+                    <i class="fa fa-graduation-cap"></i> Aulas
                 </a>
 
                 <div class="w3-dropdown-content w3-card-2 w3-white">
-                    <a ng-click="launch_form_classroom_modal()" style="cursor:hand;cursor:pointer">
-                        <i class="fa fa-plus-square"> Crear Aula</i>
+                    <a ng-click="launch_form_classroom_modal()" style="cursor:hand;cursor:pointer">Crear Aula
+                        <i class="fa fa-plus-square"></i>
                     </a>
                 </div> 
             </li>
 
             <li>
                 <a href="" class="w3-padding-large w3-hover-white" ng-click="launch_enroll_modal()" style="cursor:hand;cursor:pointer">
-                    <i class="fa fa-envelope"> Acceder a una clase</i> 
+                    <i class="fa fa-envelope"></i> Acceder a una clase
                 </a>            
             </li>
 
             <li class="w3-dropdown-hover" ng-if="show_menu_articles">
                 <a href="" class="menu_bar w3-padding-large w3-hover-white w3-drop" title="Articulos">
-                    <i class="fa fa-envelope"> Artículos</i> 
+                    <i class="fa fa-envelope"></i> Artículos
                 </a>
 
                 <div class="w3-dropdown-content w3-white w3-card-4">
-                    <a href="#/classroom/{{ classroom_id }}/article/new/edit">
-                        <i class="fa fa-pencil"> Crear Articulo</i>
+                    <a href="#/classroom/{{ classroom_id }}/article/new/edit" >Crear Articulo
+                        <i class="fa fa-pencil"></i>
                     </a>
                 </div>                 
             </li>
 
             <li ng-if="show_menu_articles">
                 <a href="" ng-click="launch_invite_modal()" class="w3-hover-white w3-padding-large" style="cursor:hand;cursor:pointer">
-                    <i class="fa fa-user-plus"> Invitar</i> 
+                    <i class="fa fa-user-plus"></i> Invitar
                 </a>            
             </li>
 
             <li class="w3-dropdown-hover">
                 <a href="#/setup" class="menu_bar w3-padding-large w3-hover-white" title="Ajustes de cuenta">
-                    <i class="fa fa-user"> Mi cuenta</i> 
+                    <i class="fa fa-user"></i> Mi cuenta
                 </a>
                 <div class="w3-dropdown-content w3-card-2 w3-white">
-                        <a href="" ng-click="logout()">
-                            <i class="fa fa-plus-square"> Logout</i>
+                        <a href="" ng-click="logout()">Logout
+                            <i class="fa fa-plus-square"></i>
                         </a>
                 </div>                 
            </li>
