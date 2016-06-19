@@ -70,6 +70,14 @@ nbApp.factory('UserService', ['AjaxService',
 
 	  	};
 
+	  	self.change_password = function(old_password_p, new_password_p) {
+
+	  		var _data = {old_password: old_password_p, new_password: new_password_p};
+
+	  		return AjaxService.send('POST', 'api/user/change_password/', JSON.stringify(_data));
+
+	  	};
+
 	    return self;
 
  	}]);

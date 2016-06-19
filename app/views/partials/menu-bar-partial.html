@@ -53,6 +53,10 @@
                     <i class="fa fa-user"></i> {{logged_user_data.name}}
                 </a>
                 <div class="w3-dropdown-content w3-card-2 w3-white">
+                        <a href="" ng-click="launch_change_password_modal()">Change password
+                            <i class="fa fa-plus-square"></i>
+                        </a>
+                        <br>
                         <a href="" ng-click="logout()">Logout
                             <i class="fa fa-plus-square"></i>
                         </a>
@@ -126,5 +130,8 @@
 <!-- Invite modal form partial-->
 <div ng-include="'app/views/partials/modal_enroll_modal.html'"></div>  
 
-<!-- Invite modal form partial-->
+<!-- Invite modal user partial-->
 <div ng-include="'app/views/partials/modal-user-info.html'"></div>  
+
+<!-- Invite modal password partial-->
+<div ng-include="'app/views/partials/modal-change-password.html'"></div>  

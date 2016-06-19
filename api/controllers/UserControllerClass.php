@@ -255,4 +255,28 @@
 
 		}
 
+		/* Method POST
+		 * Check Session
+		 */
+		public function change_password() {
+
+			//1. Get User's fields from $request_body
+			$request_body = HttpEngineService::get_array_from_json_body();
+
+			$old_password = $request_body["old_password"]; 
+			$new_password = $request_body["new_password"]; 
+
+			//2. Check old password
+			$valid = UserRepository::check_password($_SESSION['user']['id'], $old_password);
+
+			//3. Change password if ok
+			if ($valid)
+				UserRepository::change_password($_SESSION['user']['id'], $new_password);
+			else
+				return FormattedRequest::format(false);
+
+			return FormattedRequest::format(true);
+
+		}
+
 	}

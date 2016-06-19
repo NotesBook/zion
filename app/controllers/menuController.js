@@ -1,5 +1,5 @@
-nbApp.controller('MenuController', ['$scope', '$window', '$cookies', 'SecurityService', 'MenuService', 'ModalService', 'LoadingService', 'UserService', 'ClassroomsService', 'CategoriesService',
-	function($scope, $window, $cookies, SecurityService, MenuService, ModalService, LoadingService, UserService, ClassroomsService, CategoriesService, CountriesService, ValidationService) { 
+nbApp.controller('MenuController', ['$scope', '$window', '$location', '$cookies', 'SecurityService', 'MenuService', 'ModalService', 'LoadingService', 'UserService', 'ClassroomsService', 'CategoriesService',
+	function($scope, $window, $location, $cookies, SecurityService, MenuService, ModalService, LoadingService, UserService, ClassroomsService, CategoriesService, CountriesService, ValidationService) { 
 
         LoadingService.showLoading();
         SecurityService.checkSession();
@@ -233,5 +233,52 @@ nbApp.controller('MenuController', ['$scope', '$window', '$cookies', 'SecuritySe
             });
 
         };
+
+        /* Modal Create Classroom */
+        $scope.modal_change_password = {};
+        $scope.modal_change_password.show = false;
+
+        $scope.$watch('modal_change_password.show', function(show) {
+
+            if (show)
+                $scope.modal_change_password.style = { "display" : "block" };
+            else
+                $scope.modal_change_password.style = {};
+
+        });
+
+        $scope.launch_change_password_modal = function() {
+
+            return $scope.modal_change_password.show = true;
+
+        }; 
+
+        $scope.close_change_password_modal = function() {
+
+            return $scope.modal_change_password.show = false;
+
+        };         
+
+        $scope.change_password = function() {
+            LoadingService.showLoading();
+
+            UserService.change_password($scope.modal_change_password.old_password, $scope.modal_change_password.new_password).then(function(response){ 
+
+                $scope.close_change_password_modal();
+                if(response.valid) {
+
+                    ModalService.showModal(" Tu password ha sido cambiado ", "Loguéate de nuevo", true, '#' + $location.path());
+                    $scope.logout();
+
+                } else {
+
+                    ModalService.showModal(" ¡Ups! El password antigüo es inválido ", "No te cueles en las clases :)", true, '#' + $location.path());
+
+                }
+                LoadingService.hideLoading();
+
+            });
+            
+        };    
 
 	}]);

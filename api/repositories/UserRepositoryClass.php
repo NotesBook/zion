@@ -126,4 +126,28 @@
 
 		}
 
+		public static function check_password($user_id, $password) {
+
+			$password = md5($password);
+
+			$result = parent::select("users", array("id"), "id = '$user_id' AND password = '$password'");
+
+			if ($result->num_rows) 
+				return true;
+			else 
+				return false;
+
+		}
+
+
+		public static function change_password($user_id, $new_password) {
+
+			$new_password = md5($new_password);
+
+			parent::update("users", 
+				"password = '$new_password'",
+				"id = '".$user_id."'");
+
+		}
+
 	}
