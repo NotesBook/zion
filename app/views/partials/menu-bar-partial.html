@@ -49,7 +49,7 @@
             </li>
 
             <li class="w3-hide-small w3-dropdown-hover w3-right">
-                <a href="#/setup" class="w3-padding-large w3-hover-white" title="Ajustes de cuenta">
+                <a href="#/setup" class="w3-padding-large w3-hover-white" style="min-width: 175px" title="Ajustes de cuenta">
                     <i class="fa fa-user"></i> {{logged_user_data.name}}
                 </a>
                 <div class="w3-dropdown-content w3-card-2 w3-white">
@@ -109,9 +109,12 @@
                     <i class="fa fa-user"></i> Mi cuenta
                 </a>
                 <div class="w3-dropdown-content w3-card-2 w3-white">
-                        <a href="" ng-click="logout()">Logout
-                            <i class="fa fa-plus-square"></i>
-                        </a>
+                    <a href="" ng-click="launch_change_password_modal()">Cambiar pass
+                        <i class="fa fa-plus-square"></i>
+                    </a>                     
+                    <a href="" ng-click="logout()"> Logout
+                        <i class="fa fa-plus-square"></i>
+                    </a>                       
                 </div>                 
            </li>
 
