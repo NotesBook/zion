@@ -101,4 +101,37 @@
 
 		}
 
+		/* Method GET
+		 * Articles most popular
+		 * param 0, classroom_id
+		 */
+		public function get_most_popular_articles() {
+
+			//1. Get my classrooms
+			$user_id = $_SESSION["user"]["id"];
+			$classrooms = ClassroomRepository::get_all_by_user($user_id);
+
+			//2. Get last_articles by my classrooms
+			$articles = array();
+			foreach ($classrooms as $key => $classroom) {
+				
+				$articles = array_merge($articles, ArticleRepository::get_all_by_classroom($classroom->get_id()));
+
+			}
+
+			//2. Order by votations desc
+			function votation_articles_order_compare($a, $b) {
+
+				return ($a->get_likes_count() > $b->get_likes_count()) ? -1 : 1;
+
+			}
+
+			usort($articles, "votation_articles_order_compare");
+
+			$articles = array_slice($articles, 0, 3);
+
+			//5. Return Ok
+			return FormattedRequest::format(true, $articles);
+		}
+
 	}

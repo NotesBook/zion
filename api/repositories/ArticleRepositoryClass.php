@@ -182,4 +182,42 @@
 
 		}
 
+
+		/**
+		 * return all dashboard user articles
+		 */
+		public static function get_most_popular_by_classroom($classroom_id) {
+
+			$articles = self::get_all_by_classroom($classroom_id);
+
+			//2. Order by votations desc
+			function votation_articles_order_compare($a, $b) {
+
+				return ($a->get_likes_count() > $b->get_likes_count()) ? -1 : 1;
+
+			}
+
+			usort($articles, "votation_articles_order_compare");
+
+			return array_slice($articles, 0, 3);
+
+		}
+
+		public static function get_most_popular_articles($user_id) {
+
+			$articles = self::get_all_by_user($user_id);
+
+			//2. Order by votations desc
+			function votation_articles_order_compare($a, $b) {
+
+				return ($a->get_likes_count() > $b->get_likes_count()) ? -1 : 1;
+
+			}
+
+			usort($articles, "votation_articles_order_compare");
+
+			return array_slice($articles, 0, 3);
+
+		}
+
 	}

@@ -50,6 +50,12 @@ nbApp.factory('ArticlesService', ['AjaxService',
 
 	    	return AjaxService.send(method,uri);
 
+	    };
+
+	    self.get_most_popular_articles = function() {
+
+	    	return AjaxService.send('GET', 'api/article/get_most_popular_articles')
+
 	    }
 	    
 	    return self;

@@ -127,4 +127,19 @@
 			SessionManager::set_session_user($user_obj);
 
 		}
+
+		/* Method GET
+		 * Articles most popular
+		 * param 0, classroom_id
+		 */
+		public function get_most_popular_articles() {
+			
+			$classroom_id = RoutingEngineService::get_params()[0];
+			
+			//1. Get last articles by activity
+			$articles = ArticleRepository::get_most_popular_by_classroom($classroom_id);
+
+			//5. Return Ok
+			return FormattedRequest::format(true, $articles);
+		}
 	}

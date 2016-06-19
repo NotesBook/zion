@@ -79,4 +79,12 @@ nbApp.controller('MainController', ['$scope', '$cookies', '$window','SecuritySer
 
         };    
 
+        /****** Most popular articles *******/
+
+        $scope.most_popular_articles = ArticlesService.get_most_popular_articles().then(function(response) {
+
+            $scope.most_popular_articles = response.data;
+
+        });
+
 	}])

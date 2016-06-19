@@ -22,10 +22,15 @@ nbApp.factory('ClassroomsService', ['AjaxService',
 
 	  	};
 
-
 	  	self.invitation_enroll = function (invitation_code) {
 
 	  		return AjaxService.send('GET', 'api/classroom/enroll/' + invitation_code);
+
+	  	};
+
+	  	self.get_most_popular_articles = function (classroom_id) {
+
+	  		return AjaxService.send('GET', 'api/classroom/get_most_popular_articles/' + classroom_id);
 
 	  	};
 

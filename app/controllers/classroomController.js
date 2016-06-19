@@ -98,4 +98,10 @@ nbApp.controller('ClassRoomController',['$scope', '$routeParams', 'LoadingServic
 
         };
 
+        $scope.most_popular_articles = ClassroomsService.get_most_popular_articles($scope.classroom_id).then(function(response) {
+
+            $scope.most_popular_articles = response.data;
+
+        });
+
 }])

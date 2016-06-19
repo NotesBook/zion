@@ -52,6 +52,12 @@
 
 		}
 
+		function get_likes_count() {
+
+			return $this->likes_count;
+
+		}
+
 	    /** Validations */
 	    public static function check_data($author_id, $classroom_id, $title, $body, $tags, $topic) {
 
