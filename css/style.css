@@ -99,18 +99,18 @@ div#loading img {
 }
 
 .classroom_articles {
-	background-color: #89ABCC;	
+	background-color: transparent;	
 }
 
 .classroom_title {
-	background-color: white;
-	color: black;
+	background-color: #CB8E71;
+	color: white;
 	font-family: 'Mohave';
 	font-size: 40px;
 }
 
 .article_view_title {
-	background-color: #b52e31;
+	background-color: #CBB671;
 	color: white;
 	font-family: 'Mohave';
 	font-size: 40px;	
@@ -145,7 +145,9 @@ div#loading img {
 }
 
 .init_button {
-	background-color: #b52e31;
+	color: #32506d;
+	background-color: white;
+	font-size: 20px;
 }
 
 .article img {
