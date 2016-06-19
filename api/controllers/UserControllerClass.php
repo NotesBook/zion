@@ -83,7 +83,7 @@
 
 			$name = $request_body["name"]; 
 			$surname = $request_body["surname"]; 
-			$birthdate = $request_body["birthdate"]; 
+			$birthdate = date('d/m/Y', strtotime($request_body["birthdate_input"])); 
 			$country = $request_body["country"]; 
 			$region = $request_body["region"]; 
 			$email = $request_body["email"]; 

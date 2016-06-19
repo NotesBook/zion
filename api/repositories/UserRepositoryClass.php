@@ -43,7 +43,7 @@
 		public static function save($id, $name, $surname, $birthdate, $country, $region) {
 
 			parent::update("users", 
-				"name = '$name', surname = '$surname', birthdate = '$birthdate', country = '$country', region = '$region'",
+				"name = '$name', surname = '$surname', birthdate = STR_TO_DATE('$birthdate','%d/%m/%Y'), country = '$country', region = '$region'",
 				"id = '".$id."'");
 
 		}

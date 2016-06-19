@@ -15,7 +15,6 @@ nbApp.controller('RegisterController', ['$scope', 'ValidationService', 'Countrie
 
                 $scope.$watch('register_model.email', function() {
                     
-                    if ($scope.userRegisterForm.email.$touched && $scope.userRegisterForm.email.$valid)
                         UserService.check_email_exists($scope.register_model.email).then(function(response) {
 
                             if(!response.valid) {
