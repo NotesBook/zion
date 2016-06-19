@@ -183,7 +183,7 @@ if ($version_actual == "3") {
 	        date 		 	DATETIME DEFAULT NULL,
 	        PRIMARY KEY (article_id, user_id)
 	    )";
-	print $sql_create_table_articles_likes_if_not_exists."<br>";
+	//print $sql_create_table_articles_likes_if_not_exists."<br>";
 	MysqlDatabaseEngine::get_connection()->query($sql_create_table_articles_likes_if_not_exists);
 
 	//3. Actualizamos la versión de la bbdd
