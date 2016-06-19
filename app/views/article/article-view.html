@@ -9,22 +9,24 @@
     <div class="w3-row w3-row-padding">
 
         <!-- Left Column -->
-        <div class="w3-col m2 w3-section">
+        <div class="w3-col m12 l2 w3-section">
             <!-- Logo -->
             <div class="w3-row">
-                <div class="w3-card-2 w3-white w3-round w3-col w3-center">
+                <div class="w3-card-2 w3-white w3-round w3-col w3-center w3-hide-medium">
                     <img id="logo" src="images/logo_Notesbook_trans.png"></img>
                 </div>
+                <div class="w3-card-2 w3-white w3-round w3-col w3-center w3-hide-large w3-hide-small">
+                    <img id="logo" src="images/logo_Notesbook_trans.png" style="width: 400px;height: 400px"></img>
+                </div>                
             </div>
-
             <!-- My Classrooms -->
-            <div ng-include="'app/views/partials/my-classrooms-links-partial.html'"></div>
+            <div style="margin-top: 50px" ng-include="'app/views/partials/my-classrooms-links-partial.html'"></div>
 
         <!-- End Left Column -->
         </div>   
 
         <!-- Middle Column -->
-        <div class="w3-col m8 w3-card-2 w3-round w3-container w3-section">
+        <div class="w3-col l8 m12 w3-card-2 w3-round w3-container w3-section">
 
             <div class="article_view_title w3-col m12 w3-center w3-section w3-card-2 w3-padding w3-round">{{article.title}}</div>  
 
@@ -38,7 +40,7 @@
 
                         </div>
                         
-                        <p ng-bind-html="article.body" class="w3-input" contenteditable="false">{{article.body}}</p>
+                        <p ng-bind-html="article.body" class=" body-scroll-x w3-input" contenteditable="false">{{article.body}}</p>
 
                         <button class="article_view_action_btn w3-btn w3-btn-block w3-section" ng-show="show_edit_button()" ng-click="edit_article(article.classroom_id, article.id)">
                             <i class="fa fa-edit"></i> Editar
@@ -58,7 +60,7 @@
         </div> 
 
         <!-- Right Column -->
-        <div class="w3-col m2 w3-hide-small w3-hide-medium w3-container w3-section w3-right">
+        <div class="w3-col l2 m12  w3-container w3-section w3-right">
              <!-- Profile -->
              <div class="w3-row">
                 <div ng-include="'app/views/partials/user-profile-data-partial.html'"></div> 

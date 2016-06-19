@@ -150,8 +150,12 @@ div#loading img {
 	font-size: 20px;
 }
 
+.article .body-scroll-x {
+	overflow-x: scroll;
+}
+
 .article img {
-	max-width: 100%;
+	max-width: 100% !important;
 }
 
 .modal_user_invite {

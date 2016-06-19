@@ -3,28 +3,30 @@
 <div ng-controller="MenuController" ng-include="'app/views/partials/menu-bar-partial.html'"></div>
 
 <!-- Page Container -->
-<div class="w3-container" style="margin-top:80px; height:100vh">
+<div class="w3-container" style="margin-top:80px; min-height:100vh">
         
     <!-- The Grid -->
     <div class="w3-row w3-row-padding">
 
         <!-- Left Column -->
-        <div class="w3-col m2 w3-section">
+        <div class="w3-col m12 l2 w3-section">
             <!-- Logo -->
             <div class="w3-row">
-                <div class="w3-card-2 w3-white w3-round w3-col w3-center">
+                <div class="w3-card-2 w3-white w3-round w3-col w3-center w3-hide-medium">
                     <img id="logo" src="images/logo_Notesbook_trans.png"></img>
                 </div>
+                <div class="w3-card-2 w3-white w3-round w3-col w3-center w3-hide-large w3-hide-small">
+                    <img id="logo" src="images/logo_Notesbook_trans.png" style="width: 400px;height: 400px"></img>
+                </div>                
             </div>
-
             <!-- My Classrooms -->
-            <div ng-include="'app/views/partials/my-classrooms-links-partial.html'"></div>
+            <div style="margin-top: 50px" ng-include="'app/views/partials/my-classrooms-links-partial.html'"></div>
 
         <!-- End Left Column -->
         </div>   
 
         <!-- Middle Column -->
-        <div class="user_setup_mid_card w3-col m8 w3-card-2 w3-round w3-container w3-section ">
+        <div class="user_setup_mid_card w3-col l8 m12 w3-card-2 w3-round w3-container w3-section ">
 
             <div class="setup_view_title w3-col m12 w3-center w3-section w3-card-2 w3-padding w3-round">Mantenimiento de usuario</div>    
 
