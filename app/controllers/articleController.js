@@ -64,7 +64,7 @@ nbApp.controller('ArticleController', ['$scope', '$routeParams', '$window', '$ro
 		$scope.show_edit_button = function() {
 
 			if ($scope.logged_user_data)
-				return $scope.article.author_id = $scope.logged_user_data.id;
+				return $scope.article.author_id == $scope.logged_user_data.id;
 
 		};
 

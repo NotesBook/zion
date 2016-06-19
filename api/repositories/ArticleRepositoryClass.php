@@ -57,6 +57,8 @@
 			//author_name
 			$author = UserRepository::get_by_id($article_tupla["author_id"]);
 
+			//print_r($article_tupla["author_id"]);
+
 			$article = new Article($article_tupla["author_id"], $article_tupla["classroom_id"], $article_tupla["title"], $article_tupla["body"], $article_tupla["tags"], $article_tupla["topic"], $article_tupla["id"], $article_tupla["create_date"], $article_tupla["modify_date"], $article_tupla["delete_date"], $likes_count, $unlikes_count, $author);
 
 			return $article;	
