@@ -13,10 +13,10 @@
  
  			$date = date('Y/m/d H:i:s');
 
- 			$title = mysql_real_escape_string($title);
- 			$body = mysql_real_escape_string($body);
- 			$tags = mysql_real_escape_string($tags);
- 			$topic = mysql_real_escape_string($topic);
+ 			$title = MysqlDatabaseEngine::get_connection()->real_escape_string($title);
+ 			$body = MysqlDatabaseEngine::get_connection()->real_escape_string($body);
+ 			$tags = MysqlDatabaseEngine::get_connection()->real_escape_string($tags);
+ 			$topic = MysqlDatabaseEngine::get_connection()->real_escape_string($topic);
 			
 			if (!isset($article_id)) {
 
