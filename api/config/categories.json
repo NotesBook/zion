@@ -1,6 +1,6 @@
 [
 {
-   "category": "FP",
+   	"category": "FP",
 	"subcategories": [
 		{
 			"name": "DAW"
@@ -15,6 +15,16 @@
 },
 {
    "category": "UNIVERSIDAD",
-	"subcategories": []
+	"subcategories": [
+		{
+			"name": "Ingeniería Informática"
+		},
+		{
+			"name": "Derecho"
+		},
+		{
+			"name": "Historia del arte"
+		}
+	]
 }
 ]
